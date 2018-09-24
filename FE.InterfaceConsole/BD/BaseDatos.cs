@@ -528,6 +528,9 @@ namespace FE.InterfaceConsole
                         Convert.ToByte(Valor);
                         pParametros[Indice].DbType = DbType.Byte;
                         break;
+                    case "XML": //XML
+                        pParametros[Indice].DbType = DbType.Xml;
+                        break;
                     case "N":
                         /*Establece NULL*/
                         break;

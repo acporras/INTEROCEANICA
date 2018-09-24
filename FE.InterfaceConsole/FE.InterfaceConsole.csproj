@@ -49,6 +49,8 @@
   <ItemGroup>
     <Compile Include="BD\BaseDatos.cs" />
     <Compile Include="BD\BaseDatosException.cs" />
+    <Compile Include="Entity\BEDocdetcli.cs" />
+    <Compile Include="Entity\BEDoccabcli.cs" />
     <Compile Include="Entity\BEMaeemiele.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
