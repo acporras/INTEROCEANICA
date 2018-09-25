@@ -57,7 +57,7 @@ namespace FE.InterfaceConsole
         public string f6_calma { get; set; }
         public string f6_cnrocaj { get; set; }
         public string f6_cstock { get; set; }
-        public DateTime f6_dfecdoc { get; set; }
+        public DateTime? f6_dfecdoc { get; set; }
         public string f6_ccodlin { get; set; }
         public string f6_cnrotab { get; set; }
         public string f6_cnumpaq { get; set; }
@@ -69,7 +69,7 @@ namespace FE.InterfaceConsole
         public Decimal f6_nporcom { get; set; }
         public Decimal f6_nimpcom { get; set; }
         public string f6_cusucre { get; set; }
-        public DateTime f6_dfeccre { get; set; }
+        public DateTime? f6_dfeccre { get; set; }
         public Decimal f6_npresis { get; set; }
         public string f6_cvende2 { get; set; }
         public string f6_citemp { get; set; }

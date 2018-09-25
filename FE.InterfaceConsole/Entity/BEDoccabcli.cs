@@ -19,8 +19,8 @@ namespace FE.InterfaceConsole
         public string f5_cnumser { get; set; }
         public string f5_cnumdoc { get; set; }
         public string f5_cnroped { get; set; }
-        public DateTime f5_dfecdoc { get; set; }
-        public DateTime f5_dfecven { get; set; }
+        public DateTime? f5_dfecdoc { get; set; }
+        public DateTime? f5_dfecven { get; set; }
         public string f5_cdh { get; set; }
         public string f5_cvende { get; set; }
         public string f5_cnrocaj { get; set; }
@@ -62,9 +62,9 @@ namespace FE.InterfaceConsole
         public string f5_ccodaut { get; set; }
         public string f5_crepa { get; set; }
         public string f5_cusucre { get; set; }
-        public DateTime f5_dfeccre { get; set; }
+        public DateTime? f5_dfeccre { get; set; }
         public string f5_cusumod { get; set; }
-        public DateTime f5_dfecmod { get; set; }
+        public DateTime? f5_dfecmod { get; set; }
         public string f5_ctnc { get; set; }
         public string f5_clinea { get; set; }
         public string f5_cimpre { get; set; }
@@ -75,14 +75,14 @@ namespace FE.InterfaceConsole
         public string f5_cperiod { get; set; }
         public string f5_crftd2 { get; set; }
         public string f5_crfndo2 { get; set; }
-        public DateTime f5_dfecanu { get; set; }
+        public DateTime? f5_dfecanu { get; set; }
         public string f5_ctipdnc { get; set; }
         public string f5_ccodveh { get; set; }
         public string f5_ccodfer { get; set; }
         public string f5_ctipdev { get; set; }
         public string f5_csubdia { get; set; }
         public string f5_ccompro { get; set; }
-        public DateTime f5_dfecent { get; set; }
+        public DateTime? f5_dfecent { get; set; }
         public string f5_cnropla { get; set; }
         public string f5_cageot { get; set; }
         public string f5_cordtra { get; set; }
@@ -104,10 +104,16 @@ namespace FE.InterfaceConsole
         public string f5_ccodtal { get; set; }
         public string f5_ctipfor { get; set; }
         public Decimal f5_nporper { get; set; }
-        public DateTime f5_dfecref { get; set; }
+        public DateTime? f5_dfecref { get; set; }
         public string f5_cmorftc { get; set; }
         public Decimal f5_ntcref { get; set; }
         public string f5_cncapli { get; set; }
+        public int? f5_cod_estado_sunat { get; set; }
+        public string f5_mensaje_sunat { get; set; }
+        public int? f5_estado_envio { get; set; }
+        public string f5_xml { get; set; }
+        public string f5_cdr { get; set; }
+        public string f5_pdf { get; set; }
     }
 
     public partial class ListBEDoccabcli : List<BEDoccabcli>

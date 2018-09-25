@@ -138,25 +138,34 @@ namespace FE.InterfaceConsole
                         BDClienti.Desconectar();
 
                         //Generando XML cabecera y detalle
+                        XmlDocument xm_emi = SerializeToXmlDocument(oBEMaeemiele);
                         XmlDocument xm_cab = SerializeToXmlDocument(item);
                         XmlDocument xm_det = SerializeToXmlDocument(oListBEDocdetcli);
                         //Insertando documento electronico
                         BaseDatos BDFaci = new BaseDatos("BASPRVNAM", "BASCADCON");
                         BDFaci.Conectar();
-                        BDFaci.Añadir_Parametro(0, "XM_DOCELECAB", "XML", xm_cab.OuterXml);
-                        BDFaci.Añadir_Parametro(1, "XM_DOCELEDET", "XML", xm_det.OuterXml);
+                        BDFaci.Añadir_Parametro(0, "XM_EMIDOCELE", "XML", xm_emi.OuterXml);
+                        BDFaci.Añadir_Parametro(1, "XM_DOCELECAB", "XML", xm_cab.OuterXml);
+                        BDFaci.Añadir_Parametro(2, "XM_DOCELEDET", "XML", xm_det.OuterXml);
                         BDFaci.Ejecutar_PA("SPI_TBL_DOCELECD", true);
                         BDFaci.Desconectar();
-
+                        Console.WriteLine("RUC:" + oBEMaeemiele.nu_eminumruc + " CDDOC: " + item.f5_cnumser + "-" + item.f5_cnumdoc);
                         //Actualizar el estado del documento en la base de datos
-                        BDClienti.Conectar();
+                        BDClient.Conectar();
+                        BDClient.Añadir_Parametro(0, "CO_DOCALTIDO", "S", item.f5_ctd);
+                        BDClient.Añadir_Parametro(1, "NU_DOCSERSUN", "S", item.f5_cnumser);
+                        BDClient.Añadir_Parametro(2, "NU_DOCNUMSUN", "S", item.f5_cnumdoc);
+                        BDClient.Añadir_Parametro(3, "NO_DOCELECAB", "S", oBEMaeemiele.no_tabfaccab);
+                        BDClient.Ejecutar_PA("SPU_TABFACCAB_MIG", true);
+                        BDClient.Desconectar();
 
-                        BDClienti.Desconectar();
+                        Console.WriteLine("RUC:" + oBEMaeemiele.nu_eminumruc + " UDDOC: " + item.f5_cnumser + "-" + item.f5_cnumdoc);
                     }
                     catch (Exception ex)
                     {
                         ProcessException = true;
                         MessageException = ex.Message.ToString();
+                        Console.WriteLine("RUC:" + oBEMaeemiele.nu_eminumruc + " MESSAGE: " + ex.Message.ToString());
                     }
                 }
 
@@ -280,8 +289,8 @@ namespace FE.InterfaceConsole
                     oBEDoccabcli.f5_cnumord = dr_clidoccab.GetString(dr_clidoccab.GetOrdinal("F5_CNUMORD"));
                 if ((!dr_clidoccab.IsDBNull(dr_clidoccab.GetOrdinal("F5_CRFTD"))))
                     oBEDoccabcli.f5_crftd = dr_clidoccab.GetString(dr_clidoccab.GetOrdinal("F5_CRFTD"));
-                if ((!dr_clidoccab.IsDBNull(dr_clidoccab.GetOrdinal("F5_CRFTD"))))
-                    oBEDoccabcli.f5_crftd = dr_clidoccab.GetString(dr_clidoccab.GetOrdinal("F5_CRFTD"));
+                if ((!dr_clidoccab.IsDBNull(dr_clidoccab.GetOrdinal("F5_CRFNSER"))))
+                    oBEDoccabcli.f5_crfnser = dr_clidoccab.GetString(dr_clidoccab.GetOrdinal("F5_CRFNSER"));
                 if ((!dr_clidoccab.IsDBNull(dr_clidoccab.GetOrdinal("F5_CRFNDOC"))))
                     oBEDoccabcli.f5_crfndoc = dr_clidoccab.GetString(dr_clidoccab.GetOrdinal("F5_CRFNDOC"));
                 if ((!dr_clidoccab.IsDBNull(dr_clidoccab.GetOrdinal("F5_CGLOSA"))))
@@ -420,6 +429,18 @@ namespace FE.InterfaceConsole
                     oBEDoccabcli.f5_ntcref = dr_clidoccab.GetDecimal(dr_clidoccab.GetOrdinal("F5_NTCREF"));
                 if ((!dr_clidoccab.IsDBNull(dr_clidoccab.GetOrdinal("F5_CNCAPLI"))))
                     oBEDoccabcli.f5_cncapli = dr_clidoccab.GetString(dr_clidoccab.GetOrdinal("F5_CNCAPLI"));
+                if ((!dr_clidoccab.IsDBNull(dr_clidoccab.GetOrdinal("F5_COD_ESTADO_SUNAT"))))
+                    oBEDoccabcli.f5_cod_estado_sunat = dr_clidoccab.GetInt32(dr_clidoccab.GetOrdinal("F5_COD_ESTADO_SUNAT"));
+                if ((!dr_clidoccab.IsDBNull(dr_clidoccab.GetOrdinal("F5_MENSAJE_SUNAT"))))
+                    oBEDoccabcli.f5_mensaje_sunat = dr_clidoccab.GetString(dr_clidoccab.GetOrdinal("F5_MENSAJE_SUNAT"));
+                if ((!dr_clidoccab.IsDBNull(dr_clidoccab.GetOrdinal("F5_ESTADO_ENVIO"))))
+                    oBEDoccabcli.f5_estado_envio = dr_clidoccab.GetInt32(dr_clidoccab.GetOrdinal("F5_ESTADO_ENVIO"));
+                if ((!dr_clidoccab.IsDBNull(dr_clidoccab.GetOrdinal("F5_XML"))))
+                    oBEDoccabcli.f5_xml = dr_clidoccab.GetString(dr_clidoccab.GetOrdinal("F5_XML"));
+                if ((!dr_clidoccab.IsDBNull(dr_clidoccab.GetOrdinal("F5_CDR"))))
+                    oBEDoccabcli.f5_cdr = dr_clidoccab.GetString(dr_clidoccab.GetOrdinal("F5_CDR"));
+                if ((!dr_clidoccab.IsDBNull(dr_clidoccab.GetOrdinal("F5_PDF"))))
+                    oBEDoccabcli.f5_pdf = dr_clidoccab.GetString(dr_clidoccab.GetOrdinal("F5_PDF"));
 
                 oListBEDoccabcli.Add(oBEDoccabcli);
             }

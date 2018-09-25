@@ -174,7 +174,9 @@ namespace FE.InterfaceConsole
                         case BBDD.OLEDB:
                             this.Conexion = new OleDbConnection();
                             break;
-                        // case BBDD.MySQL : this.Conexion = new MySqlConnection();
+                        case BBDD.MySQL :
+                            this.Conexion = new MySqlConnection();
+                            break;
                     }
 
                     this.Conexion = _Factory.CreateConnection();
@@ -272,7 +274,9 @@ namespace FE.InterfaceConsole
                     case BBDD.OLEDB:
                         this.Commando = new OleDbCommand();
                         break;
-                    //case BBDD.MySQL : this.Commando = new MySqlCommand();
+                    case BBDD.MySQL :
+                        this.Commando = new MySqlCommand();
+                        break;
                 }
 
                 this.Commando = _Factory.CreateCommand();

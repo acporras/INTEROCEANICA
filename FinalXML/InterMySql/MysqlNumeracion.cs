@@ -28,7 +28,7 @@ namespace FinalXML.InterMySql
             try
             {
                 con.conectarBD();            
-                cmd = new  SqlCommand ("Select * From FT0003FACC", con.conector);                
+                cmd = new  SqlCommand ("Select * From INT_DOCELECAB", con.conector);                
                 cmd.CommandType = CommandType.Text;
                 dr = cmd.ExecuteReader();
                 if (dr.HasRows)
@@ -36,11 +36,12 @@ namespace FinalXML.InterMySql
                     while (dr.Read())
                     {
                         ser = new clsNumeracion();
-                        
-                        ser.TipoDocumento = Convert.ToString(dr.GetString(1));
-                       /* ser.NombreDocumento = Convert.ToString(dr.GetString(2));
-                        ser.Serie = Convert.ToString(dr.GetString(3));
-                        ser.Numeracion = Convert.ToInt32(dr.GetInt32(4));*/
+
+                        //ser.TipoDocumento = Convert.ToString(dr.GetString(1));
+                        ser.TipoDocumento = Convert.ToString(dr.GetString(2));
+                        /* ser.NombreDocumento = Convert.ToString(dr.GetString(2));
+                         ser.Serie = Convert.ToString(dr.GetString(3));
+                         ser.Numeracion = Convert.ToInt32(dr.GetInt32(4));*/
                     }
                 }
                 return ser;

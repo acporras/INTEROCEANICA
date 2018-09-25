@@ -24,8 +24,8 @@ namespace FinalXML.InterMySql
         {
             try
             {
-                string consulta = @"UPDATE FT0003FACC SET F5_COD_ESTADO_SUNAT=@CodEstado, F5_MENSAJE_SUNAT=@MensajeSunat,F5_ESTADO_ENVIO=@EstadoEnv,F5_XML=@Xml ,F5_CDR=@Cdr,F5_PDF=@Pdf
-                                    FROM FT0003FACC 
+                string consulta = @"UPDATE INT_DOCELECAB SET F5_COD_ESTADO_SUNAT=@CodEstado, F5_MENSAJE_SUNAT=@MensajeSunat,F5_ESTADO_ENVIO=@EstadoEnv,F5_XML=@Xml ,F5_CDR=@Cdr,F5_PDF=@Pdf
+                                    FROM INT_DOCELECAB 
                                    WHERE F5_CTD=@Sigla AND F5_CNUMSER=@Serie AND F5_CNUMDOC=@Numeracion";
                 con.conectarBD();
                 cmd = new SqlCommand(consulta, con.conector);
@@ -64,7 +64,7 @@ namespace FinalXML.InterMySql
                string consulta = @"SELECT F5_CTD,F5_CNUMSER,F5_CNUMDOC,CONCAT(F5_CTD,F5_CNUMSER,F5_CNUMDOC) AS NUMDOC,
                                     F5_CCODCLI,F5_CNOMBRE,F5_CDIRECC,F5_DFECDOC,F5_NIMPORT,F5_COD_ESTADO_SUNAT,
                                     F5_MENSAJE_SUNAT, (CASE F5_ESTADO_ENVIO WHEN 0 THEN " + "'ACEPTADA'" + " WHEN 1 THEN " +"'RECHAZADO'" + " WHEN 2 THEN " + "'PENDIENTE'" + " WHEN 3 THEN " + "'POR ENVIAR'" + " END ) AS ESTADO_ENVIO,F5_XML,F5_CDR,F5_PDF " +
-                                    "FROM FT0003FACC "+
+                                    "FROM INT_DOCELECAB "+
                                     "WHERE F5_DFECDOC BETWEEN @desde AND @hasta ORDER BY F5_CNUMDOC DESC";
 
                 tabla = new DataTable();
@@ -89,7 +89,7 @@ namespace FinalXML.InterMySql
             clsCargaVentas ven = null;
             try
             {
-                string consulta = @"SELECT * FROM FT0003FACC WHERE F5_CTD=@Sigla AND F5_CNUMSER=@Serie AND F5_CNUMDOC=@Numeracion  ";
+                string consulta = @"SELECT * FROM INT_DOCELECAB WHERE F5_CTD=@Sigla AND F5_CNUMSER=@Serie AND F5_CNUMDOC=@Numeracion  ";
                 con.conectarBD();
                 cmd = new SqlCommand(consulta, con.conector);
                 cmd.Parameters.AddWithValue("@Sigla", Sigla);
@@ -101,7 +101,7 @@ namespace FinalXML.InterMySql
                 {
                     while (dr.Read())
                     {
-                        ven = new clsCargaVentas();
+                        /*ven = new clsCargaVentas();
                         ven.Sigla = dr.GetString(1);
                         ven.Serie = dr.GetString(2);
                         ven.Numeracion = dr.GetString(3);
@@ -114,7 +114,20 @@ namespace FinalXML.InterMySql
                         ven.NumDocAfecta = dr.GetString(25);
                         ven.Moneda = dr.GetString(16);
                         ven.FechaVencimiento = dr.GetDateTime(6);
-                        
+                        */
+                        ven = new clsCargaVentas();
+                        ven.Sigla = dr.GetString(2);
+                        ven.Serie = dr.GetString(3);
+                        ven.Numeracion = dr.GetString(4);
+                        ven.FechaEmision = dr.GetDateTime(6);
+                        ven.NumDocCliente = dr.GetString(11);
+                        ven.Cliente = dr.GetString(12);
+                        ven.DirCliente = dr.GetString(13);
+                        ven.SiglaDocAfecta = dr.GetString(24);
+                        ven.SerieDocAfecta = dr.GetString(25);
+                        ven.NumDocAfecta = dr.GetString(26);
+                        ven.Moneda = dr.GetString(17);
+                        ven.FechaVencimiento = dr.GetDateTime(7);
                     }
 
                 }
@@ -135,7 +148,7 @@ namespace FinalXML.InterMySql
             try
             {
                 string consulta = @" SELECT F6_CITEM,F6_CCODIGO,F6_CDESCRI,F6_CUNIDAD,F6_NCANTID,F6_NPRECIO,F6_NIGV,F6_NIMPMN
-                                     FROM FT0003FACD  WHERE F6_CTD=@Sigla AND F6_CNUMSER=@Serie AND F6_CNUMDOC=@Numeracion  ";
+                                     FROM INT_DOCELEDET  WHERE F6_CTD=@Sigla AND F6_CNUMSER=@Serie AND F6_CNUMDOC=@Numeracion  ";
                 con.conectarBD();
                 cmd = new SqlCommand(consulta, con.conector);
                 cmd.Parameters.AddWithValue("@Sigla", Sigla);
@@ -194,7 +207,7 @@ namespace FinalXML.InterMySql
             try
             {
                 string consulta = @"SELECT F6_CITEM,F6_CCODIGO,F6_CDESCRI,F6_CUNIDAD,F6_NCANTID,F6_NPRECIO,F6_NIGV,F6_NIMPMN,F6_NPRSIGV,F6_NIMPUS
-                                     FROM FT0003FACD  WHERE F6_CTD=@Sigla AND F6_CNUMSER=@Serie AND F6_CNUMDOC=@Numeracion";
+                                     FROM INT_DOCELEDET  WHERE F6_CTD=@Sigla AND F6_CNUMSER=@Serie AND F6_CNUMDOC=@Numeracion";
                 tabla = new DataTable();
                 con.conectarBD();
                 cmd = new SqlCommand(consulta, con.conector);

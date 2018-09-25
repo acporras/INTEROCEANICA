@@ -141,6 +141,222 @@ CREATE TABLE TBL_DOCELECAB(
 )
 GO
 
+CREATE TABLE INT_DOCELECAB(
+	[F5_CRUCEMI] [char](11) NOT NULL,
+	[F5_CCODAGE] [char](4) NOT NULL,
+	[F5_CTD] [char](2) NOT NULL,
+	[F5_CNUMSER] [char](4) NOT NULL,
+	[F5_CNUMDOC] [char](7) NOT NULL,
+	[F5_CNROPED] [char](11) NOT NULL,
+	[F5_DFECDOC] [datetime] NULL,
+	[F5_DFECVEN] [datetime] NULL,
+	[F5_CDH] [char](1) NOT NULL,
+	[F5_CVENDE] [char](5) NOT NULL,
+	[F5_CNROCAJ] [char](5) NOT NULL,
+	[F5_CCODCLI] [char](18) NOT NULL,
+	[F5_CNOMBRE] [varchar](80) NOT NULL,
+	[F5_CDIRECC] [varchar](80) NOT NULL,
+	[F5_CRUC] [char](18) NOT NULL,
+	[F5_CALMA] [char](4) NOT NULL,
+	[F5_CFORVEN] [char](3) NOT NULL,
+	[F5_CCODMON] [char](2) NOT NULL,
+	[F5_NTIPCAM] [numeric](11, 4) NOT NULL,
+	[F5_NIMPORT] [numeric](13, 2) NOT NULL,
+	[F5_NIMPIGV] [numeric](11, 2) NOT NULL,
+	[F5_NSALDO] [numeric](13, 2) NOT NULL,
+	[F5_NDESCTO] [numeric](11, 2) NOT NULL,
+	[F5_CNUMORD] [char](20) NOT NULL,
+	[F5_CRFTD] [char](2) NOT NULL,
+	[F5_CRFNSER] [char](4) NOT NULL,
+	[F5_CRFNDOC] [char](20) NOT NULL,
+	[F5_CGLOSA] [varchar](80) NOT NULL,
+	[F5_CESTADO] [char](1) NOT NULL,
+	[F5_CFACGUI] [char](1) NOT NULL,
+	[F5_CCODTRA] [char](18) NOT NULL,
+	[F5_CCENCOS] [char](6) NOT NULL,
+	[F5_CCODMAQ] [char](18) NOT NULL,
+	[F5_CDESTIN] [char](4) NOT NULL,
+	[F5_CTF] [char](2) NOT NULL,
+	[F5_CTIPANE] [char](1) NOT NULL,
+	[F5_CANEREF] [char](18) NOT NULL,
+	[F5_NPORDE1] [numeric](5, 2) NOT NULL,
+	[F5_NPORDE2] [numeric](5, 2) NOT NULL,
+	[F5_NFLETE] [numeric](9, 2) NOT NULL,
+	[F5_NEMBAL] [numeric](9, 2) NOT NULL,
+	[F5_NTASA] [numeric](9, 2) NOT NULL,
+	[F5_CUSUOPE] [char](5) NOT NULL,
+	[F5_CUSUSEC] [char](5) NOT NULL,
+	[F5_CCODCAD] [char](4) NOT NULL,
+	[F5_CCODINT] [char](10) NOT NULL,
+	[F5_CCODAUT] [varchar](15) NOT NULL,
+	[F5_CREPA] [char](1) NOT NULL,
+	[F5_CUSUCRE] [char](5) NOT NULL,
+	[F5_DFECCRE] [datetime] NULL,
+	[F5_CUSUMOD] [char](5) NOT NULL,
+	[F5_DFECMOD] [datetime] NULL,
+	[F5_CTNC] [char](2) NOT NULL,
+	[F5_CLINEA] [char](4) NOT NULL,
+	[F5_CIMPRE] [char](1) NOT NULL,
+	[F5_CCJENC] [char](1) NOT NULL,
+	[F5_CVENDE2] [char](5) NOT NULL,
+	[F5_NPORVEN] [numeric](6, 2) NOT NULL,
+	[F5_NPORVE2] [numeric](6, 2) NOT NULL,
+	[F5_CPERIOD] [char](10) NOT NULL,
+	[F5_CRFTD2] [char](2) NOT NULL,
+	[F5_CRFNDO2] [char](24) NOT NULL,
+	[F5_DFECANU] [datetime] NULL,
+	[F5_CTIPDNC] [char](1) NOT NULL,
+	[F5_CCODVEH] [char](18) NOT NULL,
+	[F5_CCODFER] [char](18) NOT NULL,
+	[F5_CTIPDEV] [char](1) NOT NULL,
+	[F5_CSUBDIA] [char](4) NOT NULL,
+	[F5_CCOMPRO] [char](6) NOT NULL,
+	[F5_DFECENT] [datetime] NULL,
+	[F5_CNROPLA] [char](20) NOT NULL,
+	[F5_CAGEOT] [char](4) NOT NULL,
+	[F5_CORDTRA] [char](11) NOT NULL,
+	[F5_CCHASIS] [char](18) NOT NULL,
+	[F5_CHRADOC] [char](10) NOT NULL,
+	[F5_CCOSUPV] [char](5) NOT NULL,
+	[F5_CFLGPLA] [char](1) NOT NULL,
+	[F5_CTORIGEN] [char](10) NOT NULL,
+	[F5_CTDESTIN] [char](10) NOT NULL,
+	[F5_CMONPER] [char](2) NOT NULL,
+	[F5_NIMPPER] [numeric](13, 2) NOT NULL,
+	[F5_CGUIFAC] [char](1) NOT NULL,
+	[F5_AVANEXO] [char](1) NOT NULL,
+	[F5_ACODANE] [char](18) NOT NULL,
+	[F5_CCONTRAT] [char](20) NOT NULL,
+	[F5_COBRA] [char](10) NOT NULL,
+	[F5_CPERIOC] [char](15) NOT NULL,
+	[F5_CCERTIF] [char](10) NOT NULL,
+	[F5_CCODTAL] [char](4) NOT NULL,
+	[F5_CTIPFOR] [char](2) NOT NULL,
+	[F5_NPORPER] [numeric](8, 2) NOT NULL,
+	[F5_DFECREF] [datetime] NULL,
+	[F5_CMORFTC] [char](2) NOT NULL,
+	[F5_NTCREF] [numeric](13, 4) NOT NULL,
+	[F5_CNCAPLI] [char](1) NOT NULL,
+	[F5_COD_ESTADO_SUNAT] [int] NULL,
+	[F5_MENSAJE_SUNAT] [varchar](500) NULL,
+	[F5_ESTADO_ENVIO] [int] NULL,
+	[F5_XML] [varchar](250) NULL,
+	[F5_CDR] [varchar](250) NULL,
+	[F5_PDF] [varchar](250) NULL,
+ CONSTRAINT [PK_INTDOCELECAB] PRIMARY KEY CLUSTERED 
+(
+	[F5_CRUCEMI] ASC,
+	[F5_CCODAGE] ASC,
+	[F5_CTD] ASC,
+	[F5_CNUMSER] ASC,
+	[F5_CNUMDOC] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+CREATE TABLE INT_DOCELEDET(
+	[F6_CRUCEMI] [char](11) NOT NULL,
+	[F6_CCODAGE] [char](4) NOT NULL,
+	[F6_CTD] [char](2) NOT NULL,
+	[F6_CNUMSER] [char](4) NOT NULL,
+	[F6_CNUMDOC] [char](7) NOT NULL,
+	[F6_CITEM] [char](4) NOT NULL,
+	[F6_CCODIGO] [char](25) NOT NULL,
+	[F6_CDESCRI] [varchar](60) NOT NULL,
+	[F6_CTR] [char](1) NOT NULL,
+	[F6_NCANTID] [numeric](11, 3) NOT NULL,
+	[F6_CUNIDAD] [char](3) NOT NULL,
+	[F6_CSERIE] [char](18) NOT NULL,
+	[F6_NCANREF] [numeric](10, 2) NOT NULL,
+	[F6_NUNXENV] [numeric](8, 3) NOT NULL,
+	[F6_NNUMENV] [numeric](7, 2) NOT NULL,
+	[F6_NSALDAR] [numeric](11, 3) NOT NULL,
+	[F6_NPRECIO] [numeric](18, 9) NOT NULL,
+	[F6_NPRECI1] [numeric](18, 9) NOT NULL,
+	[F6_NPREIMP] [numeric](20, 9) NOT NULL,
+	[F6_NPREIM1] [numeric](20, 9) NOT NULL,
+	[F6_NPRSIGV] [numeric](20, 9) NOT NULL,
+	[F6_NDESCTO] [numeric](11, 2) NOT NULL,
+	[F6_NDESDOC] [numeric](11, 2) NOT NULL,
+	[F6_NVALDIS] [numeric](14, 4) NOT NULL,
+	[F6_NIGVPOR] [numeric](5, 2) NOT NULL,
+	[F6_NIGV] [numeric](11, 2) NOT NULL,
+	[F6_NIMPUS] [numeric](13, 2) NOT NULL,
+	[F6_NIMPMN] [numeric](13, 2) NOT NULL,
+	[F6_CTIPITM] [char](3) NOT NULL,
+	[F6_NPORDE1] [numeric](6, 2) NOT NULL,
+	[F6_NIMP01] [numeric](10, 2) NOT NULL,
+	[F6_NPORDE2] [numeric](6, 2) NOT NULL,
+	[F6_NIMP02] [numeric](10, 2) NOT NULL,
+	[F6_NPORDE3] [numeric](6, 2) NOT NULL,
+	[F6_NIMP03] [numeric](10, 2) NOT NULL,
+	[F6_NPORDE4] [numeric](6, 2) NOT NULL,
+	[F6_NIMP04] [numeric](10, 2) NOT NULL,
+	[F6_NPORDE5] [numeric](6, 2) NOT NULL,
+	[F6_NIMP05] [numeric](10, 2) NOT NULL,
+	[F6_NPORDES] [numeric](6, 2) NOT NULL,
+	[F6_CESTADO] [char](1) NOT NULL,
+	[F6_CVENDE] [char](5) NOT NULL,
+	[F6_CALMA] [char](4) NOT NULL,
+	[F6_CNROCAJ] [char](5) NOT NULL,
+	[F6_CSTOCK] [char](1) NOT NULL,
+	[F6_DFECDOC] [datetime] NULL,
+	[F6_CCODLIN] [char](4) NOT NULL,
+	[F6_CNROTAB] [char](6) NOT NULL,
+	[F6_CNUMPAQ] [char](4) NOT NULL,
+	[F6_CNDSCF] [char](8) NOT NULL,
+	[F6_CNDSCL] [char](8) NOT NULL,
+	[F6_CNDSCA] [char](8) NOT NULL,
+	[F6_CNDSCB] [char](8) NOT NULL,
+	[F6_CNFLAT] [char](8) NOT NULL,
+	[F6_NPORCOM] [numeric](6, 2) NOT NULL,
+	[F6_NIMPCOM] [numeric](10, 2) NOT NULL,
+	[F6_CUSUCRE] [char](5) NOT NULL,
+	[F6_DFECCRE] [datetime] NULL,
+	[F6_NPRESIS] [numeric](18, 9) NOT NULL,
+	[F6_CVENDE2] [char](5) NOT NULL,
+	[F6_CITEMP] [char](4) NOT NULL,
+	[F6_NTEMPER] [numeric](11, 2) NOT NULL,
+	[F6_NISCPOR] [numeric](5, 2) NOT NULL,
+	[F6_NISC] [numeric](11, 2) NOT NULL,
+	[F6_NCANDEV] [numeric](11, 3) NOT NULL,
+	[F6_CCENCOS] [char](6) NOT NULL,
+	[F6_CANEXO] [char](18) NOT NULL,
+	[F6_CANEREF] [char](18) NOT NULL,
+	[F6_NCANDEC] [numeric](18, 9) NOT NULL,
+	[F6_CTIPPLA] [char](2) NOT NULL,
+	[F6_CCODPLA] [char](4) NOT NULL,
+	[F6_CTIPCAT] [char](2) NOT NULL,
+	[F6_CNROPLA] [char](20) NOT NULL,
+	[F6_CCOSUPV] [char](5) NOT NULL,
+	[F6_AVANEXO] [char](1) NOT NULL,
+	[F6_ACODANE] [char](18) NOT NULL,
+	[F6_NRETGAR] [numeric](18, 4) NOT NULL,
+	[F6_CTIPDOC] [char](2) NOT NULL,
+	[F6_CNRODOC] [char](11) NOT NULL,
+	[F6_NTASRCN] [numeric](6, 2) NOT NULL,
+	[F6_NIMPRCN] [numeric](15, 2) NOT NULL,
+	[F6_CVANEXO] [char](1) NOT NULL,
+	[F6_CCODANE] [char](18) NOT NULL,
+	[F6_CCODAN2] [char](18) NOT NULL,
+	[F6_CVANEX2] [char](1) NOT NULL,
+	[F6_NPORCM1] [numeric](3, 0) NOT NULL,
+	[F6_NPORCM2] [numeric](3, 0) NOT NULL,
+	[F6_CISCTIP] [char](2) NOT NULL,
+	[F6_NISCMON] [numeric](6, 2) NOT NULL,
+	[F6_NISCPRE] [numeric](5, 2) NOT NULL,
+ CONSTRAINT [PK_INTDOCELEDET] PRIMARY KEY CLUSTERED 
+(
+	[F6_CRUCEMI] ASC,
+	[F6_CCODAGE] ASC,
+	[F6_CTD] ASC,
+	[F6_CNUMSER] ASC,
+	[F6_CNUMDOC] ASC,
+	[F6_CITEM] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
 CREATE TABLE TBL_DOCELEREF(
 	NID_DOCELEREF INT IDENTITY(1,1),
 	NU_REFDOCORG VARCHAR(40),
@@ -244,8 +460,8 @@ INSERT INTO MAE_DATGENFAC(NO_NOMMAEFAC, TX_DESMAEFAC, NO_CAMPOFAC1, NO_CAMPOFAC2
 VALUES('ESTINTFAC', 'Guarda todos los estados en ejecución de la interface', 'EX', 'Excepción', GETDATE(), '0');
 --
 INSERT INTO MAE_EMIDOCELE VALUES('20263019807', 'GRANOTEC PERU SA', 'ACTIVO', 'HABIDO', '150103', 'Lima', 'Lima', 'Ate', 'AV. LOS INGENIEROS NRO. 112 URB. - SANTA RAQUEL 2DA ETAPA', 'SQL', 'DESKTOP-U45U0IC\SQLEXPRESS', 'RSFACCAR', 'SA', 'A123456$', 'FT0001FACC', 'FT0001FACD', '', GETDATE(), NULL, '0');
-INSERT INTO MAE_EMIDOCELE VALUES('20493098994', 'INVERSIONES INTI TUMI SOCIEDAD ANONIMA CERRADA', 'ACTIVO', 'HABIDO', '150116', 'Lima', 'Lima', 'Lince', 'JR. BERNARDO ALCEDO NRO. 329', 'SQL', 'DESKTOP-U45U0IC\SQLEXPRESS', 'RSFACCAR', 'SA', 'A123456$', 'FT0001FACC', 'FT0001FACD', '', GETDATE(), NULL, '0');
-INSERT INTO MAE_EMIDOCELE VALUES('10074932903', 'ALVAREZ VARGAS JAVIER MAXIMILIANO', 'ACTIVO', 'HABIDO', '150115', 'Lima', 'Lima', 'La victoria', 'JR. GAMARRA NRO. 745 INT. 102', 'SQL', 'DESKTOP-U45U0IC\SQLEXPRESS', 'RSFACCAR', 'SA', 'A123456$', 'FT0001FACC', 'FT0001FACD', '', GETDATE(), NULL, '0');
+INSERT INTO MAE_EMIDOCELE VALUES('20493098994', 'INVERSIONES INTI TUMI SOCIEDAD ANONIMA CERRADA', 'ACTIVO', 'HABIDO', '150116', 'Lima', 'Lima', 'Lince', 'JR. BERNARDO ALCEDO NRO. 329', 'SQL', 'DESKTOP-U45U0IC\SQLEXPRESS', 'RSFACCAR', 'SA', 'A123456$', 'FT0002FACC', 'FT0003FACD', '', GETDATE(), NULL, '0');
+INSERT INTO MAE_EMIDOCELE VALUES('10074932903', 'ALVAREZ VARGAS JAVIER MAXIMILIANO', 'ACTIVO', 'HABIDO', '150115', 'Lima', 'Lima', 'La victoria', 'JR. GAMARRA NRO. 745 INT. 102', 'SQL', 'DESKTOP-U45U0IC\SQLEXPRESS', 'RSFACCAR', 'SA', 'A123456$', 'FT0003FACC', 'FT0003FACD', '', GETDATE(), NULL, '0');
 GO
 --CREACION DE PROCEDURES
 
@@ -342,14 +558,23 @@ BEGIN
 	SELECT @NO_TRANSNAME = 'UPROFACINT'
 	BEGIN TRANSACTION
 	BEGIN TRY
+		DECLARE @NO_ESTPROINT VARCHAR(150)
+
+		SELECT @NO_ESTPROINT = ESTPROINT.NO_CAMPOFAC2
+			FROM MAE_DATGENFAC ESTPROINT
+			WHERE ESTPROINT.NO_NOMMAEFAC = 'ESTINTFAC'
+			AND ESTPROINT.NO_CAMPOFAC1 = @CO_ESTPROINT
+			AND ESTPROINT.FL_REGINACTI = '0'
+
 		UPDATE TL_PROFACINT
 			SET CO_ESTPROINT = @CO_ESTPROINT,
-			TX_DESCRIPCI = 
-				CASE
-					WHEN ISNULL(@TX_DESCRIPCI, '') <> '' THEN @TX_DESCRIPCI
-					WHEN @CO_ESTPROINT = 'EX'  THEN  'Proceso Finalizado con errores'
-					WHEN @CO_ESTPROINT = 'CO' THEN 'Proceso Finalizado correctamente'
-				END
+				NO_ESTPROINT = @NO_ESTPROINT,
+				TX_DESCRIPCI = 
+					CASE
+						WHEN ISNULL(@TX_DESCRIPCI, '') <> '' THEN @TX_DESCRIPCI
+						WHEN @CO_ESTPROINT = 'EX'  THEN  'Proceso Finalizado con errores'
+						WHEN @CO_ESTPROINT = 'CO' THEN 'Proceso Finalizado correctamente'
+					END
 		WHERE NID_EMIDOCELE = @NID_EMIDOCELE
 		AND CO_TIPPROFAC = @CO_TIPPROFAC
 		AND CO_ESTPROINT = 'EJ'
@@ -363,39 +588,280 @@ BEGIN
 		EXEC SPS_SEG_GETERRINF;
 	END CATCH
 END
+GO
 
-CREATE PROCEDURE SPI_TBL_DOCELECAB(
-	@XM_DOCELECAB XML
+ALTER PROCEDURE SPI_TBL_DOCELECD(
+	@XM_EMIDOCELE XML,
+	@XM_DOCELECAB XML,
+	@XM_DOCELEDET XML
 )
 AS
 BEGIN
-	
-END
-/*
-DECLARE @idoc int, @doc varchar(1000);  
-SET @doc ='  
-<ROOT>  
-<Customer CustomerID="VINET" ContactName="Paul Henriot">  
-   <Order CustomerID="VINET" EmployeeID="5" OrderDate="1996-07-04T00:00:00">  
-      <OrderDetail OrderID="10248" ProductID="11" Quantity="12"/>  
-      <OrderDetail OrderID="10248" ProductID="42" Quantity="10"/>  
-   </Order>  
-</Customer>  
-<Customer CustomerID="LILAS" ContactName="Carlos Gonzlez">  
-   <Order CustomerID="LILAS" EmployeeID="3" OrderDate="1996-08-16T00:00:00">  
-      <OrderDetail OrderID="10283" ProductID="72" Quantity="3"/>  
-   </Order>  
-</Customer>  
-</ROOT>';  
---Create an internal representation of the XML document.  
-EXEC sp_xml_preparedocument @idoc OUTPUT, @doc;  
--- Execute a SELECT statement that uses the OPENXML rowset provider.  
-SELECT    *  
-FROM       OPENXML (@idoc, '/ROOT/Customer',1)  
-            WITH (CustomerID  varchar(10),  
-                  ContactName varchar(20));  */
+	DECLARE @NO_TRANSNAME VARCHAR(20);
+	SELECT @NO_TRANSNAME = 'IDOCELECD'
+	--BEGIN TRANSACTION
+	BEGIN TRY
+		DECLARE @I_DOCEMI INT ,@I_DOCCAB INT, @I_DOCDET INT
+		--Emisor
+		-- Cabecera
+		EXEC SP_XML_PREPAREDOCUMENT @I_DOCEMI OUTPUT, @XM_EMIDOCELE;
+		SELECT	  *
+		INTO #TMP_EMIDOCELE
+		FROM  OPENXML (@I_DOCEMI, '/BEMaeemiele',2)
+			WITH(
+				nid_maeemiele INT,   
+				nu_eminumruc VARCHAR(11),
+				no_emirazsoc VARCHAR(50),
+				no_estemiele VARCHAR(30),
+				no_conemiele VARCHAR(50),
+				no_emiubigeo CHAR(6),
+				no_emidepart VARCHAR(50),
+				no_emiprovin VARCHAR(50),
+				no_emidistri VARCHAR(50),
+				no_emidirfis VARCHAR(500),
+				no_bastipbas VARCHAR(50),
+				no_basnomsrv VARCHAR(150),
+				no_basnombas VARCHAR(50),
+				no_basusrbas VARCHAR(50),
+				no_basusrpas VARCHAR(100),
+				no_tabfaccab VARCHAR(50),
+				no_tabfacdet VARCHAR(50),
+				no_rutcerdig VARCHAR(800),
+				fe_regcreaci DATETIME,   
+				fe_regmodifi DATETIME,   
+				fl_reginacti CHAR(1) 
+			)
+		EXEC SP_XML_PREPAREDOCUMENT @I_DOCCAB OUTPUT, @XM_DOCELECAB;
+		SELECT    *  
+		INTO #TMP_DOCELECAB
+		FROM OPENXML (@I_DOCCAB, '/BEDoccabcli',2)
+		 WITH (f5_ccodage CHAR(4),
+				f5_ctd CHAR(2),
+				f5_cnumser CHAR(4),
+				f5_cnumdoc CHAR(7),
+				f5_cnroped CHAR(11),
+				f5_dfecdoc DATETIME,   
+				f5_dfecven DATETIME,   
+				f5_cdh CHAR(1),
+				f5_cvende CHAR(5),
+				f5_cnrocaj CHAR(5),
+				f5_ccodcli CHAR(18),
+				f5_cnombre VARCHAR(80),
+				f5_cdirecc VARCHAR(80),
+				f5_cruc CHAR(18),
+				f5_calma CHAR(4),
+				f5_cforven CHAR(3),
+				f5_ccodmon CHAR(2),
+				f5_ntipcam DECIMAL(12,2),
+				f5_nimport DECIMAL(12,2),
+				f5_nimpigv DECIMAL(12,2),
+				f5_nsaldo DECIMAL(12,2),
+				f5_ndescto DECIMAL(12,2),
+				f5_cnumord CHAR(20),
+				f5_crftd CHAR(2),
+				f5_crfnser CHAR(4),
+				f5_crfndoc CHAR(20),
+				f5_cglosa VARCHAR(80),
+				f5_cestado CHAR(1),
+				f5_cfacgui CHAR(1),
+				f5_ccodtra CHAR(18),
+				f5_ccencos CHAR(6),
+				f5_ccodmaq CHAR(18),
+				f5_cdestin CHAR(4),
+				f5_ctf CHAR(2),
+				f5_ctipane CHAR(1),
+				f5_caneref CHAR(18),
+				f5_nporde1 DECIMAL(12,2),
+				f5_nporde2 DECIMAL(12,2),
+				f5_nflete DECIMAL(12,2),
+				f5_nembal DECIMAL(12,2),
+				f5_ntasa DECIMAL(12,2),
+				f5_cusuope CHAR(5),
+				f5_cususec CHAR(5),
+				f5_ccodcad CHAR(4),
+				f5_ccodint CHAR(10),
+				f5_ccodaut VARCHAR(15),
+				f5_crepa CHAR(1),
+				f5_cusucre CHAR(5),
+				f5_dfeccre DATETIME,   
+				f5_cusumod CHAR(5),
+				f5_dfecmod DATETIME,   
+				f5_ctnc CHAR(2),
+				f5_clinea CHAR(4),
+				f5_cimpre CHAR(1),
+				f5_ccjenc CHAR(1),
+				f5_cvende2 CHAR(5),
+				f5_nporven DECIMAL(12,2),
+				f5_nporve2 DECIMAL(5),
+				f5_cperiod CHAR(10),
+				f5_crftd2 CHAR(2),
+				f5_crfndo2 CHAR(24),
+				f5_dfecanu DATETIME,   
+				f5_ctipdnc CHAR(1),
+				f5_ccodveh CHAR(18),
+				f5_ccodfer CHAR(18),
+				f5_ctipdev CHAR(1),
+				f5_csubdia CHAR(4),
+				f5_ccompro CHAR(6),
+				f5_dfecent DATETIME,   
+				f5_cnropla CHAR(20),
+				f5_cageot CHAR(4),
+				f5_cordtra CHAR(11),
+				f5_cchasis CHAR(18),
+				f5_chradoc CHAR(10),
+				f5_ccosupv CHAR(5),
+				f5_cflgpla CHAR(1),
+				f5_ctorigen CHAR(10),
+				f5_ctdestin CHAR(10),
+				f5_cmonper CHAR(2),
+				f5_nimpper DECIMAL(12,2),
+				f5_cguifac CHAR(1),
+				f5_avanexo CHAR(1),
+				f5_acodane CHAR(18),
+				f5_ccontrat CHAR(20),
+				f5_cobra CHAR(10),
+				f5_cperioc CHAR(15),
+				f5_ccertif CHAR(10),
+				f5_ccodtal CHAR(4),
+				f5_ctipfor CHAR(2),
+				f5_nporper DECIMAL(12,2),
+				f5_dfecref DATETIME,   
+				f5_cmorftc CHAR(2),
+				f5_ntcref DECIMAL(12,2),
+				f5_cncapli CHAR(1),
+				f5_cod_estado_sunat INT,
+				f5_mensaje_sunat VARCHAR(500),
+				f5_estado_envio INT,
+				f5_xml VARCHAR(250),
+				f5_cdr VARCHAR(250),
+				f5_pdf VARCHAR(250));
+		EXEC SP_XML_PREPAREDOCUMENT @I_DOCDET OUTPUT, @XM_DOCELEDET;
+		SELECT	  *
+		INTO #TMP_DOCELEDET
+		FROM  OPENXML (@I_DOCDET, '/ArrayOfBEDocdetcli/BEDocdetcli',2)
+			WITH(f6_ccodage CHAR(4),
+					f6_ctd CHAR(2),
+					f6_cnumser CHAR(4),
+					f6_cnumdoc CHAR(7),
+					f6_citem CHAR(4),
+					f6_ccodigo CHAR(25),
+					f6_cdescri VARCHAR(60),
+					f6_ctr CHAR(1),
+					f6_ncantid NUMERIC(12,2),
+					f6_cunidad CHAR(3),
+					f6_cserie CHAR(18),
+					f6_ncanref NUMERIC(12,2),
+					f6_nunxenv NUMERIC(12,2),
+					f6_nnumenv NUMERIC(12,2),
+					f6_nsaldar NUMERIC(12,2),
+					f6_nprecio NUMERIC(12,2),
+					f6_npreci1 NUMERIC(12,2),
+					f6_npreimp NUMERIC(12,2),
+					f6_npreim1 NUMERIC(12,2),
+					f6_nprsigv NUMERIC(12,2),
+					f6_ndescto NUMERIC(12,2),
+					f6_ndesdoc NUMERIC(12,2),
+					f6_nvaldis NUMERIC(12,2),
+					f6_nigvpor NUMERIC(12,2),
+					f6_nigv NUMERIC(12,2),
+					f6_nimpus NUMERIC(12,2),
+					f6_nimpmn NUMERIC(12,2),
+					f6_ctipitm CHAR(3),
+					f6_nporde1 NUMERIC(12,2),
+					f6_nimp01 NUMERIC(12,2),
+					f6_nporde2 NUMERIC(12,2),
+					f6_nimp02 NUMERIC(12,2),
+					f6_nporde3 NUMERIC(12,2),
+					f6_nimp03 NUMERIC(12,2),
+					f6_nporde4 NUMERIC(12,2),
+					f6_nimp04 NUMERIC(12,2),
+					f6_nporde5 NUMERIC(12,2),
+					f6_nimp05 NUMERIC(12,2),
+					f6_npordes NUMERIC(12,2),
+					f6_cestado CHAR(1),
+					f6_cvende CHAR(5),
+					f6_calma CHAR(4),
+					f6_cnrocaj CHAR(5),
+					f6_cstock CHAR(1),
+					f6_dfecdoc DATETIME,   
+					f6_ccodlin CHAR(4),
+					f6_cnrotab CHAR(6),
+					f6_cnumpaq CHAR(4),
+					f6_cndscf CHAR(8),
+					f6_cndscl CHAR(8),
+					f6_cndsca CHAR(8),
+					f6_cndscb CHAR(8),
+					f6_cnflat CHAR(8),
+					f6_nporcom NUMERIC(12,2),
+					f6_nimpcom NUMERIC(12,2),
+					f6_cusucre CHAR(5),
+					f6_dfeccre DATETIME,
+					f6_npresis NUMERIC(12,2),
+					f6_cvende2 CHAR(5),
+					f6_citemp CHAR(4),
+					f6_ntemper NUMERIC(12,2),
+					f6_niscpor NUMERIC(12,2),
+					f6_nisc NUMERIC(12,2),
+					f6_ncandev NUMERIC(12,2),
+					f6_ccencos CHAR(6),
+					f6_canexo CHAR(18),
+					f6_caneref CHAR(18),
+					f6_ncandec NUMERIC(12,2),
+					f6_ctippla CHAR(2),
+					f6_ccodpla CHAR(4),
+					f6_ctipcat CHAR(2),
+					f6_cnropla CHAR(20),
+					f6_ccosupv CHAR(5),
+					f6_avanexo CHAR(1),
+					f6_acodane CHAR(18),
+					f6_nretgar NUMERIC(12,2),
+					f6_ctipdoc CHAR(2),
+					f6_cnrodoc CHAR(11),
+					f6_ntasrcn NUMERIC(12,2),
+					f6_nimprcn NUMERIC(12,2),
+					f6_cvanexo CHAR(1),
+					f6_ccodane CHAR(18),
+					f6_ccodan2 CHAR(18),
+					f6_cvanex2 CHAR(1),
+					f6_nporcm1 NUMERIC(12,2),
+					f6_nporcm2 NUMERIC(12,2),
+					f6_cisctip CHAR(2),
+					f6_niscmon NUMERIC(12,2),
+					f6_niscpre NUMERIC(12,2));
 
-select * from TL_PROFACINT
+		--Insertando en tablas cabecera y detalle
+		INSERT INTO INT_DOCELECAB
+		SELECT emi.nu_eminumruc, cab.*
+		FROM #TMP_EMIDOCELE emi
+		CROSS JOIN #TMP_DOCELECAB cab
+
+		INSERT INTO INT_DOCELEDET
+		SELECT emi.nu_eminumruc, det.*
+		FROM #TMP_EMIDOCELE emi
+		CROSS JOIN #TMP_DOCELEDET det
+		IF @@TRANCOUNT > 0
+		BEGIN
+			COMMIT TRANSACTION @NO_TRANSNAME;
+		END
+	END TRY
+	BEGIN CATCH
+		ROLLBACK TRANSACTION @NO_TRANSNAME;
+		EXEC SPS_SEG_GETERRINF;
+	END CATCH
+END
+GO
+
+
+/*
+SELECT * FROM TL_PROFACINT
 ORDER BY FE_REGCREACI DESC
 
 TRUNCATE TABLE TL_PROFACINT
+
+TRUNCATE TABLE INT_DOCELECAB
+TRUNCATE TABLE INT_DOCELEDET
+
+SELECT * FROM INT_DOCELECAB
+SELECT * FROM INT_DOCELEDET
+
+*/
