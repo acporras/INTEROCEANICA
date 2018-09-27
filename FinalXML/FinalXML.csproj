@@ -258,6 +258,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Administradores\clsAdmCargaVentas.cs" />
+    <Compile Include="Administradores\clsAdmEmpresa.cs" />
     <Compile Include="Administradores\clsAdmNumeracion.cs" />
     <Compile Include="Administradores\clsAdmPedido.cs" />
     <Compile Include="Conexion\clsConexionMysql.cs" />
@@ -333,9 +334,11 @@
       <DependentUpon>FrmTTicket.cs</DependentUpon>
     </Compile>
     <Compile Include="Interfaces\ICargaVentas.cs" />
+    <Compile Include="Interfaces\IEmpresa.cs" />
     <Compile Include="Interfaces\INumeracion.cs" />
     <Compile Include="Interfaces\IPedido.cs" />
     <Compile Include="InterMySql\MysqlCargaVentas.cs" />
+    <Compile Include="InterMySql\MysqlEmpresa.cs" />
     <Compile Include="InterMySql\MysqlNumeracion.cs" />
     <Compile Include="InterMySql\MysqlPedido.cs" />
     <Compile Include="Modelos\AdditionalInformation.cs" />
@@ -375,6 +378,7 @@
     <Compile Include="Modelos\Retention.cs" />
     <Compile Include="Modelos\Serializador.cs" />
     <Compile Include="Modelos\SummaryDocuments.cs" />
+    <Compile Include="Modelos\SummaryDocumentsLine.cs" />
     <Compile Include="Modelos\SUNATRetentionDocumentReference.cs" />
     <Compile Include="Modelos\SUNATRetentionInformation.cs" />
     <Compile Include="Modelos\Utiles.cs" />

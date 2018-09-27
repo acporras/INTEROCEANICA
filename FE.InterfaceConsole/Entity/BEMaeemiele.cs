@@ -16,6 +16,7 @@ namespace FE.InterfaceConsole
         public int? nid_maeemiele { get; set; }
         public string nu_eminumruc { get; set; }
         public string no_emirazsoc { get; set; }
+        public string co_emicodage { get; set; }
         public string no_estemiele { get; set; }
         public string no_conemiele { get; set; }
         public string no_emiubigeo { get; set; }
@@ -31,6 +32,7 @@ namespace FE.InterfaceConsole
         public string no_tabfaccab { get; set; }
         public string no_tabfacdet { get; set; }
         public string no_rutcerdig { get; set; }
+        public int nid_cfgseremi { get; set; }
         public DateTime? fe_regcreaci { get; set; }
         public DateTime? fe_regmodifi { get; set; }
         public string fl_reginacti { get; set; }

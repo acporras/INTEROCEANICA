@@ -95,6 +95,18 @@ namespace FinalXML
             PartyLegalEntity = new PartyLegalEntity();
         }
     }
+    public class AccountingCustomerParty
+    {
+        public string CustomerAssignedAccountID { get; set; }
+        public string AdditionalAccountID { get; set; }
+
+    }
+
+    public class Status
+    {
+        public string ConditionCode { get; set; }
+    }
+
     public class AccountingSupplierParty
     {
         public string CustomerAssignedAccountID { get; set; }
@@ -102,6 +114,7 @@ namespace FinalXML
         public Party Party { get; set; }
 
     }
+
     public class Party
     {
         public PartyName PartyName { get; set; }
@@ -600,6 +613,7 @@ namespace FinalXML
     }
     public class GrupoResumen : DocumentoResumenDetalle
     {
+        public string NumeroDocumento { get; set; }
         public int CorrelativoInicio { get; set; }
         public int CorrelativoFin { get; set; }
         public string Moneda { get; set; }
@@ -613,6 +627,9 @@ namespace FinalXML
         public decimal Inafectas { get; set; }
         public decimal Exportacion { get; set; }
         public decimal Gratuitas { get; set; }
+        public string DocumentoCliente { get; set; }
+        public string TipoDocumentoCliente { get; set; }
+        public string Operacion { get; set; }
     }
     public class ConsultaTicketRequest : EnvioDocumentoComun
     {

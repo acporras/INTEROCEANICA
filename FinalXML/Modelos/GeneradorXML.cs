@@ -1127,7 +1127,8 @@ namespace FinalXML
                 ID = resumen.IdDocumento,
                 IssueDate = Convert.ToDateTime(resumen.FechaEmision),
                 ReferenceDate = Convert.ToDateTime(resumen.FechaReferencia),
-                CustomizationID = "1.0",
+                //CustomizationID = "1.0",
+                CustomizationID = "1.1",
                 UBLVersionID = "2.0",
                 Signature = new SignatureCac
                 {
@@ -1170,13 +1171,23 @@ namespace FinalXML
 
             foreach (var grupo in resumen.Resumenes)
             {
-                var linea = new VoidedDocumentsLine
+                //var linea = new VoidedDocumentsLine
+                var linea = new SummaryDocumentsLine
                 {
                     LineID = grupo.Id,
                     DocumentTypeCode = grupo.TipoDocumento,
-                    DocumentSerialID = grupo.Serie,
-                    StartDocumentNumberID = grupo.CorrelativoInicio,
-                    EndDocumentNumberID = grupo.CorrelativoFin,
+                    NumeroDocumento = grupo.NumeroDocumento,
+                    //StartDocumentNumberID = grupo.CorrelativoInicio,
+                    //EndDocumentNumberID = grupo.CorrelativoFin,
+                    AccountingCustomerParty = new AccountingCustomerParty
+                    {
+                        CustomerAssignedAccountID = grupo.DocumentoCliente,
+                        AdditionalAccountID = grupo.TipoDocumentoCliente
+                    },
+                    Status = new Status
+                    {
+                        ConditionCode = grupo.Operacion
+                    },
                     TotalAmount = new PayableAmount
                     {
                         currencyID = grupo.Moneda,

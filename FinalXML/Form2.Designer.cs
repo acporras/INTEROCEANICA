@@ -57,6 +57,8 @@
             this.f1 = new ComponentFactory.Krypton.Toolkit.KryptonDateTimePicker();
             this.kryptonPage2 = new ComponentFactory.Krypton.Navigator.KryptonPage();
             this.kryptonPanel2 = new ComponentFactory.Krypton.Toolkit.KryptonPanel();
+            this.kryptonLabel6 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
+            this.cboEmpresaDoc = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
             this.btnSalir = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.btnGeneraPDF = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.btnEnvioSunat = new ComponentFactory.Krypton.Toolkit.KryptonButton();
@@ -128,6 +130,8 @@
             this.fecemi = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.totdoc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.kryptonGroupBox4 = new ComponentFactory.Krypton.Toolkit.KryptonGroupBox();
+            this.kryptonLabel10 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
+            this.cboEmpresa = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
             this.kryptonLabel8 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.dtpFecIni = new ComponentFactory.Krypton.Toolkit.KryptonDateTimePicker();
             this.dtpFecFin = new ComponentFactory.Krypton.Toolkit.KryptonDateTimePicker();
@@ -140,12 +144,7 @@
             this.txtDetailRes = new System.Windows.Forms.TextBox();
             this.lblNumBolRes = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.txtNumBolRes = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
-            this.dtpFecHasta = new ComponentFactory.Krypton.Toolkit.KryptonDateTimePicker();
             this.btnSendResumen = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.lblFechaHasta = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
-            this.dtpFecDesde = new ComponentFactory.Krypton.Toolkit.KryptonDateTimePicker();
-            this.lblFechaDesde = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
-            this.kryptonLabel6 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonPanel1)).BeginInit();
             this.kryptonPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonNavigator1)).BeginInit();
@@ -162,6 +161,7 @@
             this.kryptonPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonPanel2)).BeginInit();
             this.kryptonPanel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cboEmpresaDoc)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgListadoVentas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonPage3)).BeginInit();
             this.kryptonPage3.SuspendLayout();
@@ -185,6 +185,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.kryptonGroupBox4.Panel)).BeginInit();
             this.kryptonGroupBox4.Panel.SuspendLayout();
             this.kryptonGroupBox4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cboEmpresa)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonGroupBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonGroupBox2.Panel)).BeginInit();
             this.kryptonGroupBox2.Panel.SuspendLayout();
@@ -214,7 +215,7 @@
             this.kryptonPage2,
             this.kryptonPage3,
             this.kryptonPage4});
-            this.kryptonNavigator1.SelectedIndex = 1;
+            this.kryptonNavigator1.SelectedIndex = 2;
             this.kryptonNavigator1.Size = new System.Drawing.Size(1346, 565);
             this.kryptonNavigator1.TabIndex = 26;
             this.kryptonNavigator1.Text = "kryptonNavigator1";
@@ -231,6 +232,7 @@
             this.kryptonPage1.Text = "Pedidos";
             this.kryptonPage1.ToolTipTitle = "Page ToolTip";
             this.kryptonPage1.UniqueName = "EF983AE22CE2482FC49E452A2D1F2A98";
+            this.kryptonPage1.Visible = false;
             // 
             // kryptonPanel3
             // 
@@ -423,6 +425,8 @@
             // 
             // kryptonPanel2
             // 
+            this.kryptonPanel2.Controls.Add(this.kryptonLabel6);
+            this.kryptonPanel2.Controls.Add(this.cboEmpresaDoc);
             this.kryptonPanel2.Controls.Add(this.btnSalir);
             this.kryptonPanel2.Controls.Add(this.btnGeneraPDF);
             this.kryptonPanel2.Controls.Add(this.btnEnvioSunat);
@@ -440,6 +444,22 @@
             this.kryptonPanel2.PanelBackStyle = ComponentFactory.Krypton.Toolkit.PaletteBackStyle.SeparatorHighInternalProfile;
             this.kryptonPanel2.Size = new System.Drawing.Size(1344, 538);
             this.kryptonPanel2.TabIndex = 36;
+            // 
+            // kryptonLabel6
+            // 
+            this.kryptonLabel6.Location = new System.Drawing.Point(177, 32);
+            this.kryptonLabel6.Name = "kryptonLabel6";
+            this.kryptonLabel6.Size = new System.Drawing.Size(60, 20);
+            this.kryptonLabel6.TabIndex = 42;
+            this.kryptonLabel6.Values.Text = "Empresa:";
+            // 
+            // cboEmpresaDoc
+            // 
+            this.cboEmpresaDoc.DropDownWidth = 299;
+            this.cboEmpresaDoc.Location = new System.Drawing.Point(243, 31);
+            this.cboEmpresaDoc.Name = "cboEmpresaDoc";
+            this.cboEmpresaDoc.Size = new System.Drawing.Size(299, 21);
+            this.cboEmpresaDoc.TabIndex = 41;
             // 
             // btnSalir
             // 
@@ -998,7 +1018,7 @@
             this.kryptonButton4.Size = new System.Drawing.Size(123, 25);
             this.kryptonButton4.TabIndex = 0;
             this.kryptonButton4.Values.Image = global::FinalXML.Properties.Resources._new;
-            this.kryptonButton4.Values.Text = "Agregar a la Lista";
+            this.kryptonButton4.Values.Text = "       ";
             this.kryptonButton4.Click += new System.EventHandler(this.kryptonButton4_Click);
             // 
             // kryptonPage4
@@ -1040,14 +1060,15 @@
             // 
             // btnDelBol
             // 
-            this.btnDelBol.Location = new System.Drawing.Point(783, 283);
+            this.btnDelBol.Location = new System.Drawing.Point(783, 146);
             this.btnDelBol.Name = "btnDelBol";
-            this.btnDelBol.Size = new System.Drawing.Size(186, 25);
+            this.btnDelBol.Size = new System.Drawing.Size(186, 33);
             this.btnDelBol.TabIndex = 15;
             this.btnDelBol.Values.Text = "Eliminar";
             // 
             // grvResDetail
             // 
+            this.grvResDetail.AllowUserToAddRows = false;
             this.grvResDetail.AllowUserToOrderColumns = true;
             this.grvResDetail.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grvResDetail.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -1059,7 +1080,7 @@
             this.totdoc});
             this.grvResDetail.Location = new System.Drawing.Point(21, 192);
             this.grvResDetail.Name = "grvResDetail";
-            this.grvResDetail.Size = new System.Drawing.Size(754, 296);
+            this.grvResDetail.Size = new System.Drawing.Size(948, 296);
             this.grvResDetail.TabIndex = 14;
             // 
             // numdoc
@@ -1094,21 +1115,39 @@
             // 
             // kryptonGroupBox4
             // 
-            this.kryptonGroupBox4.Location = new System.Drawing.Point(12, 25);
+            this.kryptonGroupBox4.Location = new System.Drawing.Point(12, 13);
             this.kryptonGroupBox4.Name = "kryptonGroupBox4";
             // 
             // kryptonGroupBox4.Panel
             // 
+            this.kryptonGroupBox4.Panel.Controls.Add(this.kryptonLabel10);
+            this.kryptonGroupBox4.Panel.Controls.Add(this.cboEmpresa);
             this.kryptonGroupBox4.Panel.Controls.Add(this.kryptonLabel8);
             this.kryptonGroupBox4.Panel.Controls.Add(this.dtpFecIni);
             this.kryptonGroupBox4.Panel.Controls.Add(this.dtpFecFin);
-            this.kryptonGroupBox4.Size = new System.Drawing.Size(957, 73);
+            this.kryptonGroupBox4.Size = new System.Drawing.Size(957, 113);
             this.kryptonGroupBox4.TabIndex = 12;
             this.kryptonGroupBox4.Values.Heading = "Filtros";
             // 
+            // kryptonLabel10
+            // 
+            this.kryptonLabel10.Location = new System.Drawing.Point(17, 22);
+            this.kryptonLabel10.Name = "kryptonLabel10";
+            this.kryptonLabel10.Size = new System.Drawing.Size(60, 20);
+            this.kryptonLabel10.TabIndex = 13;
+            this.kryptonLabel10.Values.Text = "Empresa:";
+            // 
+            // cboEmpresa
+            // 
+            this.cboEmpresa.DropDownWidth = 191;
+            this.cboEmpresa.Location = new System.Drawing.Point(126, 22);
+            this.cboEmpresa.Name = "cboEmpresa";
+            this.cboEmpresa.Size = new System.Drawing.Size(456, 21);
+            this.cboEmpresa.TabIndex = 12;
+            // 
             // kryptonLabel8
             // 
-            this.kryptonLabel8.Location = new System.Drawing.Point(17, 12);
+            this.kryptonLabel8.Location = new System.Drawing.Point(17, 61);
             this.kryptonLabel8.Name = "kryptonLabel8";
             this.kryptonLabel8.Size = new System.Drawing.Size(103, 20);
             this.kryptonLabel8.TabIndex = 10;
@@ -1117,7 +1156,7 @@
             // dtpFecIni
             // 
             this.dtpFecIni.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpFecIni.Location = new System.Drawing.Point(125, 12);
+            this.dtpFecIni.Location = new System.Drawing.Point(126, 62);
             this.dtpFecIni.Name = "dtpFecIni";
             this.dtpFecIni.Size = new System.Drawing.Size(192, 21);
             this.dtpFecIni.TabIndex = 11;
@@ -1126,7 +1165,7 @@
             // dtpFecFin
             // 
             this.dtpFecFin.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpFecFin.Location = new System.Drawing.Point(341, 12);
+            this.dtpFecFin.Location = new System.Drawing.Point(324, 61);
             this.dtpFecFin.Name = "dtpFecFin";
             this.dtpFecFin.Size = new System.Drawing.Size(192, 21);
             this.dtpFecFin.TabIndex = 10;
@@ -1134,9 +1173,9 @@
             // 
             // btnConsultarRes
             // 
-            this.btnConsultarRes.Location = new System.Drawing.Point(331, 133);
+            this.btnConsultarRes.Location = new System.Drawing.Point(21, 145);
             this.btnConsultarRes.Name = "btnConsultarRes";
-            this.btnConsultarRes.Size = new System.Drawing.Size(278, 31);
+            this.btnConsultarRes.Size = new System.Drawing.Size(278, 33);
             this.btnConsultarRes.TabIndex = 10;
             this.btnConsultarRes.Values.Text = "Consultar Boletas";
             this.btnConsultarRes.Click += new System.EventHandler(this.btnConsultarRes_Click);
@@ -1153,19 +1192,14 @@
             this.kryptonGroupBox2.Panel.Controls.Add(this.txtDetailRes);
             this.kryptonGroupBox2.Panel.Controls.Add(this.lblNumBolRes);
             this.kryptonGroupBox2.Panel.Controls.Add(this.txtNumBolRes);
-            this.kryptonGroupBox2.Panel.Controls.Add(this.dtpFecHasta);
             this.kryptonGroupBox2.Panel.Controls.Add(this.btnSendResumen);
-            this.kryptonGroupBox2.Panel.Controls.Add(this.lblFechaHasta);
-            this.kryptonGroupBox2.Panel.Controls.Add(this.dtpFecDesde);
-            this.kryptonGroupBox2.Panel.Controls.Add(this.lblFechaDesde);
-            this.kryptonGroupBox2.Panel.Controls.Add(this.kryptonLabel6);
             this.kryptonGroupBox2.Size = new System.Drawing.Size(339, 532);
             this.kryptonGroupBox2.TabIndex = 9;
             this.kryptonGroupBox2.Values.Heading = "Datos de Envio";
             // 
             // kryptonGroupBox5
             // 
-            this.kryptonGroupBox5.Location = new System.Drawing.Point(32, 273);
+            this.kryptonGroupBox5.Location = new System.Drawing.Point(32, 118);
             this.kryptonGroupBox5.Name = "kryptonGroupBox5";
             // 
             // kryptonGroupBox5.Panel
@@ -1193,7 +1227,7 @@
             // 
             // kryptonLabel7
             // 
-            this.kryptonLabel7.Location = new System.Drawing.Point(30, 346);
+            this.kryptonLabel7.Location = new System.Drawing.Point(32, 192);
             this.kryptonLabel7.Name = "kryptonLabel7";
             this.kryptonLabel7.Size = new System.Drawing.Size(104, 20);
             this.kryptonLabel7.TabIndex = 9;
@@ -1201,10 +1235,10 @@
             // 
             // txtDetailRes
             // 
-            this.txtDetailRes.Location = new System.Drawing.Point(32, 375);
+            this.txtDetailRes.Location = new System.Drawing.Point(30, 218);
             this.txtDetailRes.Multiline = true;
             this.txtDetailRes.Name = "txtDetailRes";
-            this.txtDetailRes.Size = new System.Drawing.Size(278, 114);
+            this.txtDetailRes.Size = new System.Drawing.Size(278, 270);
             this.txtDetailRes.TabIndex = 8;
             // 
             // lblNumBolRes
@@ -1222,56 +1256,14 @@
             this.txtNumBolRes.Size = new System.Drawing.Size(278, 23);
             this.txtNumBolRes.TabIndex = 1;
             // 
-            // dtpFecHasta
-            // 
-            this.dtpFecHasta.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpFecHasta.Location = new System.Drawing.Point(116, 152);
-            this.dtpFecHasta.Name = "dtpFecHasta";
-            this.dtpFecHasta.Size = new System.Drawing.Size(192, 21);
-            this.dtpFecHasta.TabIndex = 7;
-            this.dtpFecHasta.ValueNullable = new System.DateTime(2018, 9, 18, 0, 0, 0, 0);
-            // 
             // btnSendResumen
             // 
-            this.btnSendResumen.Location = new System.Drawing.Point(30, 192);
+            this.btnSendResumen.Location = new System.Drawing.Point(30, 81);
             this.btnSendResumen.Name = "btnSendResumen";
             this.btnSendResumen.Size = new System.Drawing.Size(278, 31);
             this.btnSendResumen.TabIndex = 2;
             this.btnSendResumen.Values.Text = "Enviar Resumen";
             this.btnSendResumen.Click += new System.EventHandler(this.btnSendResumen_Click);
-            // 
-            // lblFechaHasta
-            // 
-            this.lblFechaHasta.Location = new System.Drawing.Point(30, 153);
-            this.lblFechaHasta.Name = "lblFechaHasta";
-            this.lblFechaHasta.Size = new System.Drawing.Size(77, 20);
-            this.lblFechaHasta.TabIndex = 6;
-            this.lblFechaHasta.Values.Text = "Fecha hasta:";
-            // 
-            // dtpFecDesde
-            // 
-            this.dtpFecDesde.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpFecDesde.Location = new System.Drawing.Point(116, 125);
-            this.dtpFecDesde.Name = "dtpFecDesde";
-            this.dtpFecDesde.Size = new System.Drawing.Size(192, 21);
-            this.dtpFecDesde.TabIndex = 3;
-            this.dtpFecDesde.ValueNullable = new System.DateTime(2018, 9, 18, 0, 0, 0, 0);
-            // 
-            // lblFechaDesde
-            // 
-            this.lblFechaDesde.Location = new System.Drawing.Point(30, 127);
-            this.lblFechaDesde.Name = "lblFechaDesde";
-            this.lblFechaDesde.Size = new System.Drawing.Size(81, 20);
-            this.lblFechaDesde.TabIndex = 5;
-            this.lblFechaDesde.Values.Text = "Fecha desde:";
-            // 
-            // kryptonLabel6
-            // 
-            this.kryptonLabel6.Location = new System.Drawing.Point(32, 92);
-            this.kryptonLabel6.Name = "kryptonLabel6";
-            this.kryptonLabel6.Size = new System.Drawing.Size(103, 20);
-            this.kryptonLabel6.TabIndex = 4;
-            this.kryptonLabel6.Values.Text = "Rango de fechas:";
             // 
             // Form2
             // 
@@ -1301,6 +1293,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.kryptonPanel2)).EndInit();
             this.kryptonPanel2.ResumeLayout(false);
             this.kryptonPanel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cboEmpresaDoc)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgListadoVentas)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonPage3)).EndInit();
             this.kryptonPage3.ResumeLayout(false);
@@ -1327,6 +1320,7 @@
             this.kryptonGroupBox4.Panel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonGroupBox4)).EndInit();
             this.kryptonGroupBox4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.cboEmpresa)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonGroupBox2.Panel)).EndInit();
             this.kryptonGroupBox2.Panel.ResumeLayout(false);
             this.kryptonGroupBox2.Panel.PerformLayout();
@@ -1428,14 +1422,9 @@
         private ComponentFactory.Krypton.Toolkit.KryptonDateTimePicker FechaEmisionDocBaja;
         private ComponentFactory.Krypton.Navigator.KryptonPage kryptonPage4;
         private ComponentFactory.Krypton.Toolkit.KryptonPanel kryptonPanel5;
-        private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel6;
-        private ComponentFactory.Krypton.Toolkit.KryptonDateTimePicker dtpFecDesde;
         private ComponentFactory.Krypton.Toolkit.KryptonButton btnSendResumen;
         private ComponentFactory.Krypton.Toolkit.KryptonTextBox txtNumBolRes;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel lblNumBolRes;
-        private ComponentFactory.Krypton.Toolkit.KryptonDateTimePicker dtpFecHasta;
-        private ComponentFactory.Krypton.Toolkit.KryptonLabel lblFechaHasta;
-        private ComponentFactory.Krypton.Toolkit.KryptonLabel lblFechaDesde;
         private ComponentFactory.Krypton.Toolkit.KryptonGroupBox kryptonGroupBox3;
         private ComponentFactory.Krypton.Toolkit.KryptonGroupBox kryptonGroupBox2;
         private ComponentFactory.Krypton.Toolkit.KryptonButton btnConsultarRes;
@@ -1456,5 +1445,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn fecemi;
         private System.Windows.Forms.DataGridViewTextBoxColumn totdoc;
         private ComponentFactory.Krypton.Toolkit.KryptonButton btnDelBol;
+        private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel10;
+        private ComponentFactory.Krypton.Toolkit.KryptonComboBox cboEmpresa;
+        private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel6;
+        private ComponentFactory.Krypton.Toolkit.KryptonComboBox cboEmpresaDoc;
     }
 }

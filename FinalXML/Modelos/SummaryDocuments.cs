@@ -23,7 +23,7 @@ namespace FinalXML
         public DateTime ReferenceDate { get; set; }
         public SignatureCac Signature { get; set; }
         public AccountingSupplierParty AccountingSupplierParty { get; set; }
-        public List<VoidedDocumentsLine> SummaryDocumentsLines { get; set; }
+        public List<SummaryDocumentsLine> SummaryDocumentsLines { get; set; }
         public IFormatProvider Formato { get; set; }
 
         public SummaryDocuments()
@@ -31,7 +31,7 @@ namespace FinalXML
             UBLExtensions = new UBLExtensions();
             Signature = new SignatureCac();
             AccountingSupplierParty = new AccountingSupplierParty();
-            SummaryDocumentsLines = new List<VoidedDocumentsLine>();
+            SummaryDocumentsLines = new List<SummaryDocumentsLine>();
             UBLVersionID = "2.0";
             //CustomizationID = "1.0"; @001
             CustomizationID = "1.1"; //@001
@@ -162,9 +162,21 @@ namespace FinalXML
                 {
                     writer.WriteElementString("cbc:LineID", item.LineID.ToString());
                     writer.WriteElementString("cbc:DocumentTypeCode", item.DocumentTypeCode);
-                    writer.WriteElementString("sac:DocumentSerialID", item.DocumentSerialID);
-                    writer.WriteElementString("sac:StartDocumentNumberID", item.StartDocumentNumberID.ToString());
-                    writer.WriteElementString("sac:EndDocumentNumberID", item.EndDocumentNumberID.ToString());
+                    //writer.WriteElementString("sac:DocumentSerialID", item.DocumentSerialID);
+                    writer.WriteElementString("cbc:ID", item.NumeroDocumento);
+                    //writer.WriteElementString("sac:StartDocumentNumberID", item.StartDocumentNumberID.ToString());
+                    //writer.WriteElementString("sac:EndDocumentNumberID", item.EndDocumentNumberID.ToString());
+                    writer.WriteStartElement("cac:AccountingCustomerParty");
+                    {
+                        writer.WriteElementString("cbc:CustomerAssignedAccountID", item.AccountingCustomerParty.CustomerAssignedAccountID.ToString());
+                        writer.WriteElementString("cbc:AdditionalAccountID", item.AccountingCustomerParty.AdditionalAccountID.ToString());
+                    }
+                    writer.WriteEndElement();
+                    writer.WriteStartElement("cac:Status");
+                    {
+                        writer.WriteElementString("cbc:ConditionCode", item.Status.ConditionCode);
+                    }
+                    writer.WriteEndElement();
                     writer.WriteStartElement("sac:TotalAmount");
                     {
                         writer.WriteAttributeString("currencyID", item.TotalAmount.currencyID);

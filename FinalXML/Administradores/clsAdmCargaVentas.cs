@@ -43,6 +43,19 @@ namespace FinalXML.Administradores
             }
         }
 
+        public DataTable CargaDocumentos(String RucEmi ,DateTime FInicio, DateTime FFin, String CTipDoc)
+        {
+            try
+            {
+                return Cventa.CargaDocumentos(RucEmi ,FInicio, FFin, CTipDoc);
+            }
+            catch (Exception ex)
+            {
+                DevComponents.DotNetBar.MessageBoxEx.Show("Se encontró el siguiente problema: " + ex.Message, "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return null;
+            }
+        }
+
         public clsCargaVentas LeerVenta(String Sigla,String Serie, String Numeracion)
         {
             try
@@ -55,7 +68,20 @@ namespace FinalXML.Administradores
                 return null;
             }
         }
-       
+
+        public clsCargaVentas LeerVenta(String NumRuc, String Sigla, String Serie, String Numeracion)
+        {
+            try
+            {
+                return Cventa.LeerVenta(NumRuc ,Sigla, Serie, Numeracion);
+            }
+            catch (Exception ex)
+            {
+                DevComponents.DotNetBar.MessageBoxEx.Show("Se encontró el siguiente problema: " + ex.Message, "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return null;
+            }
+        }
+
         public List<DetalleDocumento> LeerVentaDetalle(String Sigla, String Serie, String Numeracion)
         {
             try
@@ -74,6 +100,18 @@ namespace FinalXML.Administradores
             try
             {
                 return Cventa.LeerDetalle(Sigla, Serie, Numeracion);
+            }
+            catch (Exception ex)
+            {
+                DevComponents.DotNetBar.MessageBoxEx.Show("Se encontró el siguiente problema: " + ex.Message, "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return null;
+            }
+        }
+        public DataTable LeerDetalle(String NumRuc ,String Sigla, String Serie, String Numeracion)
+        {
+            try
+            {
+                return Cventa.LeerDetalle(NumRuc ,Sigla, Serie, Numeracion);
             }
             catch (Exception ex)
             {

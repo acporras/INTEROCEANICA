@@ -12,8 +12,11 @@ namespace FinalXML.Interfaces
     {
         Boolean Update(clsCargaVentas ven);
         clsCargaVentas LeerVenta(String Sigla, String Serie, String Numeracion);
+        clsCargaVentas LeerVenta(String NumRuc, String Sigla, String Serie, String Numeracion);
         List<DetalleDocumento> LeerVentaDetalle(String Sigla, String Serie, String Numeracion);
         DataTable CargaVentas(DateTime desde, DateTime hasta);
+        DataTable CargaDocumentos(String RucEmi ,DateTime desde, DateTime hasta, String CTipoDoc);
         DataTable LeerDetalle(String Sigla, String Serie, String Numeracion);
+        DataTable LeerDetalle(String NumRuc ,String Sigla, String Serie, String Numeracion);
     }
 }

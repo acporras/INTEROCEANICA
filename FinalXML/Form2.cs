@@ -25,12 +25,14 @@ namespace FinalXML
 {
     public partial class Form2 : MetroFramework.Forms.MetroForm /*PlantillaBase*/
     {
-        private  DocumentoElectronico _documento;
+        private DocumentoElectronico _documento;
+        private ResumenDiario _resumen;
         Herramientas herramientas = new Herramientas();
         clsCargaVentas CVentas = new clsCargaVentas();
         clsCargaVentas CVentas1 = new clsCargaVentas();
         clsPedido Pedido = new clsPedido();
         clsAdmCargaVentas AdmCVenta = new clsAdmCargaVentas();
+        clsAdmEmpresa AdmCEmpresa = new clsAdmEmpresa();
         clsAdmPedido AdmPedido = new clsAdmPedido();
         Conversion ConvertLetras = new Conversion();
         public static BindingSource data = new BindingSource();
@@ -40,6 +42,7 @@ namespace FinalXML
         public string IdDocumento { get; set; }
         public String recursos;
         public DataTable dt_Ventas = new DataTable();
+        public DataTable dt_Empresa = new DataTable();
         public DataTable dt_DetalleVenta = new DataTable();
         public DataTable dt_Pedidos = new DataTable();
         public DataTable dt_DetallePedido = new DataTable();
@@ -56,7 +59,35 @@ namespace FinalXML
                 Emisor=CrearEmisor()
                 //IdDocumento = Numera.Serie+ "-" + str.PadLeft(8, pad)
             };
+            _resumen = new ResumenDiario();
             recursos = herramientas.GetResourcesPath();
+            grvResDetail.Rows.Clear();
+            CargaEmpresa();
+        }
+        private void CargaEmpresa()
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            try
+            {
+                Int32 index = 0;
+                dt_Empresa = AdmCEmpresa.CargaEmpresa();
+                cboEmpresa.DataSource = dt_Empresa;
+                cboEmpresa.ValueMember = "NU_EMINUMRUC";
+                cboEmpresa.DisplayMember = "NO_EMIRAZSOC";
+
+                cboEmpresaDoc.DataSource = dt_Empresa;
+                cboEmpresaDoc.ValueMember = "NU_EMINUMRUC";
+                cboEmpresaDoc.DisplayMember = "NO_EMIRAZSOC";
+            }
+            catch (Exception a) { MessageBox.Show(a.Message); }
+            finally
+            {
+                Cursor.Current = Cursors.Default;
+            }
+        }
+        private Contribuyente LeerEmpresa(String NumRuc)
+        {
+            return AdmCEmpresa.LeerEmpresa(NumRuc);
         }
         private void CargaVentas() {
             Cursor.Current = Cursors.WaitCursor;
@@ -68,7 +99,7 @@ namespace FinalXML
                 
 
                 Int32 index = 0;
-                dt_Ventas = AdmCVenta.CargaVentas(dtpDesde.Value.Date, dtpHasta.Value.Date);
+                dt_Ventas = AdmCVenta.CargaDocumentos(cboEmpresaDoc.SelectedValue.ToString() ,dtpDesde.Value.Date, dtpHasta.Value.Date, "FT");
                 dgListadoVentas.Rows.Clear();
                 dgListadoVentas.ClearSelection();
                 foreach (DataRow row in dt_Ventas.Rows)
@@ -99,7 +130,7 @@ namespace FinalXML
             try
             {
                 Int32 index = 0;
-                dt_Ventas = AdmCVenta.CargaVentas(dtpFecIni.Value.Date, dtpFecFin.Value.Date);
+                dt_Ventas = AdmCVenta.CargaDocumentos(cboEmpresa.SelectedValue.ToString(), dtpFecIni.Value.Date, dtpFecFin.Value.Date, "BV");
                 grvResDetail.Rows.Clear();
                 grvResDetail.ClearSelection();
                 foreach (DataRow row in dt_Ventas.Rows)
@@ -154,6 +185,134 @@ namespace FinalXML
                 Cursor.Current = Cursors.Default;
             }
         }
+
+        private void EnviarResumen()
+        {
+            //Se valida que existan datos en la grilla
+            if(grvResDetail.RowCount - 1 > 0)
+            {
+                //Datos del Resumen
+                DateTime FechaActual = DateTime.Today;
+                _resumen.IdDocumento = String.Format(@"RC-{0}{1}{2}-{3}", FechaActual.Year, String.Format("{0:00}", FechaActual.Month), FechaActual.Day, "1");
+                _resumen.Emisor = LeerEmpresa(cboEmpresa.SelectedValue.ToString());
+                _resumen.FechaEmision = FechaActual.ToString("yyyy-MM-dd");
+                _resumen.FechaReferencia = FechaActual.ToString("yyyy-MM-dd");
+
+                //Cabecera
+                String tipdoc = "", sersun = "", numsun = "";
+                Decimal impuesto = 0, Gravadas = 0, Exoneradas = 0;
+                //ven.SubTotalVenta = Math.Abs((Convert.ToDecimal(row[7]) - Convert.ToDecimal(row[6])));
+                List<GrupoResumen> Items = new List<GrupoResumen>();
+                GrupoResumen ven = new GrupoResumen();
+                int i = 0;
+                foreach (DataGridViewRow row in grvResDetail.Rows)
+                {
+                    i++;
+                    tipdoc = row.Cells["numdoc"].Value.ToString().Substring(0, 2);
+                    sersun = row.Cells["numdoc"].Value.ToString().Substring(2, 4);
+                    numsun = row.Cells["numdoc"].Value.ToString().Substring(6, 7);
+                    CVentas1 = AdmCVenta.LeerVenta(_resumen.Emisor.NroDocumento, tipdoc, sersun, numsun);
+
+                    dt_DetalleVenta = AdmCVenta.LeerDetalle(cboEmpresa.SelectedValue.ToString(), CVentas1.Sigla, CVentas1.Serie, CVentas1.Numeracion);
+                    if (dt_DetalleVenta != null)
+                    {
+                        foreach (DataRow row_det in dt_DetalleVenta.Rows)
+                        {
+                            impuesto += Convert.ToDecimal(row_det[6].ToString());
+                            if (Math.Abs((Convert.ToDecimal(row_det[6]))) != 0)
+                            {
+                                Gravadas += (CVentas1.Moneda == "MN") ? Math.Abs((Convert.ToDecimal(row_det[7]) - Convert.ToDecimal(row_det[6]))) :
+                                Math.Abs((Convert.ToDecimal(row_det[9]) - Convert.ToDecimal(row_det[6])));
+                            }
+                            else
+                            {
+                                Exoneradas += (CVentas1.Moneda == "MN") ? Math.Abs((Convert.ToDecimal(row_det[7]) - Convert.ToDecimal(row_det[6]))) :
+                                Math.Abs((Convert.ToDecimal(row_det[9]) - Convert.ToDecimal(row_det[6])));
+                            }
+                        }
+                    }
+                    ven = new GrupoResumen
+                    {
+                        Id = i,
+                        TipoDocumento = "03",
+                        Moneda = "PEN",
+                        NumeroDocumento = sersun + "-" + numsun,
+                        TotalVenta = Gravadas + Exoneradas + impuesto,
+                        TotalDescuentos = 0,
+                        TotalIgv = impuesto,
+                        TotalIsc = 0,
+                        TotalOtrosImpuestos = 0,
+                        Gravadas = Gravadas,
+                        Exoneradas = Exoneradas,
+                        Inafectas = 0,
+                        Exportacion = 0,
+                        Gratuitas = 0,
+                        DocumentoCliente = CVentas1.NumDocCliente,
+                        TipoDocumentoCliente = "1",
+                        Operacion = "1"
+                    };
+                    Items.Add(ven);
+                }
+
+                _resumen.Resumenes = Items;
+
+                var ResumenDiario = GeneradorXML.GenerarSummaryDocuments(_resumen);
+                var serializador3 = new Serializador();
+                TramaXmlSinFirma = serializador3.GenerarXml(ResumenDiario);
+
+                RutaArchivo = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Documentos\\" +
+                    $"{_resumen.IdDocumento}.xml");
+                File.WriteAllBytes(RutaArchivo, Convert.FromBase64String(TramaXmlSinFirma));
+
+                var firmadoRequest = new FirmadoRequest
+                {
+                    TramaXmlSinFirma = TramaXmlSinFirma,
+                    CertificadoDigital = Convert.ToBase64String(File.ReadAllBytes(recursos + "\\INTEROCEANICAPFX.pfx")),
+                    PasswordCertificado = "uY9eYH8utq4SyreY", //546IUYJHGT5
+                    UnSoloNodoExtension = true //rbRetenciones.Checked || rbResumen.Checked
+
+                };
+
+                FirmarController enviar = new FirmarController();
+
+                var respuestaFirmado = enviar.FirmadoResponse(firmadoRequest);
+
+                var enviarDocumentoRequest = new EnviarDocumentoRequest
+                {
+                    Ruc = cboEmpresa.SelectedValue.ToString(),
+                    UsuarioSol = "FACTURA1",
+                    ClaveSol = "FACTURA1",
+                    //EndPointUrl = "https://e-factura.sunat.gob.pe/ol-ti-itcpfegem/billService",
+                    EndPointUrl = "https://e-beta.sunat.gob.pe/ol-ti-itcpfegem-beta/billService",
+                    IdDocumento = _resumen.IdDocumento,
+                    TipoDocumento = "RC",
+                    TramaXmlFirmado = respuestaFirmado.TramaXmlFirmado
+                };
+                var respuestaEnvio = new EnviarDocumentoResponse();
+                EnviarResumenController enviaResumen = new EnviarResumenController();
+                respuestaEnvio = enviaResumen.EnviarResumenResponse(enviarDocumentoRequest);
+
+
+                var rpta = (EnviarDocumentoResponse)respuestaEnvio;
+                txtResult.Text = $@"{Resources.procesoCorrecto}{Environment.NewLine}{rpta.NroTicket}";
+                if (rpta.Exito) txtNroTicket.Text = rpta.NroTicket.ToString();
+                if (!respuestaEnvio.Exito)
+                    throw new ApplicationException(respuestaEnvio.MensajeError);
+
+
+                /*RutaArchivo = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Documentos\\" +
+                    $"{_resumen.IdDocumento}.xml");
+                File.WriteAllBytes(RutaArchivo, Convert.FromBase64String(TramaXmlSinFirma));*/
+
+                MessageBox.Show("Se ha enviado correctamente el archivo de resumen..!");
+            }
+            else
+            {
+                MessageBox.Show("No se han encontrado boletas para añadir al resumen..!");
+            }
+
+        }
+
         private static Contribuyente CrearEmisor()
         {
             return new Contribuyente
@@ -337,7 +496,7 @@ namespace FinalXML
             try
             {
                 CargaVentas();
-                CargaPedidos();
+                //CargaPedidos();
 
 
             }
@@ -375,7 +534,7 @@ namespace FinalXML
                             _documento.Moneda = "USD";
                         }
                        
-                        dt_DetalleVenta = AdmCVenta.LeerDetalle(CVentas.Sigla, CVentas.Serie, CVentas.Numeracion);
+                        dt_DetalleVenta = AdmCVenta.LeerDetalle(cboEmpresaDoc.SelectedValue.ToString() ,CVentas.Sigla, CVentas.Serie, CVentas.Numeracion);
                         if (dt_DetalleVenta != null) {
 
                             int i = 0;
@@ -465,7 +624,6 @@ namespace FinalXML
                             _documento.TipoDocumento = "03";
                             break;
                         case "NC": 
-
                             _documento.IdDocumento = str1.PadLeft(2, pad).Trim() + "-" + str2.PadLeft(8, pad).Trim();
                             _documento.TipoDocumento = "07";
                             _documento.Relacionados.Add(new DocumentoRelacionado { NroDocumento= NuevaSerie +"-" + CVentas1.NumDocAfecta.Trim().PadLeft(8, pad).Trim(), TipoDocumento=NuevoTipoDocumento });
@@ -1082,6 +1240,8 @@ namespace FinalXML
         {
             try {
                 Cursor.Current = Cursors.WaitCursor;
+                EnviarResumen();
+
             } catch(Exception ex)
             {
                 MessageBox.Show(ex.Message);

@@ -192,6 +192,8 @@ namespace FE.InterfaceConsole
                     oBEMaeemiele.nu_eminumruc = dr_emidocele.GetString(dr_emidocele.GetOrdinal("NU_EMINUMRUC"));
                 if ((!dr_emidocele.IsDBNull(dr_emidocele.GetOrdinal("NO_EMIRAZSOC"))))
                     oBEMaeemiele.no_emirazsoc = dr_emidocele.GetString(dr_emidocele.GetOrdinal("NO_EMIRAZSOC"));
+                if ((!dr_emidocele.IsDBNull(dr_emidocele.GetOrdinal("CO_EMICODAGE"))))
+                    oBEMaeemiele.co_emicodage = dr_emidocele.GetString(dr_emidocele.GetOrdinal("CO_EMICODAGE"));
                 if ((!dr_emidocele.IsDBNull(dr_emidocele.GetOrdinal("NO_ESTEMIELE"))))
                     oBEMaeemiele.no_estemiele = dr_emidocele.GetString(dr_emidocele.GetOrdinal("NO_ESTEMIELE"));
                 if ((!dr_emidocele.IsDBNull(dr_emidocele.GetOrdinal("NO_CONEMIELE"))))
@@ -222,6 +224,8 @@ namespace FE.InterfaceConsole
                     oBEMaeemiele.no_tabfacdet = dr_emidocele.GetString(dr_emidocele.GetOrdinal("NO_TABFACDET"));
                 if ((!dr_emidocele.IsDBNull(dr_emidocele.GetOrdinal("NO_RUTCERDIG"))))
                     oBEMaeemiele.no_rutcerdig = dr_emidocele.GetString(dr_emidocele.GetOrdinal("NO_RUTCERDIG"));
+                if ((!dr_emidocele.IsDBNull(dr_emidocele.GetOrdinal("NID_CFGSEREMI"))))
+                    oBEMaeemiele.nid_cfgseremi = dr_emidocele.GetInt32(dr_emidocele.GetOrdinal("NID_CFGSEREMI"));
                 if ((!dr_emidocele.IsDBNull(dr_emidocele.GetOrdinal("FE_REGCREACI"))))
                     oBEMaeemiele.fe_regcreaci = dr_emidocele.GetDateTime(dr_emidocele.GetOrdinal("FE_REGCREACI"));
                 if ((!dr_emidocele.IsDBNull(dr_emidocele.GetOrdinal("FE_REGMODIFI"))))
