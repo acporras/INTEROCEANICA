@@ -201,19 +201,21 @@ namespace FinalXML
                         writer.WriteEndElement();
                     }
 
-
-                    writer.WriteStartElement("cac:AllowanceCharge");
+                    if (item.AllowanceCharge.ChargeIndicator)
                     {
-                        writer.WriteElementString("cbc:ChargeIndicator", item.AllowanceCharge.ChargeIndicator ? "true" : "false");
-
-                        writer.WriteStartElement("cbc:Amount");
+                        writer.WriteStartElement("cac:AllowanceCharge");
                         {
-                            writer.WriteAttributeString("currencyID", item.AllowanceCharge.Amount.currencyID);
-                            writer.WriteValue(item.AllowanceCharge.Amount.value.ToString(Constantes.FormatoNumerico));
+                            writer.WriteElementString("cbc:ChargeIndicator", item.AllowanceCharge.ChargeIndicator ? "true" : "false");
+
+                            writer.WriteStartElement("cbc:Amount");
+                            {
+                                writer.WriteAttributeString("currencyID", item.AllowanceCharge.Amount.currencyID);
+                                writer.WriteValue(item.AllowanceCharge.Amount.value.ToString(Constantes.FormatoNumerico));
+                            }
+                            writer.WriteEndElement();
                         }
                         writer.WriteEndElement();
                     }
-                    writer.WriteEndElement();
 
                     foreach (var taxTotal in item.TaxTotals)
                     {

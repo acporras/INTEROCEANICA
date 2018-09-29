@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.kryptonPanel1 = new ComponentFactory.Krypton.Toolkit.KryptonPanel();
             this.kryptonNavigator1 = new ComponentFactory.Krypton.Navigator.KryptonNavigator();
             this.kryptonPage1 = new ComponentFactory.Krypton.Navigator.KryptonPage();
@@ -135,16 +135,17 @@
             this.kryptonLabel8 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.dtpFecIni = new ComponentFactory.Krypton.Toolkit.KryptonDateTimePicker();
             this.dtpFecFin = new ComponentFactory.Krypton.Toolkit.KryptonDateTimePicker();
+            this.btnSendResumen = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.btnConsultarRes = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.kryptonGroupBox2 = new ComponentFactory.Krypton.Toolkit.KryptonGroupBox();
+            this.btnConsultarResumen = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.kryptonGroupBox5 = new ComponentFactory.Krypton.Toolkit.KryptonGroupBox();
-            this.txtNumTicket = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
+            this.txtNumTicketResumen = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             this.kryptonLabel9 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.kryptonLabel7 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.txtDetailRes = new System.Windows.Forms.TextBox();
-            this.lblNumBolRes = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
-            this.txtNumBolRes = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
-            this.btnSendResumen = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.kryptonLabel11 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
+            this.cboEmpresaBaj = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonPanel1)).BeginInit();
             this.kryptonPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonNavigator1)).BeginInit();
@@ -194,6 +195,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.kryptonGroupBox5.Panel)).BeginInit();
             this.kryptonGroupBox5.Panel.SuspendLayout();
             this.kryptonGroupBox5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cboEmpresaBaj)).BeginInit();
             this.SuspendLayout();
             // 
             // kryptonPanel1
@@ -297,8 +299,8 @@
             this.DGPedidos.AllowUserToAddRows = false;
             this.DGPedidos.AllowUserToDeleteRows = false;
             this.DGPedidos.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.DGPedidos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.DGPedidos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.DGPedidos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.idpedido,
             this.sigla1,
@@ -521,8 +523,8 @@
             this.dgListadoVentas.AllowUserToAddRows = false;
             this.dgListadoVentas.AllowUserToDeleteRows = false;
             this.dgListadoVentas.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgListadoVentas.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgListadoVentas.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dgListadoVentas.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.dgListadoVentas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.sigla,
@@ -548,8 +550,8 @@
             this.dgListadoVentas.GridStyles.StyleColumn = ComponentFactory.Krypton.Toolkit.GridStyle.Sheet;
             this.dgListadoVentas.Location = new System.Drawing.Point(0, 71);
             this.dgListadoVentas.Name = "dgListadoVentas";
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgListadoVentas.RowsDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgListadoVentas.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dgListadoVentas.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
             this.dgListadoVentas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgListadoVentas.Size = new System.Drawing.Size(1344, 391);
@@ -560,8 +562,8 @@
             // sigla
             // 
             this.sigla.DataPropertyName = "F5_CTD";
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.sigla.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.sigla.DefaultCellStyle = dataGridViewCellStyle3;
             this.sigla.HeaderText = "SIGLA";
             this.sigla.Name = "sigla";
             this.sigla.Visible = false;
@@ -751,17 +753,7 @@
             this.kryptonPanel4.Controls.Add(this.txtResult);
             this.kryptonPanel4.Controls.Add(this.kryptonLabel3);
             this.kryptonPanel4.Controls.Add(this.kryptonButton5);
-            this.kryptonPanel4.Controls.Add(this.txtcorrelativo2);
-            this.kryptonPanel4.Controls.Add(this.label27);
-            this.kryptonPanel4.Controls.Add(this.label26);
-            this.kryptonPanel4.Controls.Add(this.label31);
-            this.kryptonPanel4.Controls.Add(this.txtmotivo);
-            this.kryptonPanel4.Controls.Add(this.textBox7);
-            this.kryptonPanel4.Controls.Add(this.textBox1);
-            this.kryptonPanel4.Controls.Add(this.label25);
             this.kryptonPanel4.Controls.Add(this.dglista2);
-            this.kryptonPanel4.Controls.Add(this.label24);
-            this.kryptonPanel4.Controls.Add(this.comboBox1);
             this.kryptonPanel4.Controls.Add(this.GComunicacionBaja);
             this.kryptonPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.kryptonPanel4.Location = new System.Drawing.Point(0, 0);
@@ -826,14 +818,14 @@
             // 
             // txtcorrelativo2
             // 
-            this.txtcorrelativo2.Location = new System.Drawing.Point(489, 50);
+            this.txtcorrelativo2.Location = new System.Drawing.Point(153, 49);
             this.txtcorrelativo2.Name = "txtcorrelativo2";
-            this.txtcorrelativo2.Size = new System.Drawing.Size(100, 20);
+            this.txtcorrelativo2.Size = new System.Drawing.Size(159, 20);
             this.txtcorrelativo2.TabIndex = 144;
             // 
             // label27
             // 
-            this.label27.Location = new System.Drawing.Point(347, 52);
+            this.label27.Location = new System.Drawing.Point(3, 49);
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(140, 20);
             this.label27.TabIndex = 143;
@@ -841,7 +833,7 @@
             // 
             // label26
             // 
-            this.label26.Location = new System.Drawing.Point(787, 52);
+            this.label26.Location = new System.Drawing.Point(349, 50);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(127, 20);
             this.label26.TabIndex = 142;
@@ -849,7 +841,7 @@
             // 
             // label31
             // 
-            this.label31.Location = new System.Drawing.Point(421, 134);
+            this.label31.Location = new System.Drawing.Point(3, 108);
             this.label31.Name = "label31";
             this.label31.Size = new System.Drawing.Size(40, 20);
             this.label31.TabIndex = 116;
@@ -858,7 +850,7 @@
             // txtmotivo
             // 
             this.txtmotivo.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtmotivo.Location = new System.Drawing.Point(686, 80);
+            this.txtmotivo.Location = new System.Drawing.Point(349, 87);
             this.txtmotivo.Multiline = true;
             this.txtmotivo.Name = "txtmotivo";
             this.txtmotivo.Size = new System.Drawing.Size(350, 79);
@@ -867,23 +859,23 @@
             // textBox7
             // 
             this.textBox7.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.textBox7.Location = new System.Drawing.Point(489, 127);
+            this.textBox7.Location = new System.Drawing.Point(153, 108);
             this.textBox7.MaxLength = 4;
             this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(100, 20);
+            this.textBox7.Size = new System.Drawing.Size(159, 20);
             this.textBox7.TabIndex = 117;
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(489, 169);
+            this.textBox1.Location = new System.Drawing.Point(153, 134);
             this.textBox1.MaxLength = 8;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
+            this.textBox1.Size = new System.Drawing.Size(159, 20);
             this.textBox1.TabIndex = 118;
             // 
             // label25
             // 
-            this.label25.Location = new System.Drawing.Point(388, 169);
+            this.label25.Location = new System.Drawing.Point(3, 139);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(80, 20);
             this.label25.TabIndex = 139;
@@ -938,7 +930,7 @@
             // 
             // label24
             // 
-            this.label24.Location = new System.Drawing.Point(361, 92);
+            this.label24.Location = new System.Drawing.Point(3, 81);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(122, 20);
             this.label24.TabIndex = 137;
@@ -952,9 +944,9 @@
             this.comboBox1.Items.AddRange(new object[] {
             "Factura",
             "Boleta"});
-            this.comboBox1.Location = new System.Drawing.Point(489, 91);
+            this.comboBox1.Location = new System.Drawing.Point(153, 77);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(175, 21);
+            this.comboBox1.Size = new System.Drawing.Size(159, 21);
             this.comboBox1.TabIndex = 138;
             this.comboBox1.ValueMember = "Codigo";
             // 
@@ -965,11 +957,23 @@
             // 
             // GComunicacionBaja.Panel
             // 
+            this.GComunicacionBaja.Panel.Controls.Add(this.cboEmpresaBaj);
+            this.GComunicacionBaja.Panel.Controls.Add(this.kryptonLabel11);
             this.GComunicacionBaja.Panel.Controls.Add(this.kryptonLabel5);
             this.GComunicacionBaja.Panel.Controls.Add(this.FechaEmisionDocBaja);
             this.GComunicacionBaja.Panel.Controls.Add(this.kryptonButton6);
             this.GComunicacionBaja.Panel.Controls.Add(this.kryptonButton3);
             this.GComunicacionBaja.Panel.Controls.Add(this.kryptonButton4);
+            this.GComunicacionBaja.Panel.Controls.Add(this.txtmotivo);
+            this.GComunicacionBaja.Panel.Controls.Add(this.txtcorrelativo2);
+            this.GComunicacionBaja.Panel.Controls.Add(this.label26);
+            this.GComunicacionBaja.Panel.Controls.Add(this.textBox7);
+            this.GComunicacionBaja.Panel.Controls.Add(this.comboBox1);
+            this.GComunicacionBaja.Panel.Controls.Add(this.label27);
+            this.GComunicacionBaja.Panel.Controls.Add(this.textBox1);
+            this.GComunicacionBaja.Panel.Controls.Add(this.label25);
+            this.GComunicacionBaja.Panel.Controls.Add(this.label31);
+            this.GComunicacionBaja.Panel.Controls.Add(this.label24);
             this.GComunicacionBaja.Size = new System.Drawing.Size(900, 444);
             this.GComunicacionBaja.TabIndex = 145;
             this.GComunicacionBaja.Values.Heading = "Datos";
@@ -987,7 +991,7 @@
             this.FechaEmisionDocBaja.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.FechaEmisionDocBaja.Location = new System.Drawing.Point(156, 160);
             this.FechaEmisionDocBaja.Name = "FechaEmisionDocBaja";
-            this.FechaEmisionDocBaja.Size = new System.Drawing.Size(105, 21);
+            this.FechaEmisionDocBaja.Size = new System.Drawing.Size(156, 21);
             this.FechaEmisionDocBaja.TabIndex = 237;
             // 
             // kryptonButton6
@@ -1013,7 +1017,7 @@
             // 
             // kryptonButton4
             // 
-            this.kryptonButton4.Location = new System.Drawing.Point(314, 179);
+            this.kryptonButton4.Location = new System.Drawing.Point(349, 184);
             this.kryptonButton4.Name = "kryptonButton4";
             this.kryptonButton4.Size = new System.Drawing.Size(123, 25);
             this.kryptonButton4.TabIndex = 0;
@@ -1053,6 +1057,7 @@
             this.kryptonGroupBox3.Panel.Controls.Add(this.btnDelBol);
             this.kryptonGroupBox3.Panel.Controls.Add(this.grvResDetail);
             this.kryptonGroupBox3.Panel.Controls.Add(this.kryptonGroupBox4);
+            this.kryptonGroupBox3.Panel.Controls.Add(this.btnSendResumen);
             this.kryptonGroupBox3.Panel.Controls.Add(this.btnConsultarRes);
             this.kryptonGroupBox3.Size = new System.Drawing.Size(994, 532);
             this.kryptonGroupBox3.TabIndex = 10;
@@ -1080,7 +1085,7 @@
             this.totdoc});
             this.grvResDetail.Location = new System.Drawing.Point(21, 192);
             this.grvResDetail.Name = "grvResDetail";
-            this.grvResDetail.Size = new System.Drawing.Size(948, 296);
+            this.grvResDetail.Size = new System.Drawing.Size(948, 255);
             this.grvResDetail.TabIndex = 14;
             // 
             // numdoc
@@ -1171,6 +1176,15 @@
             this.dtpFecFin.TabIndex = 10;
             this.dtpFecFin.ValueNullable = new System.DateTime(2018, 9, 18, 0, 0, 0, 0);
             // 
+            // btnSendResumen
+            // 
+            this.btnSendResumen.Location = new System.Drawing.Point(301, 458);
+            this.btnSendResumen.Name = "btnSendResumen";
+            this.btnSendResumen.Size = new System.Drawing.Size(278, 31);
+            this.btnSendResumen.TabIndex = 2;
+            this.btnSendResumen.Values.Text = "Generar Resumen Diario";
+            this.btnSendResumen.Click += new System.EventHandler(this.btnSendResumen_Click);
+            // 
             // btnConsultarRes
             // 
             this.btnConsultarRes.Location = new System.Drawing.Point(21, 145);
@@ -1187,35 +1201,42 @@
             // 
             // kryptonGroupBox2.Panel
             // 
+            this.kryptonGroupBox2.Panel.Controls.Add(this.btnConsultarResumen);
             this.kryptonGroupBox2.Panel.Controls.Add(this.kryptonGroupBox5);
             this.kryptonGroupBox2.Panel.Controls.Add(this.kryptonLabel7);
             this.kryptonGroupBox2.Panel.Controls.Add(this.txtDetailRes);
-            this.kryptonGroupBox2.Panel.Controls.Add(this.lblNumBolRes);
-            this.kryptonGroupBox2.Panel.Controls.Add(this.txtNumBolRes);
-            this.kryptonGroupBox2.Panel.Controls.Add(this.btnSendResumen);
             this.kryptonGroupBox2.Size = new System.Drawing.Size(339, 532);
             this.kryptonGroupBox2.TabIndex = 9;
             this.kryptonGroupBox2.Values.Heading = "Datos de Envio";
             // 
+            // btnConsultarResumen
+            // 
+            this.btnConsultarResumen.Location = new System.Drawing.Point(81, 284);
+            this.btnConsultarResumen.Name = "btnConsultarResumen";
+            this.btnConsultarResumen.Size = new System.Drawing.Size(152, 38);
+            this.btnConsultarResumen.TabIndex = 15;
+            this.btnConsultarResumen.Values.Text = "Consultar";
+            this.btnConsultarResumen.Click += new System.EventHandler(this.btnConsultarResumen_Click);
+            // 
             // kryptonGroupBox5
             // 
-            this.kryptonGroupBox5.Location = new System.Drawing.Point(32, 118);
+            this.kryptonGroupBox5.Location = new System.Drawing.Point(21, 207);
             this.kryptonGroupBox5.Name = "kryptonGroupBox5";
             // 
             // kryptonGroupBox5.Panel
             // 
-            this.kryptonGroupBox5.Panel.Controls.Add(this.txtNumTicket);
+            this.kryptonGroupBox5.Panel.Controls.Add(this.txtNumTicketResumen);
             this.kryptonGroupBox5.Panel.Controls.Add(this.kryptonLabel9);
             this.kryptonGroupBox5.Size = new System.Drawing.Size(281, 61);
             this.kryptonGroupBox5.TabIndex = 14;
             this.kryptonGroupBox5.Values.Heading = "Consulta";
             // 
-            // txtNumTicket
+            // txtNumTicketResumen
             // 
-            this.txtNumTicket.Location = new System.Drawing.Point(83, 5);
-            this.txtNumTicket.Name = "txtNumTicket";
-            this.txtNumTicket.Size = new System.Drawing.Size(184, 23);
-            this.txtNumTicket.TabIndex = 10;
+            this.txtNumTicketResumen.Location = new System.Drawing.Point(83, 5);
+            this.txtNumTicketResumen.Name = "txtNumTicketResumen";
+            this.txtNumTicketResumen.Size = new System.Drawing.Size(184, 23);
+            this.txtNumTicketResumen.TabIndex = 10;
             // 
             // kryptonLabel9
             // 
@@ -1227,7 +1248,7 @@
             // 
             // kryptonLabel7
             // 
-            this.kryptonLabel7.Location = new System.Drawing.Point(32, 192);
+            this.kryptonLabel7.Location = new System.Drawing.Point(21, 13);
             this.kryptonLabel7.Name = "kryptonLabel7";
             this.kryptonLabel7.Size = new System.Drawing.Size(104, 20);
             this.kryptonLabel7.TabIndex = 9;
@@ -1235,35 +1256,27 @@
             // 
             // txtDetailRes
             // 
-            this.txtDetailRes.Location = new System.Drawing.Point(30, 218);
+            this.txtDetailRes.Location = new System.Drawing.Point(21, 39);
             this.txtDetailRes.Multiline = true;
             this.txtDetailRes.Name = "txtDetailRes";
-            this.txtDetailRes.Size = new System.Drawing.Size(278, 270);
+            this.txtDetailRes.Size = new System.Drawing.Size(278, 159);
             this.txtDetailRes.TabIndex = 8;
             // 
-            // lblNumBolRes
+            // kryptonLabel11
             // 
-            this.lblNumBolRes.Location = new System.Drawing.Point(71, 13);
-            this.lblNumBolRes.Name = "lblNumBolRes";
-            this.lblNumBolRes.Size = new System.Drawing.Size(186, 20);
-            this.lblNumBolRes.TabIndex = 0;
-            this.lblNumBolRes.Values.Text = "Numero de boletas por paquete";
+            this.kryptonLabel11.Location = new System.Drawing.Point(3, 18);
+            this.kryptonLabel11.Name = "kryptonLabel11";
+            this.kryptonLabel11.Size = new System.Drawing.Size(60, 20);
+            this.kryptonLabel11.TabIndex = 244;
+            this.kryptonLabel11.Values.Text = "Empresa:";
             // 
-            // txtNumBolRes
+            // cboEmpresaBaj
             // 
-            this.txtNumBolRes.Location = new System.Drawing.Point(30, 52);
-            this.txtNumBolRes.Name = "txtNumBolRes";
-            this.txtNumBolRes.Size = new System.Drawing.Size(278, 23);
-            this.txtNumBolRes.TabIndex = 1;
-            // 
-            // btnSendResumen
-            // 
-            this.btnSendResumen.Location = new System.Drawing.Point(30, 81);
-            this.btnSendResumen.Name = "btnSendResumen";
-            this.btnSendResumen.Size = new System.Drawing.Size(278, 31);
-            this.btnSendResumen.TabIndex = 2;
-            this.btnSendResumen.Values.Text = "Enviar Resumen";
-            this.btnSendResumen.Click += new System.EventHandler(this.btnSendResumen_Click);
+            this.cboEmpresaBaj.DropDownWidth = 323;
+            this.cboEmpresaBaj.Location = new System.Drawing.Point(153, 18);
+            this.cboEmpresaBaj.Name = "cboEmpresaBaj";
+            this.cboEmpresaBaj.Size = new System.Drawing.Size(323, 21);
+            this.cboEmpresaBaj.TabIndex = 245;
             // 
             // Form2
             // 
@@ -1331,6 +1344,7 @@
             this.kryptonGroupBox5.Panel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonGroupBox5)).EndInit();
             this.kryptonGroupBox5.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.cboEmpresaBaj)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1423,8 +1437,6 @@
         private ComponentFactory.Krypton.Navigator.KryptonPage kryptonPage4;
         private ComponentFactory.Krypton.Toolkit.KryptonPanel kryptonPanel5;
         private ComponentFactory.Krypton.Toolkit.KryptonButton btnSendResumen;
-        private ComponentFactory.Krypton.Toolkit.KryptonTextBox txtNumBolRes;
-        private ComponentFactory.Krypton.Toolkit.KryptonLabel lblNumBolRes;
         private ComponentFactory.Krypton.Toolkit.KryptonGroupBox kryptonGroupBox3;
         private ComponentFactory.Krypton.Toolkit.KryptonGroupBox kryptonGroupBox2;
         private ComponentFactory.Krypton.Toolkit.KryptonButton btnConsultarRes;
@@ -1436,7 +1448,7 @@
         private ComponentFactory.Krypton.Toolkit.KryptonGroupBox kryptonGroupBox4;
         private System.Windows.Forms.DataGridView grvResDetail;
         private ComponentFactory.Krypton.Toolkit.KryptonGroupBox kryptonGroupBox5;
-        private ComponentFactory.Krypton.Toolkit.KryptonTextBox txtNumTicket;
+        private ComponentFactory.Krypton.Toolkit.KryptonTextBox txtNumTicketResumen;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel9;
         private System.Windows.Forms.DataGridViewTextBoxColumn numdoc;
         private System.Windows.Forms.DataGridViewTextBoxColumn codcli;
@@ -1449,5 +1461,8 @@
         private ComponentFactory.Krypton.Toolkit.KryptonComboBox cboEmpresa;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel6;
         private ComponentFactory.Krypton.Toolkit.KryptonComboBox cboEmpresaDoc;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton btnConsultarResumen;
+        private ComponentFactory.Krypton.Toolkit.KryptonComboBox cboEmpresaBaj;
+        private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel11;
     }
 }

@@ -20,6 +20,7 @@ using AForge;
 using AForge.Imaging;
 using AForge.Imaging.Filters;
 using AForge.Imaging.Textures;
+using System.Configuration;
 
 namespace FinalXML
 {
@@ -48,6 +49,9 @@ namespace FinalXML
         public DataTable dt_DetallePedido = new DataTable();
         public Int32 Proceso = 0;
         public String CodTipoDocumento; //Utilizado para el tipo de documento anulacion
+        public String SunatFact = ConfigurationManager.AppSettings.Get("SUNATCPE");
+        public String SunatGuia = ConfigurationManager.AppSettings.Get("SUNATGUI");
+        public String SunatOtro = ConfigurationManager.AppSettings.Get("SUNATOCE");
 
         #region Métodos
         public Form2()
@@ -56,7 +60,7 @@ namespace FinalXML
             _documento = new DocumentoElectronico
             {
                 FechaEmision = DateTime.Today.ToShortDateString(),
-                Emisor=CrearEmisor()
+                //Emisor=CrearEmisor()
                 //IdDocumento = Numera.Serie+ "-" + str.PadLeft(8, pad)
             };
             _resumen = new ResumenDiario();
@@ -78,6 +82,10 @@ namespace FinalXML
                 cboEmpresaDoc.DataSource = dt_Empresa;
                 cboEmpresaDoc.ValueMember = "NU_EMINUMRUC";
                 cboEmpresaDoc.DisplayMember = "NO_EMIRAZSOC";
+
+                cboEmpresaBaj.DataSource = dt_Empresa;
+                cboEmpresaBaj.ValueMember = "NU_EMINUMRUC";
+                cboEmpresaBaj.DisplayMember = "NO_EMIRAZSOC";
             }
             catch (Exception a) { MessageBox.Show(a.Message); }
             finally
@@ -264,6 +272,8 @@ namespace FinalXML
                     $"{_resumen.IdDocumento}.xml");
                 File.WriteAllBytes(RutaArchivo, Convert.FromBase64String(TramaXmlSinFirma));
 
+                IdDocumento = _resumen.IdDocumento;
+
                 var firmadoRequest = new FirmadoRequest
                 {
                     TramaXmlSinFirma = TramaXmlSinFirma,
@@ -283,7 +293,7 @@ namespace FinalXML
                     UsuarioSol = "FACTURA1",
                     ClaveSol = "FACTURA1",
                     //EndPointUrl = "https://e-factura.sunat.gob.pe/ol-ti-itcpfegem/billService",
-                    EndPointUrl = "https://e-beta.sunat.gob.pe/ol-ti-itcpfegem-beta/billService",
+                    EndPointUrl = SunatFact,
                     IdDocumento = _resumen.IdDocumento,
                     TipoDocumento = "RC",
                     TramaXmlFirmado = respuestaFirmado.TramaXmlFirmado
@@ -294,15 +304,10 @@ namespace FinalXML
 
 
                 var rpta = (EnviarDocumentoResponse)respuestaEnvio;
-                txtResult.Text = $@"{Resources.procesoCorrecto}{Environment.NewLine}{rpta.NroTicket}";
-                if (rpta.Exito) txtNroTicket.Text = rpta.NroTicket.ToString();
+                txtDetailRes.Text = $@"{Resources.procesoCorrecto}{Environment.NewLine}{rpta.NroTicket}";
+                if (rpta.Exito) txtNumTicketResumen.Text = rpta.NroTicket.ToString();
                 if (!respuestaEnvio.Exito)
                     throw new ApplicationException(respuestaEnvio.MensajeError);
-
-
-                /*RutaArchivo = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Documentos\\" +
-                    $"{_resumen.IdDocumento}.xml");
-                File.WriteAllBytes(RutaArchivo, Convert.FromBase64String(TramaXmlSinFirma));*/
 
                 MessageBox.Show("Se ha enviado correctamente el archivo de resumen..!");
             }
@@ -313,7 +318,7 @@ namespace FinalXML
 
         }
 
-        private static Contribuyente CrearEmisor()
+        /*private static Contribuyente CrearEmisor()
         {
             return new Contribuyente
             {
@@ -328,7 +333,7 @@ namespace FinalXML
                 Ubigeo = "150140"
 
             };
-        }
+        }*/
 
         private void CalcularTotales()
         {
@@ -510,8 +515,9 @@ namespace FinalXML
                 _documento = new DocumentoElectronico
                 {
                     //FechaEmision = DateTime.Today.ToShortDateString(),
-                    Emisor = CrearEmisor()
-                    //IdDocumento = Numera.Serie+ "-" + str.PadLeft(8, pad)
+                    //Emisor = CrearEmisor()
+                    Emisor = LeerEmpresa(cboEmpresaDoc.SelectedValue.ToString())
+                //IdDocumento = Numera.Serie+ "-" + str.PadLeft(8, pad)
                 };
                 List<DetalleDocumento> Items = new List<DetalleDocumento>();
                 DetalleDocumento ven = null;
@@ -740,12 +746,12 @@ namespace FinalXML
 
                 var enviarDocumentoRequest = new EnviarDocumentoRequest
                 {
-                    Ruc = "20513258934",
+                    Ruc = cboEmpresaDoc.SelectedValue.ToString(),
                     UsuarioSol = "FACTURA1",
                     ClaveSol = "FACTURA1",
-                    EndPointUrl = "https://e-factura.sunat.gob.pe/ol-ti-itcpfegem/billService",// ValorSeleccionado(),
+                    EndPointUrl = SunatFact,// ValorSeleccionado(),
                     //https://e-beta.sunat.gob.pe/ol-ti-itcpfegem-beta/billService //RETENCION
-                    //https://e-beta.sunat.gob.pe/ol-ti-itcpfegem-beta/billService
+                    //https://e-factura.sunat.gob.pe/ol-ti-itcpfegem/billService
                     IdDocumento = _documento.IdDocumento,
                     TipoDocumento = _documento.TipoDocumento,
                     TramaXmlFirmado = respuestaFirmado.TramaXmlFirmado
@@ -1082,7 +1088,8 @@ namespace FinalXML
                         IdDocumento = string.Format("RA-{0:yyyyMMdd}-" + correl, DateTime.Today),
                         FechaEmision = DateTime.Today.ToString("yyyy-MM-dd"),
                         FechaReferencia = FechaEmisionDocBaja.Value.ToString("yyyy-MM-dd"),//DateTime.Today.ToString("yyyy-MM-dd"),//DateTime.Today.AddDays(-1).ToString("yyyy-MM-dd"),
-                        Emisor = CrearEmisor(),
+                        //Emisor = CrearEmisor(),
+                        Emisor = LeerEmpresa(cboEmpresaBaj.SelectedValue.ToString()),
                         Bajas = new List<DocumentoBaja>()
 
                     };
@@ -1134,10 +1141,10 @@ namespace FinalXML
 
                     var enviarDocumentoRequest = new EnviarDocumentoRequest
                     {
-                        Ruc = "20513258934",
+                        Ruc = cboEmpresaBaj.SelectedValue.ToString(),
                         UsuarioSol = "FACTURA1",
                         ClaveSol = "FACTURA1",
-                        EndPointUrl = "https://e-factura.sunat.gob.pe/ol-ti-itcpfegem/billService",// ValorSeleccionado(),
+                        EndPointUrl = SunatFact,// ValorSeleccionado(),
                         //https://e-beta.sunat.gob.pe/ol-ti-itemision-otroscpe-gem-beta/billService //RETENCION
                         //https://www.sunat.gob.pe:443/ol-ti-itemision-otroscpe-gem/billService
                         IdDocumento = _documento.IdDocumento,
@@ -1189,7 +1196,8 @@ namespace FinalXML
                     Ruc = "20513258934",
                     UsuarioSol = "FACTURA1",
                     ClaveSol = "FACTURA1",
-                    EndPointUrl = "https://e-factura.sunat.gob.pe/ol-ti-itcpfegem/billService",// ValorSeleccionado(),
+                    //EndPointUrl = "https://e-factura.sunat.gob.pe/ol-ti-itcpfegem/billService",// ValorSeleccionado(),
+                    EndPointUrl = SunatFact,
                     IdDocumento = IdDocumento,
                     NroTicket = txtNroTicket.Text
                 };
@@ -1222,7 +1230,8 @@ namespace FinalXML
                 IdDocumento = "",
                 FechaEmision = DateTime.Today.ToString("yyyy-MM-dd"),
                 FechaReferencia = "",//DateTime.Today.AddDays(-1).ToString("yyyy-MM-dd"),
-                Emisor = CrearEmisor(),
+                //Emisor = CrearEmisor(),
+                Emisor = LeerEmpresa(cboEmpresaDoc.SelectedValue.ToString()),
                 Bajas = new List<DocumentoBaja>()
 
             };
@@ -1254,6 +1263,44 @@ namespace FinalXML
         private void btnConsultarRes_Click(object sender, EventArgs e)
         {
             CargaBoletas();
+        }
+
+        private void btnConsultarResumen_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Cursor = Cursors.WaitCursor;
+
+                if (string.IsNullOrEmpty(txtNumTicketResumen.Text)) return;
+
+                var consultaTicketRequest = new ConsultaTicketRequest
+                {
+                    Ruc = cboEmpresa.SelectedValue.ToString(),
+                    UsuarioSol = "FACTURA1",
+                    ClaveSol = "FACTURA1",
+                    EndPointUrl = SunatFact,
+                    IdDocumento = IdDocumento,
+                    NroTicket = txtNumTicketResumen.Text
+                };
+                var respuestaEnvio = new EnviarDocumentoResponse();
+                ConsultarTicket ConsultaTiket = new ConsultarTicket();
+                respuestaEnvio = ConsultaTiket.EnviarDocumentoResponse(consultaTicketRequest);
+
+                if (!respuestaEnvio.Exito)
+                    throw new ApplicationException(respuestaEnvio.MensajeError);
+
+                txtDetailRes.Text = $"{Resources.procesoCorrecto}{Environment.NewLine}{respuestaEnvio.MensajeRespuesta}";
+
+
+            }
+            catch (Exception ex)
+            {
+                txtDetailRes.Text = ex.Message;
+            }
+            finally
+            {
+                Cursor = Cursors.Default;
+            }
         }
     }
 }

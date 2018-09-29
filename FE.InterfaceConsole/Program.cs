@@ -112,7 +112,7 @@ namespace FE.InterfaceConsole
                     oBEMaeemiele.no_basusrbas, oBEMaeemiele.no_basusrpas);
                 //Obteniendo la cabecera del documento
                 BDClient.Conectar();
-                BDClient.Añadir_Parametro(0, "TX_ESTDOCELE", "S", "2,3"); //Pendiente y Por enviar
+                BDClient.Añadir_Parametro(0, "TX_ESTDOCELE", "S", "4"); //Pendiente y Por enviar
                 BDClient.Añadir_Parametro(1, "NO_DOCELECAB", "S", oBEMaeemiele.no_tabfaccab); //Pendiente y Por enviar
                 IDataReader dr_clidoccab = BDClient.Dame_Datos_DR("SPS_TABFACCAB_BY_ESTDOCELE", true, "P");
                 ListBEDoccabcli oListBEDoccabcli = new ListBEDoccabcli();

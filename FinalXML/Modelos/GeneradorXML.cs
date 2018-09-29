@@ -1169,6 +1169,8 @@ namespace FinalXML
                 }
             };
 
+            var BillingPayments = new List<BillingPayment>();
+
             foreach (var grupo in resumen.Resumenes)
             {
                 //var linea = new VoidedDocumentsLine
@@ -1193,7 +1195,7 @@ namespace FinalXML
                         currencyID = grupo.Moneda,
                         value = grupo.TotalVenta
                     },
-                    BillingPayments = new List<BillingPayment>()
+                    /*BillingPayments = new List<BillingPayment>()
                     {
                       new BillingPayment
                       {
@@ -1222,16 +1224,7 @@ namespace FinalXML
                           },
                           InstructionId = "03"
                       },
-                    },
-                    AllowanceCharge = new AllowanceCharge
-                    {
-                        ChargeIndicator = true,
-                        Amount = new PayableAmount
-                        {
-                            currencyID = grupo.Moneda,
-                            value = grupo.TotalDescuentos
-                        }
-                    },
+                    },*/
                     TaxTotals = new List<TaxTotal>()
                     {
                         new TaxTotal
@@ -1311,6 +1304,54 @@ namespace FinalXML
                         },
                     }
                 };
+                if(grupo.TotalDescuentos > 0)
+                {
+                    linea.AllowanceCharge = new AllowanceCharge
+                    {
+                        ChargeIndicator = true,
+                        Amount = new PayableAmount
+                        {
+                            currencyID = grupo.Moneda,
+                            value = grupo.TotalDescuentos
+                        }
+                    };
+                }
+                if(grupo.Gravadas > 0)
+                {
+                    linea.BillingPayments.Add(new BillingPayment
+                    {
+                        PaidAmount = new PayableAmount
+                        {
+                            currencyID = grupo.Moneda,
+                            value = grupo.Gravadas
+                        },
+                        InstructionId = "01"
+                    });
+                }
+                if (grupo.Exoneradas > 0)
+                {
+                    linea.BillingPayments.Add(new BillingPayment
+                    {
+                        PaidAmount = new PayableAmount
+                        {
+                            currencyID = grupo.Moneda,
+                            value = grupo.Gravadas
+                        },
+                        InstructionId = "02"
+                    });
+                }
+                if (grupo.Inafectas > 0)
+                {
+                    linea.BillingPayments.Add(new BillingPayment
+                    {
+                        PaidAmount = new PayableAmount
+                        {
+                            currencyID = grupo.Moneda,
+                            value = grupo.Inafectas
+                        },
+                        InstructionId = "03"
+                    });
+                }
                 if (grupo.Exportacion > 0)
                 {
                     linea.BillingPayments.Add(new BillingPayment
