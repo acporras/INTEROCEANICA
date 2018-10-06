@@ -68,6 +68,8 @@ namespace FinalXML.InterMySql
                         cont.Departamento = dr.GetString(7);
                         cont.Provincia = dr.GetString(8);
                         cont.Distrito = dr.GetString(9);
+                        cont.UsuarioSol = dr.GetString(19);
+                        cont.ClaveSol = dr.GetString(20);
                     }
 
                 }

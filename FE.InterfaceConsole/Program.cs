@@ -224,6 +224,10 @@ namespace FE.InterfaceConsole
                     oBEMaeemiele.no_tabfacdet = dr_emidocele.GetString(dr_emidocele.GetOrdinal("NO_TABFACDET"));
                 if ((!dr_emidocele.IsDBNull(dr_emidocele.GetOrdinal("NO_RUTCERDIG"))))
                     oBEMaeemiele.no_rutcerdig = dr_emidocele.GetString(dr_emidocele.GetOrdinal("NO_RUTCERDIG"));
+                if ((!dr_emidocele.IsDBNull(dr_emidocele.GetOrdinal("NO_USUSOLSUN"))))
+                    oBEMaeemiele.no_ususolsun = dr_emidocele.GetString(dr_emidocele.GetOrdinal("NO_USUSOLSUN"));
+                if ((!dr_emidocele.IsDBNull(dr_emidocele.GetOrdinal("NO_PASSOLSUN"))))
+                    oBEMaeemiele.no_passolsun = dr_emidocele.GetString(dr_emidocele.GetOrdinal("NO_PASSOLSUN"));
                 if ((!dr_emidocele.IsDBNull(dr_emidocele.GetOrdinal("NID_CFGSEREMI"))))
                     oBEMaeemiele.nid_cfgseremi = dr_emidocele.GetInt32(dr_emidocele.GetOrdinal("NID_CFGSEREMI"));
                 if ((!dr_emidocele.IsDBNull(dr_emidocele.GetOrdinal("FE_REGCREACI"))))

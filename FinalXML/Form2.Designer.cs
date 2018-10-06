@@ -96,28 +96,30 @@
             this.txtResult = new System.Windows.Forms.TextBox();
             this.kryptonLabel3 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.kryptonButton5 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.txtcorrelativo2 = new System.Windows.Forms.TextBox();
-            this.label27 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
-            this.label26 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
-            this.label31 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
-            this.txtmotivo = new System.Windows.Forms.TextBox();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label25 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.dglista2 = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.motivo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label24 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.GComunicacionBaja = new ComponentFactory.Krypton.Toolkit.KryptonGroupBox();
+            this.cboEmpresaBaj = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
+            this.kryptonLabel11 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.kryptonLabel5 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.FechaEmisionDocBaja = new ComponentFactory.Krypton.Toolkit.KryptonDateTimePicker();
             this.kryptonButton6 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.kryptonButton3 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.kryptonButton4 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.txtmotivo = new System.Windows.Forms.TextBox();
+            this.txtcorrelativo2 = new System.Windows.Forms.TextBox();
+            this.label26 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
+            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label27 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label25 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
+            this.label31 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
+            this.label24 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.kryptonPage4 = new ComponentFactory.Krypton.Navigator.KryptonPage();
             this.kryptonPanel5 = new ComponentFactory.Krypton.Toolkit.KryptonPanel();
             this.kryptonGroupBox3 = new ComponentFactory.Krypton.Toolkit.KryptonGroupBox();
@@ -144,8 +146,6 @@
             this.kryptonLabel9 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.kryptonLabel7 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.txtDetailRes = new System.Windows.Forms.TextBox();
-            this.kryptonLabel11 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
-            this.cboEmpresaBaj = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonPanel1)).BeginInit();
             this.kryptonPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonNavigator1)).BeginInit();
@@ -173,6 +173,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.GComunicacionBaja.Panel)).BeginInit();
             this.GComunicacionBaja.Panel.SuspendLayout();
             this.GComunicacionBaja.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cboEmpresaBaj)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonPage4)).BeginInit();
             this.kryptonPage4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonPanel5)).BeginInit();
@@ -195,7 +196,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.kryptonGroupBox5.Panel)).BeginInit();
             this.kryptonGroupBox5.Panel.SuspendLayout();
             this.kryptonGroupBox5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.cboEmpresaBaj)).BeginInit();
             this.SuspendLayout();
             // 
             // kryptonPanel1
@@ -217,7 +217,7 @@
             this.kryptonPage2,
             this.kryptonPage3,
             this.kryptonPage4});
-            this.kryptonNavigator1.SelectedIndex = 2;
+            this.kryptonNavigator1.SelectedIndex = 1;
             this.kryptonNavigator1.Size = new System.Drawing.Size(1346, 565);
             this.kryptonNavigator1.TabIndex = 26;
             this.kryptonNavigator1.Text = "kryptonNavigator1";
@@ -816,71 +816,6 @@
             this.kryptonButton5.Values.Text = "Generar Comunicación de baja";
             this.kryptonButton5.Click += new System.EventHandler(this.kryptonButton5_Click);
             // 
-            // txtcorrelativo2
-            // 
-            this.txtcorrelativo2.Location = new System.Drawing.Point(153, 49);
-            this.txtcorrelativo2.Name = "txtcorrelativo2";
-            this.txtcorrelativo2.Size = new System.Drawing.Size(159, 20);
-            this.txtcorrelativo2.TabIndex = 144;
-            // 
-            // label27
-            // 
-            this.label27.Location = new System.Drawing.Point(3, 49);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(140, 20);
-            this.label27.TabIndex = 143;
-            this.label27.Values.Text = "Correlativo Documento:";
-            // 
-            // label26
-            // 
-            this.label26.Location = new System.Drawing.Point(349, 50);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(127, 20);
-            this.label26.TabIndex = 142;
-            this.label26.Values.Text = "Motivo de Anulación:";
-            // 
-            // label31
-            // 
-            this.label31.Location = new System.Drawing.Point(3, 108);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(40, 20);
-            this.label31.TabIndex = 116;
-            this.label31.Values.Text = "Serie:";
-            // 
-            // txtmotivo
-            // 
-            this.txtmotivo.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtmotivo.Location = new System.Drawing.Point(349, 87);
-            this.txtmotivo.Multiline = true;
-            this.txtmotivo.Name = "txtmotivo";
-            this.txtmotivo.Size = new System.Drawing.Size(350, 79);
-            this.txtmotivo.TabIndex = 119;
-            // 
-            // textBox7
-            // 
-            this.textBox7.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.textBox7.Location = new System.Drawing.Point(153, 108);
-            this.textBox7.MaxLength = 4;
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(159, 20);
-            this.textBox7.TabIndex = 117;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(153, 134);
-            this.textBox1.MaxLength = 8;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(159, 20);
-            this.textBox1.TabIndex = 118;
-            // 
-            // label25
-            // 
-            this.label25.Location = new System.Drawing.Point(3, 139);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(80, 20);
-            this.label25.TabIndex = 139;
-            this.label25.Values.Text = "Numeración:";
-            // 
             // dglista2
             // 
             this.dglista2.AllowUserToAddRows = false;
@@ -928,28 +863,6 @@
             this.motivo.HeaderText = "Motivo";
             this.motivo.Name = "motivo";
             // 
-            // label24
-            // 
-            this.label24.Location = new System.Drawing.Point(3, 81);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(122, 20);
-            this.label24.TabIndex = 137;
-            this.label24.Values.Text = "Tipo de Documento:";
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.DisplayMember = "Descripcion";
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "Factura",
-            "Boleta"});
-            this.comboBox1.Location = new System.Drawing.Point(153, 77);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(159, 21);
-            this.comboBox1.TabIndex = 138;
-            this.comboBox1.ValueMember = "Codigo";
-            // 
             // GComunicacionBaja
             // 
             this.GComunicacionBaja.Location = new System.Drawing.Point(334, 23);
@@ -977,6 +890,22 @@
             this.GComunicacionBaja.Size = new System.Drawing.Size(900, 444);
             this.GComunicacionBaja.TabIndex = 145;
             this.GComunicacionBaja.Values.Heading = "Datos";
+            // 
+            // cboEmpresaBaj
+            // 
+            this.cboEmpresaBaj.DropDownWidth = 323;
+            this.cboEmpresaBaj.Location = new System.Drawing.Point(153, 18);
+            this.cboEmpresaBaj.Name = "cboEmpresaBaj";
+            this.cboEmpresaBaj.Size = new System.Drawing.Size(323, 21);
+            this.cboEmpresaBaj.TabIndex = 245;
+            // 
+            // kryptonLabel11
+            // 
+            this.kryptonLabel11.Location = new System.Drawing.Point(3, 18);
+            this.kryptonLabel11.Name = "kryptonLabel11";
+            this.kryptonLabel11.Size = new System.Drawing.Size(60, 20);
+            this.kryptonLabel11.TabIndex = 244;
+            this.kryptonLabel11.Values.Text = "Empresa:";
             // 
             // kryptonLabel5
             // 
@@ -1024,6 +953,93 @@
             this.kryptonButton4.Values.Image = global::FinalXML.Properties.Resources._new;
             this.kryptonButton4.Values.Text = "       ";
             this.kryptonButton4.Click += new System.EventHandler(this.kryptonButton4_Click);
+            // 
+            // txtmotivo
+            // 
+            this.txtmotivo.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtmotivo.Location = new System.Drawing.Point(349, 87);
+            this.txtmotivo.Multiline = true;
+            this.txtmotivo.Name = "txtmotivo";
+            this.txtmotivo.Size = new System.Drawing.Size(350, 79);
+            this.txtmotivo.TabIndex = 119;
+            // 
+            // txtcorrelativo2
+            // 
+            this.txtcorrelativo2.Location = new System.Drawing.Point(153, 49);
+            this.txtcorrelativo2.Name = "txtcorrelativo2";
+            this.txtcorrelativo2.Size = new System.Drawing.Size(159, 20);
+            this.txtcorrelativo2.TabIndex = 144;
+            // 
+            // label26
+            // 
+            this.label26.Location = new System.Drawing.Point(349, 50);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(127, 20);
+            this.label26.TabIndex = 142;
+            this.label26.Values.Text = "Motivo de Anulación:";
+            // 
+            // textBox7
+            // 
+            this.textBox7.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.textBox7.Location = new System.Drawing.Point(153, 108);
+            this.textBox7.MaxLength = 4;
+            this.textBox7.Name = "textBox7";
+            this.textBox7.Size = new System.Drawing.Size(159, 20);
+            this.textBox7.TabIndex = 117;
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.DisplayMember = "Descripcion";
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "Factura",
+            "Boleta"});
+            this.comboBox1.Location = new System.Drawing.Point(153, 77);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(159, 21);
+            this.comboBox1.TabIndex = 138;
+            this.comboBox1.ValueMember = "Codigo";
+            // 
+            // label27
+            // 
+            this.label27.Location = new System.Drawing.Point(3, 49);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(140, 20);
+            this.label27.TabIndex = 143;
+            this.label27.Values.Text = "Correlativo Documento:";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(153, 134);
+            this.textBox1.MaxLength = 8;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(159, 20);
+            this.textBox1.TabIndex = 118;
+            // 
+            // label25
+            // 
+            this.label25.Location = new System.Drawing.Point(3, 139);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(80, 20);
+            this.label25.TabIndex = 139;
+            this.label25.Values.Text = "Numeración:";
+            // 
+            // label31
+            // 
+            this.label31.Location = new System.Drawing.Point(3, 108);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(40, 20);
+            this.label31.TabIndex = 116;
+            this.label31.Values.Text = "Serie:";
+            // 
+            // label24
+            // 
+            this.label24.Location = new System.Drawing.Point(3, 81);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(122, 20);
+            this.label24.TabIndex = 137;
+            this.label24.Values.Text = "Tipo de Documento:";
             // 
             // kryptonPage4
             // 
@@ -1262,22 +1278,6 @@
             this.txtDetailRes.Size = new System.Drawing.Size(278, 159);
             this.txtDetailRes.TabIndex = 8;
             // 
-            // kryptonLabel11
-            // 
-            this.kryptonLabel11.Location = new System.Drawing.Point(3, 18);
-            this.kryptonLabel11.Name = "kryptonLabel11";
-            this.kryptonLabel11.Size = new System.Drawing.Size(60, 20);
-            this.kryptonLabel11.TabIndex = 244;
-            this.kryptonLabel11.Values.Text = "Empresa:";
-            // 
-            // cboEmpresaBaj
-            // 
-            this.cboEmpresaBaj.DropDownWidth = 323;
-            this.cboEmpresaBaj.Location = new System.Drawing.Point(153, 18);
-            this.cboEmpresaBaj.Name = "cboEmpresaBaj";
-            this.cboEmpresaBaj.Size = new System.Drawing.Size(323, 21);
-            this.cboEmpresaBaj.TabIndex = 245;
-            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1319,6 +1319,7 @@
             this.GComunicacionBaja.Panel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GComunicacionBaja)).EndInit();
             this.GComunicacionBaja.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.cboEmpresaBaj)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonPage4)).EndInit();
             this.kryptonPage4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.kryptonPanel5)).EndInit();
@@ -1344,7 +1345,6 @@
             this.kryptonGroupBox5.Panel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonGroupBox5)).EndInit();
             this.kryptonGroupBox5.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.cboEmpresaBaj)).EndInit();
             this.ResumeLayout(false);
 
         }

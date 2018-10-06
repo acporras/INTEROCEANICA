@@ -107,7 +107,7 @@ namespace FinalXML
                 
 
                 Int32 index = 0;
-                dt_Ventas = AdmCVenta.CargaDocumentos(cboEmpresaDoc.SelectedValue.ToString() ,dtpDesde.Value.Date, dtpHasta.Value.Date, "FT");
+                dt_Ventas = AdmCVenta.CargaDocumentos(cboEmpresaDoc.SelectedValue.ToString() ,dtpDesde.Value.Date, dtpHasta.Value.Date, "");
                 dgListadoVentas.Rows.Clear();
                 dgListadoVentas.ClearSelection();
                 foreach (DataRow row in dt_Ventas.Rows)
@@ -286,12 +286,14 @@ namespace FinalXML
                 FirmarController enviar = new FirmarController();
 
                 var respuestaFirmado = enviar.FirmadoResponse(firmadoRequest);
-
+                var oContribuyente = LeerEmpresa(cboEmpresa.SelectedValue.ToString());
                 var enviarDocumentoRequest = new EnviarDocumentoRequest
                 {
                     Ruc = cboEmpresa.SelectedValue.ToString(),
-                    UsuarioSol = "FACTURA1",
-                    ClaveSol = "FACTURA1",
+                    //UsuarioSol = "FACTURA1",
+                    //ClaveSol = "FACTURA1",
+                    UsuarioSol = oContribuyente.UsuarioSol,
+                    ClaveSol = oContribuyente.ClaveSol,
                     //EndPointUrl = "https://e-factura.sunat.gob.pe/ol-ti-itcpfegem/billService",
                     EndPointUrl = SunatFact,
                     IdDocumento = _resumen.IdDocumento,
@@ -742,13 +744,15 @@ namespace FinalXML
                 if (!respuestaFirmado.Exito)
                     throw new ApplicationException(respuestaFirmado.MensajeError);
 
-
+                var oContribuyente = LeerEmpresa(cboEmpresaDoc.SelectedValue.ToString());
 
                 var enviarDocumentoRequest = new EnviarDocumentoRequest
                 {
                     Ruc = cboEmpresaDoc.SelectedValue.ToString(),
-                    UsuarioSol = "FACTURA1",
-                    ClaveSol = "FACTURA1",
+                    //UsuarioSol = "FACTURA1",
+                    //ClaveSol = "FACTURA1",
+                    UsuarioSol = oContribuyente.UsuarioSol,
+                    ClaveSol = oContribuyente.ClaveSol,
                     EndPointUrl = SunatFact,// ValorSeleccionado(),
                     //https://e-beta.sunat.gob.pe/ol-ti-itcpfegem-beta/billService //RETENCION
                     //https://e-factura.sunat.gob.pe/ol-ti-itcpfegem/billService
@@ -793,9 +797,8 @@ namespace FinalXML
                     if (rpta.CodigoRespuesta == "0") { //Aceptado
                        
                         if (CVentas1 != null && CVentas1.Numeracion != "") {
-                            CVentas1.EstadoDocSunat = 0;                         
+                            CVentas1.EstadoDocSunat = 3;                         
                             AdmCVenta.update(CVentas1);
-
                         } 
                     }
                     else if (rpta.CodigoRespuesta == null)
@@ -1015,6 +1018,7 @@ namespace FinalXML
         }
 
         Int32 counter2 = 1;
+
         private void kryptonButton4_Click(object sender, EventArgs e)
         {
             try {
@@ -1137,13 +1141,15 @@ namespace FinalXML
                     if (!respuestaFirmado.Exito)
                         throw new ApplicationException(respuestaFirmado.MensajeError);
 
-
+                    var oContribuyente = LeerEmpresa(cboEmpresaBaj.SelectedValue.ToString());
 
                     var enviarDocumentoRequest = new EnviarDocumentoRequest
                     {
                         Ruc = cboEmpresaBaj.SelectedValue.ToString(),
-                        UsuarioSol = "FACTURA1",
-                        ClaveSol = "FACTURA1",
+                        //UsuarioSol = "FACTURA1",
+                        //ClaveSol = "FACTURA1",
+                        UsuarioSol = oContribuyente.UsuarioSol,
+                        ClaveSol = oContribuyente.ClaveSol,
                         EndPointUrl = SunatFact,// ValorSeleccionado(),
                         //https://e-beta.sunat.gob.pe/ol-ti-itemision-otroscpe-gem-beta/billService //RETENCION
                         //https://www.sunat.gob.pe:443/ol-ti-itemision-otroscpe-gem/billService
@@ -1191,11 +1197,16 @@ namespace FinalXML
                    
                 if (string.IsNullOrEmpty(txtNroTicket.Text)) return;
 
+                var oContribuyente = LeerEmpresa(cboEmpresaBaj.SelectedValue.ToString());
+
                 var consultaTicketRequest = new ConsultaTicketRequest
                 {
-                    Ruc = "20513258934",
-                    UsuarioSol = "FACTURA1",
-                    ClaveSol = "FACTURA1",
+                    //Ruc = "20513258934",
+                    //UsuarioSol = "FACTURA1",
+                    //ClaveSol = "FACTURA1",
+                    Ruc = oContribuyente.NroDocumento,
+                    UsuarioSol = oContribuyente.UsuarioSol,
+                    ClaveSol = oContribuyente.ClaveSol,
                     //EndPointUrl = "https://e-factura.sunat.gob.pe/ol-ti-itcpfegem/billService",// ValorSeleccionado(),
                     EndPointUrl = SunatFact,
                     IdDocumento = IdDocumento,
@@ -1273,11 +1284,15 @@ namespace FinalXML
 
                 if (string.IsNullOrEmpty(txtNumTicketResumen.Text)) return;
 
+                var oContribuyente = LeerEmpresa(cboEmpresa.SelectedValue.ToString());
+
                 var consultaTicketRequest = new ConsultaTicketRequest
                 {
                     Ruc = cboEmpresa.SelectedValue.ToString(),
-                    UsuarioSol = "FACTURA1",
-                    ClaveSol = "FACTURA1",
+                    //UsuarioSol = "FACTURA1",
+                    //ClaveSol = "FACTURA1",
+                    UsuarioSol = oContribuyente.UsuarioSol,
+                    ClaveSol = oContribuyente.ClaveSol,
                     EndPointUrl = SunatFact,
                     IdDocumento = IdDocumento,
                     NroTicket = txtNumTicketResumen.Text

@@ -7,6 +7,10 @@ using iTextSharp.text;
 using iTextSharp.text.pdf;
 using iTextSharp.text.html;
 using iTextSharp.text.xml;
+using Gma.QrCodeNet.Encoding;
+using Gma.QrCodeNet.Encoding.Windows.Render;
+using System.Drawing;
+using System.Drawing.Imaging;
 
 namespace FinalXML.Informes
 {
@@ -84,15 +88,24 @@ namespace FinalXML.Informes
             datosAdicionales_CDB = _documento.Emisor.NroDocumento + "|" + _documento.TipoDocumento + "|" + _documento.IdDocumento + "|" + _documento.TotalIgv + "|" + _documento.TotalVenta + "|"
                                  + _documento.FechaEmision + "|" + _documento.Receptor.TipoDocumento + "|" + _documento.Receptor.NroDocumento;
             CodigoCertificado = datosAdicionales_CDB + "|" + _documento.FirmaDigital;
-            BarcodePDF417 codigobarras = new BarcodePDF417();
+            /*BarcodePDF417 codigobarras = new BarcodePDF417();
             codigobarras.Options = BarcodePDF417.PDF417_USE_ASPECT_RATIO;
             codigobarras.ErrorLevel = 5;
             codigobarras.YHeight = 6f;
             codigobarras.SetText(CodigoCertificado);
             System.Drawing.Bitmap bm = new System.Drawing.Bitmap(codigobarras.CreateDrawingImage(System.Drawing.Color.Black, System.Drawing.Color.White));
             //bm.Save(@"C:\DOCUMENTOS ELECTRONICOS\CERTIFIK\QR\" + nomdocumento + ".jpeg", System.Drawing.Imaging.ImageFormat.Jpeg);
-            bm.Save(@"QR\" + nomdocumento + ".jpeg", System.Drawing.Imaging.ImageFormat.Jpeg);
+            bm.Save(@"QR\" + nomdocumento + ".jpeg", System.Drawing.Imaging.ImageFormat.Jpeg);*/
             /*FIN FIRMA*/
+
+            var qrEncoder = new QrEncoder(ErrorCorrectionLevel.H);
+            var qrCode = qrEncoder.Encode(datosAdicionales_CDB);
+
+            var renderer = new GraphicsRenderer(new FixedModuleSize(5, QuietZoneModules.Two), Brushes.Black, Brushes.White);
+            using (var stream = new FileStream(recursos + "\\" + nomdocumento + ".jpeg", FileMode.Create))
+            {
+                renderer.WriteToStream(qrCode.Matrix, ImageFormat.Jpeg, stream);
+            }
 
             List<ReportParameter> parametro = new List<ReportParameter>();
             //parametro.Add(new ReportParameter("pLogo", @"file:///C:/PIURAMAQ.png"));

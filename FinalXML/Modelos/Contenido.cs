@@ -170,8 +170,10 @@ namespace FinalXML
         public string Departamento { get; set; }
         public string Provincia { get; set; }
         public string Distrito { get; set; }
+        public string UsuarioSol { get; set; }
+        public string ClaveSol { get; set; }
 
-        
+
     }
     public class SignatureCac
     {

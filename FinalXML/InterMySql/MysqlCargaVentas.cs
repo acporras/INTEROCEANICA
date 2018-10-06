@@ -63,7 +63,7 @@ namespace FinalXML.InterMySql
             {
                string consulta = @"SELECT F5_CTD,F5_CNUMSER,F5_CNUMDOC,CONCAT(F5_CTD,F5_CNUMSER,F5_CNUMDOC) AS NUMDOC,
                                     F5_CCODCLI,F5_CNOMBRE,F5_CDIRECC,F5_DFECDOC,F5_NIMPORT,F5_COD_ESTADO_SUNAT,
-                                    F5_MENSAJE_SUNAT, (CASE F5_ESTADO_ENVIO WHEN 0 THEN " + "'ACEPTADA'" + " WHEN 1 THEN " +"'RECHAZADO'" + " WHEN 2 THEN " + "'PENDIENTE'" + " WHEN 3 THEN " + "'POR ENVIAR'" + " END ) AS ESTADO_ENVIO,F5_XML,F5_CDR,F5_PDF " +
+                                    F5_MENSAJE_SUNAT, (CASE F5_ESTADO_ENVIO WHEN 0 THEN " + "'POR ENVIAR'" + " WHEN 1 THEN " +"'RECHAZADO'" + " WHEN 2 THEN " + "'PENDIENTE'" + " WHEN 3 THEN " + "'ACEPTADA'" + " END ) AS ESTADO_ENVIO,F5_XML,F5_CDR,F5_PDF " +
                                     "FROM INT_DOCELECAB "+
                                     "WHERE F5_DFECDOC BETWEEN @desde AND @hasta ORDER BY F5_CNUMDOC DESC";
 
@@ -91,9 +91,9 @@ namespace FinalXML.InterMySql
             {
                 string consulta = @"SELECT F5_CTD,F5_CNUMSER,F5_CNUMDOC,CONCAT(F5_CTD,F5_CNUMSER,F5_CNUMDOC) AS NUMDOC,
                                     F5_CCODCLI,F5_CNOMBRE,F5_CDIRECC,F5_DFECDOC,F5_NIMPORT,F5_COD_ESTADO_SUNAT,
-                                    F5_MENSAJE_SUNAT, (CASE F5_ESTADO_ENVIO WHEN 0 THEN " + "'ACEPTADA'" + " WHEN 1 THEN " + "'RECHAZADO'" + " WHEN 2 THEN " + "'PENDIENTE'" + " WHEN 3 THEN " + "'POR ENVIAR'" + " END ) AS ESTADO_ENVIO,F5_XML,F5_CDR,F5_PDF " +
+                                    F5_MENSAJE_SUNAT, (CASE F5_ESTADO_ENVIO WHEN 0 THEN " + "'POR ENVIAR'" + " WHEN 1 THEN " + "'RECHAZADO'" + " WHEN 2 THEN " + "'PENDIENTE'" + " WHEN 3 THEN " + "'ACEPTADA'" + " END ) AS ESTADO_ENVIO,F5_XML,F5_CDR,F5_PDF " +
                                      "FROM INT_DOCELECAB " +
-                                     "WHERE F5_CRUCEMI= @rucemi AND F5_CTD = @tipdoc AND F5_DFECDOC BETWEEN @desde AND @hasta ORDER BY F5_CNUMDOC DESC";
+                                     "WHERE F5_CRUCEMI= @rucemi AND (@tipdoc = '' OR F5_CTD = @tipdoc) AND F5_DFECDOC BETWEEN @desde AND @hasta ORDER BY F5_CNUMDOC DESC";
 
                 tabla = new DataTable();
                 con.conectarBD();

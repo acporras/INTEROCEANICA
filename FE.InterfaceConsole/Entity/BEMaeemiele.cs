@@ -32,6 +32,8 @@ namespace FE.InterfaceConsole
         public string no_tabfaccab { get; set; }
         public string no_tabfacdet { get; set; }
         public string no_rutcerdig { get; set; }
+        public string no_ususolsun { get; set; }
+        public string no_passolsun { get; set; }
         public int nid_cfgseremi { get; set; }
         public DateTime? fe_regcreaci { get; set; }
         public DateTime? fe_regmodifi { get; set; }
