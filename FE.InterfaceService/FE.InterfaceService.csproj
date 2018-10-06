@@ -50,23 +50,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BaseDatos.cs" />
-    <Compile Include="BaseDatosException.cs" />
-    <Compile Include="BEMaeemiele.cs" />
+    <Compile Include="BD\BaseDatos.cs" />
+    <Compile Include="BD\BaseDatosException.cs" />
+    <Compile Include="Entity\BEDoccabcli.cs" />
+    <Compile Include="Entity\BEDocdetcli.cs" />
+    <Compile Include="Entity\BEMaeemiele.cs" />
     <Compile Include="ProjectInstaller.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="ProjectInstaller.Designer.cs">
       <DependentUpon>ProjectInstaller.cs</DependentUpon>
     </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service1.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Service1.Designer.cs">
       <DependentUpon>Service1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Program.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

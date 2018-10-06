@@ -1987,8 +1987,6 @@ D:\Proyectos Net\INTEROCEANICA\FinalXML\obj\Debug\FinalXML.Properties.Resources.
 D:\Proyectos Net\INTEROCEANICA\FinalXML\obj\Debug\FinalXML.csproj.GenerateResource.Cache
 D:\Proyectos Net\INTEROCEANICA\FinalXML\obj\Debug\RdlCompile.cache
 D:\Proyectos Net\INTEROCEANICA\FinalXML\obj\Debug\RdlCompile.compiled
-C:\Users\dark_\Documents\FE\INTEROCEANICA\FinalXML\bin\Debug\itextsharp.xml
-C:\Users\dark_\Documents\FE\INTEROCEANICA\FinalXML\bin\Debug\ko\Microsoft.ReportViewer.DataVisualization.resources.dll
 C:\Users\dark_\Documents\FE\INTEROCEANICA\FinalXML\bin\Debug\x86\sqlite3.dll
 C:\Users\dark_\Documents\FE\INTEROCEANICA\FinalXML\bin\Debug\x64\sqlite3.dll
 C:\Users\dark_\Documents\FE\INTEROCEANICA\FinalXML\bin\Debug\SqlServerTypes\x64\msvcr120.dll
@@ -2089,6 +2087,7 @@ C:\Users\dark_\Documents\FE\INTEROCEANICA\FinalXML\bin\Debug\AForge.Imaging.xml
 C:\Users\dark_\Documents\FE\INTEROCEANICA\FinalXML\bin\Debug\AForge.Math.xml
 C:\Users\dark_\Documents\FE\INTEROCEANICA\FinalXML\bin\Debug\EntityFramework.xml
 C:\Users\dark_\Documents\FE\INTEROCEANICA\FinalXML\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\dark_\Documents\FE\INTEROCEANICA\FinalXML\bin\Debug\itextsharp.xml
 C:\Users\dark_\Documents\FE\INTEROCEANICA\FinalXML\bin\Debug\Microsoft.Data.Sqlite.xml
 C:\Users\dark_\Documents\FE\INTEROCEANICA\FinalXML\bin\Debug\Portable.DataAnnotations.pdb
 C:\Users\dark_\Documents\FE\INTEROCEANICA\FinalXML\bin\Debug\System.Data.SQLite.xml
@@ -2110,6 +2109,7 @@ C:\Users\dark_\Documents\FE\INTEROCEANICA\FinalXML\bin\Debug\es\Microsoft.Report
 C:\Users\dark_\Documents\FE\INTEROCEANICA\FinalXML\bin\Debug\fr\Microsoft.ReportViewer.DataVisualization.resources.dll
 C:\Users\dark_\Documents\FE\INTEROCEANICA\FinalXML\bin\Debug\it\Microsoft.ReportViewer.DataVisualization.resources.dll
 C:\Users\dark_\Documents\FE\INTEROCEANICA\FinalXML\bin\Debug\ja\Microsoft.ReportViewer.DataVisualization.resources.dll
+C:\Users\dark_\Documents\FE\INTEROCEANICA\FinalXML\bin\Debug\ko\Microsoft.ReportViewer.DataVisualization.resources.dll
 C:\Users\dark_\Documents\FE\INTEROCEANICA\FinalXML\bin\Debug\pt\Microsoft.ReportViewer.DataVisualization.resources.dll
 C:\Users\dark_\Documents\FE\INTEROCEANICA\FinalXML\bin\Debug\ru\Microsoft.ReportViewer.DataVisualization.resources.dll
 C:\Users\dark_\Documents\FE\INTEROCEANICA\FinalXML\bin\Debug\zh-CHS\Microsoft.ReportViewer.DataVisualization.resources.dll
@@ -2156,6 +2156,7 @@ C:\Users\dark_\Documents\FE\INTEROCEANICA\FinalXML\bin\Debug\zh-CHS\Microsoft.Re
 C:\Users\dark_\Documents\FE\INTEROCEANICA\FinalXML\bin\Debug\zh-CHT\Microsoft.ReportViewer.WinForms.resources.dll
 C:\Users\dark_\Documents\FE\INTEROCEANICA\FinalXML\bin\Debug\es\Microsoft.VisualStudio.Data.Services.resources.dll
 C:\Users\dark_\Documents\FE\INTEROCEANICA\FinalXML\bin\Debug\es\Microsoft.VisualStudio.Data.Core.resources.dll
+C:\Users\dark_\Documents\FE\INTEROCEANICA\FinalXML\obj\Debug\FinalXML.csprojAssemblyReference.cache
 C:\Users\dark_\Documents\FE\INTEROCEANICA\FinalXML\obj\Debug\FinalXML.exe.config
 C:\Users\dark_\Documents\FE\INTEROCEANICA\FinalXML\obj\Debug\FinalXML.Form2.resources
 C:\Users\dark_\Documents\FE\INTEROCEANICA\FinalXML\obj\Debug\FinalXML.Informes.Erwin.resources
