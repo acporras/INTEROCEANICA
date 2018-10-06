@@ -120,8 +120,11 @@ namespace FinalXML
                         dgListadoVentas.Rows[index].DefaultCellStyle.BackColor = Color.Red;
                     } else if (row[11].ToString()== "POR ENVIAR") {
                         dgListadoVentas.Rows[index].DefaultCellStyle.BackColor = Color.Cornsilk;
+                    }else if (row[11].ToString() == "ANULADO")
+                    {
+                        dgListadoVentas.Rows[index].DefaultCellStyle.BackColor = Color.Pink;
                     }
-                   
+
                     index++;
                 }
                 Proceso = 0;
@@ -138,7 +141,7 @@ namespace FinalXML
             try
             {
                 Int32 index = 0;
-                dt_Ventas = AdmCVenta.CargaDocumentos(cboEmpresa.SelectedValue.ToString(), dtpFecIni.Value.Date, dtpFecFin.Value.Date, "BV");
+                dt_Ventas = AdmCVenta.CargaDocumentos(cboEmpresa.SelectedValue.ToString(), dtpFecIni.Value.Date, dtpFecFin.Value.Date, "BV", 0);
                 grvResDetail.Rows.Clear();
                 grvResDetail.ClearSelection();
                 foreach (DataRow row in dt_Ventas.Rows)
@@ -155,6 +158,10 @@ namespace FinalXML
                     else if (row[11].ToString() == "POR ENVIAR")
                     {
                         grvResDetail.Rows[index].DefaultCellStyle.BackColor = Color.Cornsilk;
+                    }
+                    else if (row[11].ToString() == "ANULADO")
+                    {
+                        grvResDetail.Rows[index].DefaultCellStyle.BackColor = Color.Pink;
                     }
 
                     index++;
@@ -197,12 +204,14 @@ namespace FinalXML
         private void EnviarResumen()
         {
             //Se valida que existan datos en la grilla
-            if(grvResDetail.RowCount - 1 > 0)
+            var contribuyente = LeerEmpresa(cboEmpresa.SelectedValue.ToString());
+            if (grvResDetail.RowCount - 1 > 0)
             {
+                int Serie = AdmCEmpresa.GetCorrelativoMasivo(contribuyente.CodigoEmpresa, "RC");
                 //Datos del Resumen
                 DateTime FechaActual = DateTime.Today;
-                _resumen.IdDocumento = String.Format(@"RC-{0}{1}{2}-{3}", FechaActual.Year, String.Format("{0:00}", FechaActual.Month), FechaActual.Day, "1");
-                _resumen.Emisor = LeerEmpresa(cboEmpresa.SelectedValue.ToString());
+                _resumen.IdDocumento = String.Format(@"RC-{0}{1}{2}-{3}", FechaActual.Year, String.Format("{0:00}", FechaActual.Month), String.Format("{0:00}", FechaActual.Day), Serie);
+                _resumen.Emisor = contribuyente;
                 _resumen.FechaEmision = FechaActual.ToString("yyyy-MM-dd");
                 _resumen.FechaReferencia = FechaActual.ToString("yyyy-MM-dd");
 
@@ -307,7 +316,30 @@ namespace FinalXML
 
                 var rpta = (EnviarDocumentoResponse)respuestaEnvio;
                 txtDetailRes.Text = $@"{Resources.procesoCorrecto}{Environment.NewLine}{rpta.NroTicket}";
-                if (rpta.Exito) txtNumTicketResumen.Text = rpta.NroTicket.ToString();
+                if (rpta.Exito)
+                {
+                    //Se actualiza el estado de las boletas enviadas a 'ACEPTADA'
+                    foreach (DataGridViewRow row in grvResDetail.Rows)
+                    {
+                        CVentas1.Sigla = row.Cells["numdoc"].Value.ToString().Substring(0, 2);
+                        CVentas1.Serie = row.Cells["numdoc"].Value.ToString().Substring(2, 4);
+                        CVentas1.Numeracion = row.Cells["numdoc"].Value.ToString().Substring(6, 7);
+                        CVentas1.NumDocEmisor = oContribuyente.NroDocumento;
+                        CVentas1.CodigoRespuesta = "";
+                        CVentas1.MensajeRespuesta = rpta.NroTicket.ToString();
+                        CVentas1.NombreArchivo = rpta.NombreArchivo + ".xml";
+                        CVentas1.NombreArchivoCDR = "R-" + rpta.NombreArchivo + ".zip";
+                        CVentas1.NombreArchivoPDF = oContribuyente.NroDocumento + "-" + DateTime.Parse(row.Cells["fecemi"].Value.ToString()).ToString("yyyy-MM-dd") + "-" + row.Cells["numdoc"].Value.ToString() + ".pdf";
+                        if (CVentas1 != null && CVentas1.Numeracion != "")
+                        {
+                            CVentas1.EstadoDocSunat = 0;
+                            AdmCVenta.update(CVentas1);
+                        }
+                    }
+                    //
+                    txtNumTicketResumen.Text = rpta.NroTicket.ToString();
+                    var newocor = AdmCEmpresa.SetCorrelativoMasivo(contribuyente.CodigoEmpresa, "RC", Serie);
+                }
                 if (!respuestaEnvio.Exito)
                     throw new ApplicationException(respuestaEnvio.MensajeError);
 
@@ -789,6 +821,7 @@ namespace FinalXML
                         GeneraPDF();
                     }
                     //Actualiza Estado
+                    CVentas1.NumDocEmisor = oContribuyente.NroDocumento;
                     CVentas1.CodigoRespuesta = rpta.CodigoRespuesta;
                     CVentas1.MensajeRespuesta = rpta.MensajeRespuesta;
                     CVentas1.NombreArchivo = rpta.NombreArchivo+".xml";
@@ -1302,11 +1335,15 @@ namespace FinalXML
                 respuestaEnvio = ConsultaTiket.EnviarDocumentoResponse(consultaTicketRequest);
 
                 if (!respuestaEnvio.Exito)
+                {
                     throw new ApplicationException(respuestaEnvio.MensajeError);
-
-                txtDetailRes.Text = $"{Resources.procesoCorrecto}{Environment.NewLine}{respuestaEnvio.MensajeRespuesta}";
-
-
+                }
+                else
+                {
+                    AdmCVenta.ActualizarEstadoResumen(oContribuyente.NroDocumento, txtNumTicketResumen.Text);
+                    txtDetailRes.Text = $"{Resources.procesoCorrecto}{Environment.NewLine}{respuestaEnvio.MensajeRespuesta}";
+                    CargaBoletas();
+                }
             }
             catch (Exception ex)
             {
@@ -1315,6 +1352,40 @@ namespace FinalXML
             finally
             {
                 Cursor = Cursors.Default;
+            }
+        }
+
+        private void btnDelBol_Click(object sender, EventArgs e)
+        {
+            if (grvResDetail.CurrentRow != null)
+            {
+                DataGridViewRow row = grvResDetail.Rows[grvResDetail.CurrentRow.Index];
+                var numdoc = row.Cells[0].Value.ToString();
+                if (MessageBox.Show("¿Está seguro de Anular el documento " + numdoc + "?", "Anlar Boleta", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    grvResDetail.Rows.RemoveAt(grvResDetail.CurrentRow.Index);
+                    var tipdoc = numdoc.Substring(0, 2);
+                    var sersun = numdoc.Substring(2, 4);
+                    var numsun = numdoc.Substring(6, 7);
+
+                    Boolean resp = AdmCEmpresa.AnularDocumento(cboEmpresa.SelectedValue.ToString(), tipdoc, sersun, numsun);
+                    if (resp)
+                    {
+                        MessageBox.Show("Se ha anulado el documento correctamente", "Correcto", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Ocurrio un error al anular el documento", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+
+                }
+            }
+            else
+            {
+                MessageBox.Show("No se ha seleccionado ninguna Boleta para Anular");
             }
         }
     }

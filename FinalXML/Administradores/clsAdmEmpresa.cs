@@ -44,5 +44,44 @@ namespace FinalXML.Administradores
                 return null;
             }
         }
+
+        public int GetCorrelativoMasivo(int codEmpresa, String TipoDoc)
+        {
+            try
+            {
+                return CEmpresa.GetCorrelativoMasivo(codEmpresa, TipoDoc);
+            }
+            catch (Exception ex)
+            {
+                DevComponents.DotNetBar.MessageBoxEx.Show("Se encontró el siguiente problema: " + ex.Message, "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return 0;
+            }
+        }
+
+        public Boolean SetCorrelativoMasivo(int codEmpresa, String TipoDoc, int NeoCor)
+        {
+            try
+            {
+                return CEmpresa.SetCorrelativoMasivo(codEmpresa, TipoDoc, NeoCor);
+            }
+            catch(Exception ex)
+            {
+                DevComponents.DotNetBar.MessageBoxEx.Show("Se encontró el siguiente problema: " + ex.Message, "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+        }
+
+        public Boolean AnularDocumento(String NumRuc, String TipDoc, String Sersun, String NumSun)
+        {
+            try
+            {
+                return CEmpresa.AnularDocumento(NumRuc, TipDoc, Sersun, NumSun);
+            }
+            catch (Exception ex)
+            {
+                DevComponents.DotNetBar.MessageBoxEx.Show("Se encontró el siguiente problema: " + ex.Message, "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+        }
     }
 }

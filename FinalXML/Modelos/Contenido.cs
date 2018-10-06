@@ -160,6 +160,7 @@ namespace FinalXML
     //DATOS DEL CONTRIBUYENTE
     public class Contribuyente
     {
+        public int CodigoEmpresa { get; set; }
         public string NroDocumento { get; set; }
         public string TipoDocumento { get; set; }
         public string NombreLegal { get; set; }

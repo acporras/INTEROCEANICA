@@ -56,6 +56,19 @@ namespace FinalXML.Administradores
             }
         }
 
+        public DataTable CargaDocumentos(String RucEmi, DateTime FInicio, DateTime FFin, String CTipDoc, int Estado)
+        {
+            try
+            {
+                return Cventa.CargaDocumentos(RucEmi, FInicio, FFin, CTipDoc, Estado);
+            }
+            catch (Exception ex)
+            {
+                DevComponents.DotNetBar.MessageBoxEx.Show("Se encontró el siguiente problema: " + ex.Message, "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return null;
+            }
+        }
+
         public clsCargaVentas LeerVenta(String Sigla,String Serie, String Numeracion)
         {
             try
@@ -117,6 +130,18 @@ namespace FinalXML.Administradores
             {
                 DevComponents.DotNetBar.MessageBoxEx.Show("Se encontró el siguiente problema: " + ex.Message, "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return null;
+            }
+        }
+        public Boolean ActualizarEstadoResumen(String NumRuc, String Ticket)
+        {
+            try
+            {
+                return Cventa.ActualizarEstadoResumen(NumRuc, Ticket);
+            }
+            catch (Exception ex)
+            {
+                DevComponents.DotNetBar.MessageBoxEx.Show("Se encontró el siguiente problema: " + ex.Message, "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
             }
         }
     }

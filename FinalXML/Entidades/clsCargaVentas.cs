@@ -8,6 +8,7 @@ namespace FinalXML.Entidades
 {
     public class clsCargaVentas : EnviarDocumentoResponse
     {
+        public String NumDocEmisor { get; set; }
         public String Sigla { get; set; }
         public String Serie { get; set; }
         public String Numeracion { get; set; }

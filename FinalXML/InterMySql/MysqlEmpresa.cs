@@ -58,6 +58,7 @@ namespace FinalXML.InterMySql
                     while (dr.Read())
                     {
                         cont = new Contribuyente();
+                        cont.CodigoEmpresa = dr.GetInt32(0);
                         cont.NroDocumento = dr.GetString(1);
                         cont.TipoDocumento = "6";
                         cont.NombreLegal = dr.GetString(2);
@@ -82,5 +83,75 @@ namespace FinalXML.InterMySql
             }
             finally { con.conector.Dispose(); cmd.Dispose(); con.desconectarBD(); }
         }
+        public int GetCorrelativoMasivo(int codEmpresa, String TipoDoc)
+        {
+            int correlativo = 0;
+            try
+            {
+                string consulta = @"SPS_GET_CORRELATIVO_MASIVOS @nidempresa, @tipdoc";
+                con.conectarBD();
+                cmd = new SqlCommand(consulta, con.conector);
+                cmd.Parameters.AddWithValue("@nidempresa", SqlDbType.Int).Value = codEmpresa;
+                cmd.Parameters.AddWithValue("@tipdoc", SqlDbType.Char).Value = TipoDoc;
+                cmd.CommandType = CommandType.Text;
+                dr = cmd.ExecuteReader();
+                if (dr.HasRows)
+                {
+                    while (dr.Read())
+                    {
+                        correlativo = dr.GetInt32(0);
+                    }
+
+                }
+                return correlativo;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally { con.conector.Dispose(); cmd.Dispose(); con.desconectarBD(); }
+        }
+        public Boolean SetCorrelativoMasivo(int codEmpresa, String TipoDoc, int NeoCor)
+        {
+            try
+            {
+                string consulta = @"SPS_SET_CORRELATIVO_MASIVOS @nidempresa, @tipdoc, @neocor";
+                con.conectarBD();
+                cmd = new SqlCommand(consulta, con.conector);
+                cmd.Parameters.AddWithValue("@nidempresa", SqlDbType.Int).Value = codEmpresa;
+                cmd.Parameters.AddWithValue("@tipdoc", SqlDbType.Char).Value = TipoDoc;
+                cmd.Parameters.AddWithValue("@neocor", SqlDbType.Int).Value = NeoCor;
+                cmd.CommandType = CommandType.Text;
+                dr = cmd.ExecuteReader();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally { con.conector.Dispose(); cmd.Dispose(); con.desconectarBD(); }
+        }
+        public Boolean AnularDocumento(String NumRuc, String TipDoc, String Sersun, String NumSun)
+        {
+            try
+            {
+                string consulta = @"UPDATE INT_DOCELECAB SET F5_ESTADO_ENVIO = 4 WHERE F5_CRUCEMI = @numruc AND F5_CTD = @tipdoc AND F5_CNUMSER = @sersun AND F5_CNUMDOC = @numsun";
+                con.conectarBD();
+                cmd = new SqlCommand(consulta, con.conector);
+                cmd.Parameters.AddWithValue("@numruc", SqlDbType.Char).Value = NumRuc;
+                cmd.Parameters.AddWithValue("@tipdoc", SqlDbType.Char).Value = TipDoc;
+                cmd.Parameters.AddWithValue("@sersun", SqlDbType.Char).Value = Sersun;
+                cmd.Parameters.AddWithValue("@numsun", SqlDbType.Char).Value = NumSun;
+                cmd.CommandType = CommandType.Text;
+                dr = cmd.ExecuteReader();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally { con.conector.Dispose(); cmd.Dispose(); con.desconectarBD(); }
+        }
+
     }
 }

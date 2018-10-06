@@ -26,10 +26,11 @@ namespace FinalXML.InterMySql
             {
                 string consulta = @"UPDATE INT_DOCELECAB SET F5_COD_ESTADO_SUNAT=@CodEstado, F5_MENSAJE_SUNAT=@MensajeSunat,F5_ESTADO_ENVIO=@EstadoEnv,F5_XML=@Xml ,F5_CDR=@Cdr,F5_PDF=@Pdf
                                     FROM INT_DOCELECAB 
-                                   WHERE F5_CTD=@Sigla AND F5_CNUMSER=@Serie AND F5_CNUMDOC=@Numeracion";
+                                   WHERE F5_CRUCEMI = @NumRuc AND F5_CTD=@Sigla AND F5_CNUMSER=@Serie AND F5_CNUMDOC=@Numeracion";
                 con.conectarBD();
                 cmd = new SqlCommand(consulta, con.conector);
                 cmd.CommandType = CommandType.Text;
+                cmd.Parameters.AddWithValue("NumRuc", ven.NumDocEmisor);
                 cmd.Parameters.AddWithValue("CodEstado", ven.CodigoRespuesta);
                 cmd.Parameters.AddWithValue("MensajeSunat", ven.MensajeRespuesta);
                 cmd.Parameters.AddWithValue("EstadoEnv", ven.EstadoDocSunat);
@@ -63,7 +64,7 @@ namespace FinalXML.InterMySql
             {
                string consulta = @"SELECT F5_CTD,F5_CNUMSER,F5_CNUMDOC,CONCAT(F5_CTD,F5_CNUMSER,F5_CNUMDOC) AS NUMDOC,
                                     F5_CCODCLI,F5_CNOMBRE,F5_CDIRECC,F5_DFECDOC,F5_NIMPORT,F5_COD_ESTADO_SUNAT,
-                                    F5_MENSAJE_SUNAT, (CASE F5_ESTADO_ENVIO WHEN 0 THEN " + "'POR ENVIAR'" + " WHEN 1 THEN " +"'RECHAZADO'" + " WHEN 2 THEN " + "'PENDIENTE'" + " WHEN 3 THEN " + "'ACEPTADA'" + " END ) AS ESTADO_ENVIO,F5_XML,F5_CDR,F5_PDF " +
+                                    F5_MENSAJE_SUNAT, (CASE F5_ESTADO_ENVIO WHEN 0 THEN " + "'POR ENVIAR'" + " WHEN 1 THEN " +"'RECHAZADO'" + " WHEN 2 THEN " + "'PENDIENTE'" + " WHEN 3 THEN " + "'ACEPTADA'" + " WHEN 4 THEN " + "'ANULADO'" + " END ) AS ESTADO_ENVIO,F5_XML,F5_CDR,F5_PDF " +
                                     "FROM INT_DOCELECAB "+
                                     "WHERE F5_DFECDOC BETWEEN @desde AND @hasta ORDER BY F5_CNUMDOC DESC";
 
@@ -91,7 +92,7 @@ namespace FinalXML.InterMySql
             {
                 string consulta = @"SELECT F5_CTD,F5_CNUMSER,F5_CNUMDOC,CONCAT(F5_CTD,F5_CNUMSER,F5_CNUMDOC) AS NUMDOC,
                                     F5_CCODCLI,F5_CNOMBRE,F5_CDIRECC,F5_DFECDOC,F5_NIMPORT,F5_COD_ESTADO_SUNAT,
-                                    F5_MENSAJE_SUNAT, (CASE F5_ESTADO_ENVIO WHEN 0 THEN " + "'POR ENVIAR'" + " WHEN 1 THEN " + "'RECHAZADO'" + " WHEN 2 THEN " + "'PENDIENTE'" + " WHEN 3 THEN " + "'ACEPTADA'" + " END ) AS ESTADO_ENVIO,F5_XML,F5_CDR,F5_PDF " +
+                                    F5_MENSAJE_SUNAT, (CASE F5_ESTADO_ENVIO WHEN 0 THEN " + "'POR ENVIAR'" + " WHEN 1 THEN " + "'RECHAZADO'" + " WHEN 2 THEN " + "'PENDIENTE'" + " WHEN 3 THEN " + "'ACEPTADA'" + " WHEN 4 THEN " + "'ANULADO'" + " END ) AS ESTADO_ENVIO,F5_XML,F5_CDR,F5_PDF " +
                                      "FROM INT_DOCELECAB " +
                                      "WHERE F5_CRUCEMI= @rucemi AND (@tipdoc = '' OR F5_CTD = @tipdoc) AND F5_DFECDOC BETWEEN @desde AND @hasta ORDER BY F5_CNUMDOC DESC";
 
@@ -103,6 +104,36 @@ namespace FinalXML.InterMySql
                 cmd.Parameters.AddWithValue("@tipdoc", SqlDbType.Char).Value = CTipDoc;
                 cmd.Parameters.AddWithValue("@desde", SqlDbType.DateTime).Value = desde;
                 cmd.Parameters.AddWithValue("@hasta", SqlDbType.DateTime).Value = hasta;
+                adap = new SqlDataAdapter(cmd);
+                adap.Fill(tabla);
+                return tabla;
+
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally { con.conector.Dispose(); cmd.Dispose(); con.desconectarBD(); }
+        }
+        public DataTable CargaDocumentos(String RucEmi, DateTime desde, DateTime hasta, String CTipDoc, int Estado)
+        {
+            try
+            {
+                string consulta = @"SELECT F5_CTD,F5_CNUMSER,F5_CNUMDOC,CONCAT(F5_CTD,F5_CNUMSER,F5_CNUMDOC) AS NUMDOC,
+                                    F5_CCODCLI,F5_CNOMBRE,F5_CDIRECC,F5_DFECDOC,F5_NIMPORT,F5_COD_ESTADO_SUNAT,
+                                    F5_MENSAJE_SUNAT, (CASE F5_ESTADO_ENVIO WHEN 0 THEN " + "'POR ENVIAR'" + " WHEN 1 THEN " + "'RECHAZADO'" + " WHEN 2 THEN " + "'PENDIENTE'" + " WHEN 3 THEN " + "'ACEPTADA'" + " WHEN 4 THEN " + "'ANULADO'" + " END ) AS ESTADO_ENVIO,F5_XML,F5_CDR,F5_PDF " +
+                                     "FROM INT_DOCELECAB " +
+                                     "WHERE F5_ESTADO_ENVIO = @estado AND F5_CRUCEMI= @rucemi AND (@tipdoc = '' OR F5_CTD = @tipdoc) AND F5_DFECDOC BETWEEN @desde AND @hasta ORDER BY F5_CNUMDOC DESC";
+
+                tabla = new DataTable();
+                con.conectarBD();
+                cmd = new SqlCommand(consulta, con.conector);
+                cmd.CommandType = CommandType.Text;
+                cmd.Parameters.AddWithValue("@rucemi", SqlDbType.Char).Value = RucEmi;
+                cmd.Parameters.AddWithValue("@tipdoc", SqlDbType.Char).Value = CTipDoc;
+                cmd.Parameters.AddWithValue("@desde", SqlDbType.DateTime).Value = desde;
+                cmd.Parameters.AddWithValue("@hasta", SqlDbType.DateTime).Value = hasta;
+                cmd.Parameters.AddWithValue("@estado", SqlDbType.Int).Value = Estado;
                 adap = new SqlDataAdapter(cmd);
                 adap.Fill(tabla);
                 return tabla;
@@ -324,6 +355,36 @@ namespace FinalXML.InterMySql
             catch (SqlException ex)
             {
                 throw ex;
+            }
+            finally { con.conector.Dispose(); cmd.Dispose(); con.desconectarBD(); }
+        }
+        public Boolean ActualizarEstadoResumen(String NumRuc, String Ticket)
+        {
+            try
+            {
+                string consulta = @"UPDATE INT_DOCELECAB SET F5_COD_ESTADO_SUNAT='0',F5_ESTADO_ENVIO='3'
+                                    FROM INT_DOCELECAB 
+                                   WHERE F5_CRUCEMI = @NumRuc AND F5_MENSAJE_SUNAT=@Ticket";
+                con.conectarBD();
+                cmd = new SqlCommand(consulta, con.conector);
+                cmd.CommandType = CommandType.Text;
+                cmd.Parameters.AddWithValue("NumRuc", NumRuc);
+                cmd.Parameters.AddWithValue("Ticket", Ticket);
+
+                int x = cmd.ExecuteNonQuery();
+                if (x != 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (MySqlException ex)
+            {
+                throw ex;
+
             }
             finally { con.conector.Dispose(); cmd.Dispose(); con.desconectarBD(); }
         }
