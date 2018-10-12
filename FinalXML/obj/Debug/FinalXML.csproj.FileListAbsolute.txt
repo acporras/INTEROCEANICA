@@ -2156,7 +2156,6 @@ C:\Users\dark_\Documents\FE\INTEROCEANICA\FinalXML\bin\Debug\zh-CHS\Microsoft.Re
 C:\Users\dark_\Documents\FE\INTEROCEANICA\FinalXML\bin\Debug\zh-CHT\Microsoft.ReportViewer.WinForms.resources.dll
 C:\Users\dark_\Documents\FE\INTEROCEANICA\FinalXML\bin\Debug\es\Microsoft.VisualStudio.Data.Services.resources.dll
 C:\Users\dark_\Documents\FE\INTEROCEANICA\FinalXML\bin\Debug\es\Microsoft.VisualStudio.Data.Core.resources.dll
-C:\Users\dark_\Documents\FE\INTEROCEANICA\FinalXML\obj\Debug\FinalXML.csprojAssemblyReference.cache
 C:\Users\dark_\Documents\FE\INTEROCEANICA\FinalXML\obj\Debug\FinalXML.exe.config
 C:\Users\dark_\Documents\FE\INTEROCEANICA\FinalXML\obj\Debug\FinalXML.Form2.resources
 C:\Users\dark_\Documents\FE\INTEROCEANICA\FinalXML\obj\Debug\FinalXML.Informes.Erwin.resources
@@ -2176,3 +2175,5 @@ C:\Users\dark_\Documents\FE\INTEROCEANICA\FinalXML\obj\Debug\FinalXML.csproj.Cor
 C:\Users\dark_\Documents\FE\INTEROCEANICA\FinalXML\obj\Debug\FinalXML.csproj.CopyComplete
 C:\Users\dark_\Documents\FE\INTEROCEANICA\FinalXML\obj\Debug\FinalXML.exe
 C:\Users\dark_\Documents\FE\INTEROCEANICA\FinalXML\obj\Debug\FinalXML.pdb
+C:\Users\dark_\Documents\FE\INTEROCEANICA\FinalXML\bin\Debug\MySql.Data.dll
+C:\Users\dark_\Documents\FE\INTEROCEANICA\FinalXML\bin\Debug\MySql.Data.xml

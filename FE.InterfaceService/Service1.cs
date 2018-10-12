@@ -14,40 +14,27 @@ using System.Xml.Serialization;
 
 namespace FE.InterfaceService
 {
-    partial class Service1 : ServiceBase
+    public partial class Service1 : ServiceBase
     {
         public static System.Timers.Timer ti_intejesrv = new System.Timers.Timer(); //Intervalo de ejecución del servicio.
         public static int i = 0;
         public static BaseDatos BD = new BaseDatos("BASPRVNAM", "BASCADCON"); //Conexión a BD Facturación
 
-        static void Main(string[] args)
-        {
-
-            ti_intejesrv.Interval = 5000;
-            ti_intejesrv.Elapsed += new System.Timers.ElapsedEventHandler(ti_intejesrv_Elapsed);
-            ti_intejesrv.Enabled = true;
-            ti_intejesrv.Start();
-
-            Console.ReadLine();
-        }
-
         public Service1()
         {
             InitializeComponent();
+            ti_intejesrv.Interval = 5000;
+            ti_intejesrv.Elapsed += new System.Timers.ElapsedEventHandler(ti_intejesrv_Elapsed);
+            //ti_intejesrv.Start();
         }
 
         protected override void OnStart(string[] args)
         {
-            ti_intejesrv.Interval = 5000;
-            ti_intejesrv.Elapsed += new System.Timers.ElapsedEventHandler(ti_intejesrv_Elapsed);
             ti_intejesrv.Enabled = true;
-            ti_intejesrv.Start();
-            // TODO: agregar código aquí para iniciar el servicio.
         }
 
         protected override void OnStop()
         {
-            // TODO: agregar código aquí para realizar cualquier anulación necesaria para detener el servicio.
         }
 
         public static void ti_intejesrv_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
