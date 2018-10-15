@@ -15,5 +15,6 @@ namespace FinalXML.Interfaces
         int GetCorrelativoMasivo(int codEmpresa, String TipoDoc);
         Boolean SetCorrelativoMasivo(int codEmpresa, String TipoDoc, int NeoCor);
         Boolean AnularDocumento(String NumRuc, String TipDoc, String Sersun, String NumSun);
+        Boolean GuardarEmpresa(clsEmpresa empresa);
     }
 }

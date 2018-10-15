@@ -21,6 +21,9 @@ using AForge.Imaging;
 using AForge.Imaging.Filters;
 using AForge.Imaging.Textures;
 using System.Configuration;
+using System.Net;
+using System.Xml;
+using FinalXML.BD;
 
 namespace FinalXML
 {
@@ -86,6 +89,15 @@ namespace FinalXML
                 cboEmpresaBaj.DataSource = dt_Empresa;
                 cboEmpresaBaj.ValueMember = "NU_EMINUMRUC";
                 cboEmpresaBaj.DisplayMember = "NO_EMIRAZSOC";
+                grvEmisores.Rows.Clear();
+                grvEmisores.ClearSelection();
+                foreach (DataRow row in dt_Empresa.Rows) {
+                    grvEmisores.Rows.Add(row["NU_EMINUMRUC"].ToString(), row["NO_EMIRAZSOC"].ToString(), row["CO_EMICODAGE"].ToString(),
+                        row["NO_ESTEMIELE"].ToString(), row["NO_CONEMIELE"].ToString(), row["NO_EMIUBIGEO"].ToString(),
+                        row["NO_EMIDEPART"].ToString(), row["NO_EMIPROVIN"].ToString(), row["NO_EMIDISTRI"].ToString(),
+                        row["NO_EMIDIRFIS"].ToString(), row["NO_BASNOMSRV"].ToString(), row["NO_BASNOMBAS"].ToString(),
+                        row["NO_TABFACCAB"].ToString(), row["NO_TABFACDET"].ToString());
+                }
             }
             catch (Exception a) { MessageBox.Show(a.Message); }
             finally
@@ -174,33 +186,18 @@ namespace FinalXML
                 Cursor.Current = Cursors.Default;
             }
         }
-        private void CargaPedidos()
-        
+        private bool ValidaRuc(Int64 ruc)
         {
-            Cursor.Current = Cursors.WaitCursor;
-            try
-            {
-               
-                Int32 index = 0;
-                dt_Pedidos = AdmPedido.CargaPedidos(f1.Value.Date, f2.Value.Date);
-                DGPedidos.Rows.Clear();
-                DGPedidos.ClearSelection();
-                foreach (DataRow row in dt_Pedidos.Rows)
-                {
-                    DGPedidos.Rows.Add(row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8],row[9]);
-                   
-
-                    index++;
-                }
-                Proceso = 0;
+            if (!(ruc >= 1e10 && ruc < 11e9 || ruc >= 15e9 && ruc < 18e9 || ruc >= 2e10 && ruc < 21e9)) {
+                return false;
             }
-            catch (Exception a) { MessageBox.Show(a.Message); }
-            finally
+            Int64 suma = (ruc % 10 < 2) ? -1 : -0;
+            for (int i = 0; i < 11; i++, ruc = ruc / 10 | 0)
             {
-                Cursor.Current = Cursors.Default;
+                suma += (ruc % 10) * (i % 7 + (i / 7 | 0) + 1);
             }
+            return (suma % 11 == 0) ? true : false;
         }
-
         private void EnviarResumen()
         {
             //Se valida que existan datos en la grilla
@@ -351,7 +348,34 @@ namespace FinalXML
             }
 
         }
-
+        private bool GuardarEmisor() {
+            DataRowView drv_base = (DataRowView)cboBaseDatos.SelectedItem;
+            DataRowView drv_tabcab = (DataRowView)cboTablaCab.SelectedItem;
+            DataRowView drv_tabdet = (DataRowView)cboTablaDet.SelectedItem;
+            clsEmpresa empresa = new clsEmpresa
+            {
+                nu_eminumruc = txtnumruc.Text,
+                no_emirazsoc = txtrazsoc.Text,
+                co_emicodage = txtCodAge.Text,
+                no_estemiele = txtestemi.Text,
+                no_conemiele = txtconemi.Text,
+                no_emiubigeo = txtubigeo.Text,
+                no_emidepart = txtnomdep.Text,
+                no_emiprovin = txtnomprv.Text,
+                no_emidistri = txtnomdis.Text,
+                no_emidirfis = txtdomfis.Text,
+                no_bastipbas = "SQL",
+                no_basnomsrv = txtserver.Text,
+                no_basnombas = drv_base[0].ToString(),
+                no_basusrbas = txtuser.Text,
+                no_basusrpas = txtpass.Text,
+                no_tabfaccab = drv_tabcab[0].ToString(),
+                no_tabfacdet = drv_tabdet[0].ToString(),
+                no_ususolsun = txtusersun.Text,
+                no_passolsun = txtpasssun.Text
+            };
+            return AdmCEmpresa.GuardarEmpresa(empresa);
+        }
         /*private static Contribuyente CrearEmisor()
         {
             return new Contribuyente
@@ -944,107 +968,6 @@ namespace FinalXML
             CargaVentas();
         }
 
-        private void kryptonButton1_Click(object sender, EventArgs e)
-        {
-            CargaPedidos();
-        }
-
-        private void kryptonButton2_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                Cursor.Current = Cursors.WaitCursor;                
-                clsDetallePedido ven = null;
-                
-                //Bucar Datos del Documento seleccionado
-                if (DGPedidos.RowCount >= 1 && DGPedidos.SelectedRows.Count >= 1)
-                {
-                    //Cabecera
-                    Pedido = AdmPedido.LeerPedido(Pedido.IdPedido);
-                    if (chkmoneda.Checked == true)
-                    {
-                        Pedido.Moneda = "USD";
-                    }
-                    else {
-                        Pedido.Moneda = "PEN";     
-                    }
-
-                    //Detalle
-                    if (Pedido.IdPedido !=null)
-                    {
-                        //_documento.Items= AdmCVenta.LeerVentaDetalle(CVentas.Sigla, CVentas.Serie, CVentas.Numeracion);
-                        dt_DetallePedido = AdmPedido.LeerDetalle(Pedido.IdPedido);
-                        if (dt_DetallePedido != null)
-                        {
-
-                            int i = 0;
-
-                            foreach (DataRow row in dt_DetallePedido.Rows)
-                            {
-                                var dato = Convert.ToString(row[1]).Trim();
-                                if (dato.Trim() != "TXT")
-                                {
-                                    if (i > 0) Pedido.Items.Add(ven);
-                                    ven = new clsDetallePedido();
-                                    ven.Id = Convert.ToInt32(row[0]);
-                                    ven.CodigoItem = Convert.ToString(row[1]);
-                                    ven.Descripcion = Convert.ToString(row[2]).Trim();
-                                    ven.Cantidad = Convert.ToDecimal(row[4]);
-                                    ven.PrecioUnitario = Convert.ToDecimal(row[5]);
-                                    ven.Suma = Math.Round(ven.PrecioUnitario * ven.Cantidad, 2);
-                                    ven.SubTotalVenta = Math.Round(ven.Suma / Convert.ToDecimal(1.18), 2);
-                                    ven.Impuesto = Math.Round(ven.Suma - ven.SubTotalVenta, 2);
-                                    ven.TotalVenta = Math.Round(ven.Suma, 2);
-                                    ven.TipoPrecio = "01";
-                                    ven.TipoImpuesto = "10";
-                                    Pedido.IGV += ven.Impuesto;
-                                    Pedido.SubTotal += ven.SubTotalVenta;
-                                    Pedido.Total += ven.TotalVenta;
-                                }
-                                else if (Convert.ToString(row[1]).Trim() == "TXT")
-                                {
-                                    ven.Descripcion += "\t" + Convert.ToString(row[2]).Trim();
-
-                                }
-
-                                i++;
-                                if (dt_DetallePedido.Rows.Count == i) Pedido.Items.Add(ven);
-                            }
-                            Pedido.MontoEnLetras = ConvertLetras.enletras(Pedido.Total.ToString());
-                        }
-                        else
-                        {
-                            MessageBox.Show("No se puede leer el pedido", "PEDIDOS", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                            return;
-                        }
-                    }
-                }
-               
-                Pedido.IdPedido = "PFE-" + Pedido.IdPedido;
-                FrmPedido form = new FrmPedido(Pedido);
-                form.Pedido2 = Pedido;
-                form.ShowDialog();
-            }
-            catch (Exception a) { MessageBox.Show(a.Message); }
-            finally { Cursor.Current = Cursors.Default; }
-        }
-
-        private void DGPedidos_RowStateChanged(object sender, DataGridViewRowStateChangedEventArgs e)
-        {
-            try
-            {
-                if (DGPedidos.Rows.Count >= 1 && e.Row.Selected)
-                {
-                    Pedido.IdPedido= e.Row.Cells[idpedido.Name].Value.ToString();
-                    Pedido.Sigla = e.Row.Cells[sigla1.Name].Value.ToString();
-                    Pedido.Serie = e.Row.Cells[serie1.Name].Value.ToString();
-                    Pedido.Numeracion = e.Row.Cells[numeracion1.Name].Value.ToString();
-
-                }
-            }
-            catch (Exception a) { MessageBox.Show(a.Message); }
-        }
-
         private void txtBuscaCliente_TextChanged(object sender, EventArgs e)
         {
             
@@ -1387,6 +1310,179 @@ namespace FinalXML
             {
                 MessageBox.Show("No se ha seleccionado ninguna Boleta para Anular");
             }
+        }
+
+        private void btnConsultarRuc_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                bool valida = true;
+                if (txtnumruc.Text.Length != 11)
+                {
+                    valida = false;
+                    MessageBox.Show("El numero de ruc debe contener 11 digitos");
+                }
+                if (!ValidaRuc(Convert.ToInt64(txtnumruc.Text)) && valida) {
+                    valida = false;
+                    MessageBox.Show("El numero de ruc es invalido");
+                }
+
+                if (valida) {
+                    WebRequest request = WebRequest.Create(String.Format("http://wmtechnology.org/Consultar-RUC/?modo=1&btnBuscar=Buscar&nruc={0}", txtnumruc.Text));
+                    request.Method = "POST";
+                    WebResponse response = request.GetResponse();
+                    StreamReader sr = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding("ISO-8859-1"));
+
+                    String sunathtml = sr.ReadToEnd();
+                    sunathtml = sunathtml.Trim();
+                    //Se prepara el documento
+                    sunathtml = Regex.Replace(sunathtml, @"<!--.*?-->", ""); //Se elimina comentarios
+                    sunathtml = Regex.Replace(sunathtml, @"<meta.*?>", ""); //Se elimina etiquetas meta
+                    sunathtml = Regex.Replace(sunathtml, @"<link.*?>", ""); //Se elimina etiquetas link
+                    sunathtml = Regex.Replace(sunathtml, @"&copy.*?;", ""); //Se elimina texto copy
+                    sr.Close();
+                    XmlDocument doc = new XmlDocument();
+                    //Se carga el XML preparado
+                    doc.LoadXml(sunathtml);
+                    //Se selecciona el nodo con la información
+                    XmlNodeList xnList = doc.SelectNodes("/html/body/div[@class='container']/div/div/div[@class='panel panel-primary']/div[@class='list-group']");
+                    foreach (XmlNode xn in xnList)
+                    {
+                        doc.LoadXml(String.Format("<root>{0}</root>", xn.InnerXml));
+                    }
+                    //Se recuperan los datos del RUC solicitado
+                    String[] emisor = doc.SelectSingleNode("/root/div[1]/div/div[2]/h4").InnerText.Split('-');
+                    String numruc = emisor[0].ToString().Trim();
+                    String razsoc = emisor[1].ToString().Trim();
+                    String estado = doc.SelectSingleNode("/root/div[2]/div/div[2]/p").InnerText.Trim();
+                    String condic = doc.SelectSingleNode("/root/div[3]/div/div[2]/p").InnerText.Trim();
+                    String ubigeo = doc.SelectSingleNode("/root/div[4]/div/div[2]").InnerText.Trim();
+                    String nomdep = doc.SelectSingleNode("/root/div[5]/div/div[2]").InnerText.Trim();
+                    String nomprv = doc.SelectSingleNode("/root/div[6]/div/div[2]").InnerText.Trim();
+                    String nomdis = doc.SelectSingleNode("/root/div[7]/div/div[2]").InnerText.Trim();
+                    String domfis = doc.SelectSingleNode("/root/div[8]/div/div[2]/p").InnerText.Trim();
+
+                    //Se llenan los datos en el formulario
+                    txtrazsoc.Text = razsoc;
+                    txtestemi.Text = estado;
+                    txtconemi.Text = condic;
+                    txtubigeo.Text = ubigeo;
+                    txtnomdep.Text = nomdep;
+                    txtnomprv.Text = nomprv;
+                    txtnomdis.Text = nomdis;
+                    txtdomfis.Text = domfis;
+                }
+                else
+                {
+                    txtrazsoc.Clear();
+                    txtestemi.Clear();
+                    txtconemi.Clear();
+                    txtubigeo.Clear();
+                    txtnomdep.Clear();
+                    txtnomprv.Clear();
+                    txtnomdis.Clear();
+                    txtdomfis.Clear();
+                }
+            }
+            catch(Exception ex)
+            {
+                txtrazsoc.Clear();
+                txtestemi.Clear();
+                txtconemi.Clear();
+                txtubigeo.Clear();
+                txtnomdep.Clear();
+                txtnomprv.Clear();
+                txtnomdis.Clear();
+                txtdomfis.Clear();
+
+                MessageBox.Show("Error en la petición: " + ex.Message.ToString());
+
+
+            }
+        }
+
+        private void txtnumruc_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter) {
+                btnConsultarRuc.PerformClick();
+            }
+        }
+
+        private void btnConectarServer_Click(object sender, EventArgs e)
+        {
+            BaseDatos bdemi = new BaseDatos(txtserver.Text, BaseDatos.BBDD.SQL, "master", txtuser.Text, txtpass.Text);
+            try {
+                bdemi.Conectar();
+                DataTable dt_basedatos = new DataTable();
+                bdemi.Dame_Datos_DT("SELECT NAME, DATABASE_ID FROM sys.databases", false, ref dt_basedatos, "S");
+                bdemi.Desconectar();
+                cboBaseDatos.DataSource = dt_basedatos;
+                cboBaseDatos.ValueMember = "DATABASE_ID";
+                cboBaseDatos.DisplayMember = "NAME";
+
+                MessageBox.Show("Conexión creada correctamente");
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Error al conectar: " + ex.Message.ToString());
+            }
+        }
+
+        private void cboBaseDatos_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            DataRowView drv_base = (DataRowView)cboBaseDatos.SelectedItem;
+            if (drv_base[0].ToString() != "") {
+                BaseDatos bdemi = new BaseDatos(txtserver.Text, BaseDatos.BBDD.SQL, drv_base[0].ToString(), txtuser.Text, txtpass.Text);
+                bdemi.Conectar();
+                DataTable dt_tablesbd = new DataTable();
+                bdemi.Dame_Datos_DT("SELECT ID,NAME FROM SYSOBJECTS WHERE TYPE='U'", false, ref dt_tablesbd, "S");
+                bdemi.Desconectar();
+                cboTablaCab.DataSource = dt_tablesbd;
+                cboTablaCab.ValueMember = "ID";
+                cboTablaCab.DisplayMember = "NAME";
+                cboTablaDet.DataSource = dt_tablesbd;
+                cboTablaDet.ValueMember = "ID";
+                cboTablaDet.DisplayMember = "NAME";
+            }
+
+        }
+
+        private void btnSaveEmisor_Click(object sender, EventArgs e)
+        {
+            if (txtrazsoc.Text == "") {
+                MessageBox.Show("Debe ingresar un RUC y realizar la busqueda");
+                return;
+            }
+            if (txtCodAge.Text == "")
+            {
+                MessageBox.Show("Debe ingresar un codigo de agencia");
+                return;
+            }
+            if (txtserver.Text == "") {
+                MessageBox.Show("Debe ingresar el nombre del servidor de base de datos");
+                return;
+            }
+            if (txtuser.Text == "")
+            {
+                MessageBox.Show("Debe ingresar el usuario de base de datos");
+                return;
+            }
+            if (txtpass.Text == "")
+            {
+                MessageBox.Show("Debe ingresar la clave de base de datos");
+                return;
+            }
+            if (cboBaseDatos.Items.Count == 0) {
+                MessageBox.Show("No existe ninguna base de datos para conectar");
+                return;
+            }
+
+            if (GuardarEmisor()) {
+                MessageBox.Show("Se ha guardado correctamente el emisor electronico");
+            };
+
+            CargaEmpresa();
         }
     }
 }

@@ -83,5 +83,17 @@ namespace FinalXML.Administradores
                 return false;
             }
         }
+
+        public Boolean GuardarEmpresa(clsEmpresa empresa) {
+            try
+            {
+                return CEmpresa.GuardarEmpresa(empresa);
+            }
+            catch (Exception ex)
+            {
+                DevComponents.DotNetBar.MessageBoxEx.Show("Se encontró el siguiente problema: " + ex.Message, "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+        }
     }
 }

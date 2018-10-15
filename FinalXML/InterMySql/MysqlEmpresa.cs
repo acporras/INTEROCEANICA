@@ -152,6 +152,42 @@ namespace FinalXML.InterMySql
             }
             finally { con.conector.Dispose(); cmd.Dispose(); con.desconectarBD(); }
         }
+        public Boolean GuardarEmpresa(clsEmpresa empresa) {
+            try
+            {
+                string consulta = @"INSERT INTO MAE_EMIDOCELE(NU_EMINUMRUC, NO_EMIRAZSOC, CO_EMICODAGE, NO_ESTEMIELE, NO_CONEMIELE, NO_EMIUBIGEO, NO_EMIDEPART, NO_EMIPROVIN, NO_EMIDISTRI, NO_EMIDIRFIS, NO_BASTIPBAS, NO_BASNOMSRV, NO_BASNOMBAS, NO_BASUSRBAS, NO_BASUSRPAS, NO_TABFACCAB, NO_TABFACDET, NO_USUSOLSUN, NO_PASSOLSUN, FE_REGCREACI, FL_REGINACTI) " +
+                    "VALUES(@nu_eminumruc, @no_emirazsoc, @co_emicodage, @no_estemiele, @no_conemiele, @no_emiubigeo, @no_emidepart, @no_emiprovin, @no_emidistri, @no_emidirfis, @no_bastipbas, @no_basnomsrv, @no_basnombas, @no_basusrbas, @no_basusrpas, @no_tabfaccab, @no_tabfacdet, @no_ususolsun, @no_passolsun, GETDATE(), '0')";
+                con.conectarBD();
+                cmd = new SqlCommand(consulta, con.conector);
+                cmd.Parameters.AddWithValue("@nu_eminumruc", SqlDbType.VarChar).Value = empresa.nu_eminumruc;
+                cmd.Parameters.AddWithValue("@no_emirazsoc", SqlDbType.VarChar).Value = empresa.no_emirazsoc;
+                cmd.Parameters.AddWithValue("@co_emicodage", SqlDbType.VarChar).Value = empresa.co_emicodage;
+                cmd.Parameters.AddWithValue("@no_estemiele", SqlDbType.VarChar).Value = empresa.no_estemiele;
+                cmd.Parameters.AddWithValue("@no_conemiele", SqlDbType.VarChar).Value = empresa.no_conemiele;
+                cmd.Parameters.AddWithValue("@no_emiubigeo", SqlDbType.VarChar).Value = empresa.no_emiubigeo;
+                cmd.Parameters.AddWithValue("@no_emidepart", SqlDbType.VarChar).Value = empresa.no_emidepart;
+                cmd.Parameters.AddWithValue("@no_emiprovin", SqlDbType.VarChar).Value = empresa.no_emiprovin;
+                cmd.Parameters.AddWithValue("@no_emidistri", SqlDbType.VarChar).Value = empresa.no_emidistri;
+                cmd.Parameters.AddWithValue("@no_emidirfis", SqlDbType.VarChar).Value = empresa.no_emidirfis;
+                cmd.Parameters.AddWithValue("@no_bastipbas", SqlDbType.VarChar).Value = empresa.no_bastipbas;
+                cmd.Parameters.AddWithValue("@no_basnomsrv", SqlDbType.VarChar).Value = empresa.no_basnomsrv;
+                cmd.Parameters.AddWithValue("@no_basnombas", SqlDbType.VarChar).Value = empresa.no_basnombas;
+                cmd.Parameters.AddWithValue("@no_basusrbas", SqlDbType.VarChar).Value = empresa.no_basusrbas;
+                cmd.Parameters.AddWithValue("@no_basusrpas", SqlDbType.VarChar).Value = empresa.no_basusrpas;
+                cmd.Parameters.AddWithValue("@no_tabfaccab", SqlDbType.VarChar).Value = empresa.no_tabfaccab;
+                cmd.Parameters.AddWithValue("@no_tabfacdet", SqlDbType.VarChar).Value = empresa.no_tabfacdet;
+                cmd.Parameters.AddWithValue("@no_ususolsun", SqlDbType.VarChar).Value = empresa.no_ususolsun;
+                cmd.Parameters.AddWithValue("@no_passolsun", SqlDbType.VarChar).Value = empresa.no_passolsun;
+                cmd.CommandType = CommandType.Text;
+                dr = cmd.ExecuteReader();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally { con.conector.Dispose(); cmd.Dispose(); con.desconectarBD(); }
+        }
 
     }
 }
