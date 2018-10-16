@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.kryptonPanel1 = new ComponentFactory.Krypton.Toolkit.KryptonPanel();
             this.kryptonNavigator1 = new ComponentFactory.Krypton.Navigator.KryptonNavigator();
             this.kryptonPage2 = new ComponentFactory.Krypton.Navigator.KryptonPage();
@@ -129,6 +129,12 @@
             this.grvEmisores = new ComponentFactory.Krypton.Toolkit.KryptonDataGridView();
             this.btnSaveEmisor = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.kryptonGroupBox1 = new ComponentFactory.Krypton.Toolkit.KryptonGroupBox();
+            this.txtpasssun = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
+            this.txtusersun = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
+            this.kryptonLabel29 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
+            this.kryptonLabel28 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
+            this.txtCodAge = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
+            this.kryptonLabel27 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.txtuser = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             this.kryptonLabel26 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.cboTablaDet = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
@@ -161,12 +167,10 @@
             this.kryptonLabel13 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.txtnumruc = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             this.kryptonLabel12 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
-            this.kryptonLabel27 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
-            this.txtCodAge = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
-            this.kryptonLabel28 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
-            this.kryptonLabel29 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
-            this.txtusersun = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
-            this.txtpasssun = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
+            this.btnEditarEmisor = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.btnCancelEditEmi = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.cboEstadoEmisor = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
+            this.lblEstadoEmisor = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.numruc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.razsoc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.codage = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -181,6 +185,7 @@
             this.basdat = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabcab = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabdet = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.estreg = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonPanel1)).BeginInit();
             this.kryptonPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonNavigator1)).BeginInit();
@@ -235,6 +240,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.cboTablaDet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboTablaCab)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboBaseDatos)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboEstadoEmisor)).BeginInit();
             this.SuspendLayout();
             // 
             // kryptonPanel1
@@ -372,8 +378,8 @@
             this.dgListadoVentas.AllowUserToAddRows = false;
             this.dgListadoVentas.AllowUserToDeleteRows = false;
             this.dgListadoVentas.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgListadoVentas.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgListadoVentas.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dgListadoVentas.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.dgListadoVentas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.sigla,
@@ -399,8 +405,8 @@
             this.dgListadoVentas.GridStyles.StyleColumn = ComponentFactory.Krypton.Toolkit.GridStyle.Sheet;
             this.dgListadoVentas.Location = new System.Drawing.Point(0, 71);
             this.dgListadoVentas.Name = "dgListadoVentas";
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgListadoVentas.RowsDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgListadoVentas.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.dgListadoVentas.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
             this.dgListadoVentas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgListadoVentas.Size = new System.Drawing.Size(1344, 391);
@@ -411,8 +417,8 @@
             // sigla
             // 
             this.sigla.DataPropertyName = "F5_CTD";
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.sigla.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.sigla.DefaultCellStyle = dataGridViewCellStyle5;
             this.sigla.HeaderText = "SIGLA";
             this.sigla.Name = "sigla";
             this.sigla.Visible = false;
@@ -1146,6 +1152,8 @@
             // 
             // kryptonPanel3
             // 
+            this.kryptonPanel3.Controls.Add(this.btnCancelEditEmi);
+            this.kryptonPanel3.Controls.Add(this.btnEditarEmisor);
             this.kryptonPanel3.Controls.Add(this.grvEmisores);
             this.kryptonPanel3.Controls.Add(this.btnSaveEmisor);
             this.kryptonPanel3.Controls.Add(this.kryptonGroupBox1);
@@ -1171,16 +1179,18 @@
             this.sernam,
             this.basdat,
             this.tabcab,
-            this.tabdet});
-            this.grvEmisores.Location = new System.Drawing.Point(3, 289);
+            this.tabdet,
+            this.estreg});
+            this.grvEmisores.Location = new System.Drawing.Point(0, 289);
             this.grvEmisores.Name = "grvEmisores";
             this.grvEmisores.Size = new System.Drawing.Size(1337, 244);
             this.grvEmisores.TabIndex = 2;
             // 
             // btnSaveEmisor
             // 
-            this.btnSaveEmisor.Location = new System.Drawing.Point(583, 251);
+            this.btnSaveEmisor.Location = new System.Drawing.Point(12, 251);
             this.btnSaveEmisor.Name = "btnSaveEmisor";
+            this.btnSaveEmisor.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2010Black;
             this.btnSaveEmisor.Size = new System.Drawing.Size(148, 26);
             this.btnSaveEmisor.TabIndex = 1;
             this.btnSaveEmisor.Values.Text = "Guardar";
@@ -1193,6 +1203,8 @@
             // 
             // kryptonGroupBox1.Panel
             // 
+            this.kryptonGroupBox1.Panel.Controls.Add(this.lblEstadoEmisor);
+            this.kryptonGroupBox1.Panel.Controls.Add(this.cboEstadoEmisor);
             this.kryptonGroupBox1.Panel.Controls.Add(this.txtpasssun);
             this.kryptonGroupBox1.Panel.Controls.Add(this.txtusersun);
             this.kryptonGroupBox1.Panel.Controls.Add(this.kryptonLabel29);
@@ -1234,6 +1246,53 @@
             this.kryptonGroupBox1.Size = new System.Drawing.Size(1322, 240);
             this.kryptonGroupBox1.TabIndex = 0;
             this.kryptonGroupBox1.Values.Heading = "Emisor Electronico";
+            // 
+            // txtpasssun
+            // 
+            this.txtpasssun.Location = new System.Drawing.Point(112, 121);
+            this.txtpasssun.Name = "txtpasssun";
+            this.txtpasssun.PasswordChar = '*';
+            this.txtpasssun.Size = new System.Drawing.Size(123, 23);
+            this.txtpasssun.TabIndex = 39;
+            // 
+            // txtusersun
+            // 
+            this.txtusersun.Location = new System.Drawing.Point(112, 94);
+            this.txtusersun.Name = "txtusersun";
+            this.txtusersun.Size = new System.Drawing.Size(123, 23);
+            this.txtusersun.TabIndex = 38;
+            // 
+            // kryptonLabel29
+            // 
+            this.kryptonLabel29.Location = new System.Drawing.Point(9, 126);
+            this.kryptonLabel29.Name = "kryptonLabel29";
+            this.kryptonLabel29.Size = new System.Drawing.Size(77, 20);
+            this.kryptonLabel29.TabIndex = 37;
+            this.kryptonLabel29.Values.Text = "Clave Sunat:";
+            // 
+            // kryptonLabel28
+            // 
+            this.kryptonLabel28.Location = new System.Drawing.Point(9, 96);
+            this.kryptonLabel28.Name = "kryptonLabel28";
+            this.kryptonLabel28.Size = new System.Drawing.Size(89, 20);
+            this.kryptonLabel28.TabIndex = 36;
+            this.kryptonLabel28.Values.Text = "Usuario Sunat:";
+            // 
+            // txtCodAge
+            // 
+            this.txtCodAge.Location = new System.Drawing.Point(685, 66);
+            this.txtCodAge.MaxLength = 4;
+            this.txtCodAge.Name = "txtCodAge";
+            this.txtCodAge.Size = new System.Drawing.Size(153, 23);
+            this.txtCodAge.TabIndex = 35;
+            // 
+            // kryptonLabel27
+            // 
+            this.kryptonLabel27.Location = new System.Drawing.Point(587, 66);
+            this.kryptonLabel27.Name = "kryptonLabel27";
+            this.kryptonLabel27.Size = new System.Drawing.Size(100, 20);
+            this.kryptonLabel27.TabIndex = 34;
+            this.kryptonLabel27.Values.Text = "Codigo Agencia:";
             // 
             // txtuser
             // 
@@ -1496,52 +1555,48 @@
             this.kryptonLabel12.TabIndex = 0;
             this.kryptonLabel12.Values.Text = "RUC:";
             // 
-            // kryptonLabel27
+            // btnEditarEmisor
             // 
-            this.kryptonLabel27.Location = new System.Drawing.Point(587, 66);
-            this.kryptonLabel27.Name = "kryptonLabel27";
-            this.kryptonLabel27.Size = new System.Drawing.Size(100, 20);
-            this.kryptonLabel27.TabIndex = 34;
-            this.kryptonLabel27.Values.Text = "Codigo Agencia:";
+            this.btnEditarEmisor.Location = new System.Drawing.Point(1205, 254);
+            this.btnEditarEmisor.Name = "btnEditarEmisor";
+            this.btnEditarEmisor.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2010Black;
+            this.btnEditarEmisor.Size = new System.Drawing.Size(129, 25);
+            this.btnEditarEmisor.TabIndex = 3;
+            this.btnEditarEmisor.Values.Image = global::FinalXML.Properties.Resources.iconcopy;
+            this.btnEditarEmisor.Values.Text = "Editar";
+            this.btnEditarEmisor.Click += new System.EventHandler(this.btnEditarEmisor_Click);
             // 
-            // txtCodAge
+            // btnCancelEditEmi
             // 
-            this.txtCodAge.Location = new System.Drawing.Point(685, 66);
-            this.txtCodAge.MaxLength = 4;
-            this.txtCodAge.Name = "txtCodAge";
-            this.txtCodAge.Size = new System.Drawing.Size(153, 23);
-            this.txtCodAge.TabIndex = 35;
+            this.btnCancelEditEmi.Cursor = System.Windows.Forms.Cursors.No;
+            this.btnCancelEditEmi.Location = new System.Drawing.Point(1070, 254);
+            this.btnCancelEditEmi.Name = "btnCancelEditEmi";
+            this.btnCancelEditEmi.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2010Black;
+            this.btnCancelEditEmi.Size = new System.Drawing.Size(129, 25);
+            this.btnCancelEditEmi.TabIndex = 4;
+            this.btnCancelEditEmi.Values.Image = global::FinalXML.Properties.Resources.cancel1;
+            this.btnCancelEditEmi.Values.Text = "Cancelar";
+            this.btnCancelEditEmi.Visible = false;
+            this.btnCancelEditEmi.Click += new System.EventHandler(this.btnCancelEditEmi_Click);
             // 
-            // kryptonLabel28
+            // cboEstadoEmisor
             // 
-            this.kryptonLabel28.Location = new System.Drawing.Point(9, 96);
-            this.kryptonLabel28.Name = "kryptonLabel28";
-            this.kryptonLabel28.Size = new System.Drawing.Size(89, 20);
-            this.kryptonLabel28.TabIndex = 36;
-            this.kryptonLabel28.Values.Text = "Usuario Sunat:";
+            this.cboEstadoEmisor.DropDownWidth = 121;
+            this.cboEstadoEmisor.Items.AddRange(new object[] {
+            "Activo",
+            "Inactivo"});
+            this.cboEstadoEmisor.Location = new System.Drawing.Point(114, 187);
+            this.cboEstadoEmisor.Name = "cboEstadoEmisor";
+            this.cboEstadoEmisor.Size = new System.Drawing.Size(121, 21);
+            this.cboEstadoEmisor.TabIndex = 40;
             // 
-            // kryptonLabel29
+            // lblEstadoEmisor
             // 
-            this.kryptonLabel29.Location = new System.Drawing.Point(9, 126);
-            this.kryptonLabel29.Name = "kryptonLabel29";
-            this.kryptonLabel29.Size = new System.Drawing.Size(77, 20);
-            this.kryptonLabel29.TabIndex = 37;
-            this.kryptonLabel29.Values.Text = "Clave Sunat:";
-            // 
-            // txtusersun
-            // 
-            this.txtusersun.Location = new System.Drawing.Point(112, 92);
-            this.txtusersun.Name = "txtusersun";
-            this.txtusersun.Size = new System.Drawing.Size(123, 23);
-            this.txtusersun.TabIndex = 38;
-            // 
-            // txtpasssun
-            // 
-            this.txtpasssun.Location = new System.Drawing.Point(112, 121);
-            this.txtpasssun.Name = "txtpasssun";
-            this.txtpasssun.PasswordChar = '*';
-            this.txtpasssun.Size = new System.Drawing.Size(123, 23);
-            this.txtpasssun.TabIndex = 39;
+            this.lblEstadoEmisor.Location = new System.Drawing.Point(9, 187);
+            this.lblEstadoEmisor.Name = "lblEstadoEmisor";
+            this.lblEstadoEmisor.Size = new System.Drawing.Size(50, 20);
+            this.lblEstadoEmisor.TabIndex = 41;
+            this.lblEstadoEmisor.Values.Text = "Estado:";
             // 
             // numruc
             // 
@@ -1612,6 +1667,11 @@
             // 
             this.tabdet.HeaderText = "Tabla Detalle";
             this.tabdet.Name = "tabdet";
+            // 
+            // estreg
+            // 
+            this.estreg.HeaderText = "Estado Registro";
+            this.estreg.Name = "estreg";
             // 
             // Form2
             // 
@@ -1684,6 +1744,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.cboTablaDet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboTablaCab)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboBaseDatos)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboEstadoEmisor)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1825,6 +1886,10 @@
         private ComponentFactory.Krypton.Toolkit.KryptonTextBox txtusersun;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel29;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel28;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton btnEditarEmisor;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton btnCancelEditEmi;
+        private ComponentFactory.Krypton.Toolkit.KryptonLabel lblEstadoEmisor;
+        private ComponentFactory.Krypton.Toolkit.KryptonComboBox cboEstadoEmisor;
         private System.Windows.Forms.DataGridViewTextBoxColumn numruc;
         private System.Windows.Forms.DataGridViewTextBoxColumn razsoc;
         private System.Windows.Forms.DataGridViewTextBoxColumn codage;
@@ -1839,5 +1904,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn basdat;
         private System.Windows.Forms.DataGridViewTextBoxColumn tabcab;
         private System.Windows.Forms.DataGridViewTextBoxColumn tabdet;
+        private System.Windows.Forms.DataGridViewTextBoxColumn estreg;
     }
 }

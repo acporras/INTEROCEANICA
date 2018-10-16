@@ -70,6 +70,7 @@ namespace FinalXML
             recursos = herramientas.GetResourcesPath();
             grvResDetail.Rows.Clear();
             CargaEmpresa();
+            cboEstadoEmisor.SelectedIndex = 0;
         }
         private void CargaEmpresa()
         {
@@ -96,7 +97,7 @@ namespace FinalXML
                         row["NO_ESTEMIELE"].ToString(), row["NO_CONEMIELE"].ToString(), row["NO_EMIUBIGEO"].ToString(),
                         row["NO_EMIDEPART"].ToString(), row["NO_EMIPROVIN"].ToString(), row["NO_EMIDISTRI"].ToString(),
                         row["NO_EMIDIRFIS"].ToString(), row["NO_BASNOMSRV"].ToString(), row["NO_BASNOMBAS"].ToString(),
-                        row["NO_TABFACCAB"].ToString(), row["NO_TABFACDET"].ToString());
+                        row["NO_TABFACCAB"].ToString(), row["NO_TABFACDET"].ToString(), (row["FL_REGINACTI"].ToString() == "0") ? "Activo" : "Inactivo");
                 }
             }
             catch (Exception a) { MessageBox.Show(a.Message); }
@@ -369,12 +370,65 @@ namespace FinalXML
                 no_basnombas = drv_base[0].ToString(),
                 no_basusrbas = txtuser.Text,
                 no_basusrpas = txtpass.Text,
-                no_tabfaccab = drv_tabcab[0].ToString(),
-                no_tabfacdet = drv_tabdet[0].ToString(),
+                no_tabfaccab = drv_tabcab[1].ToString(),
+                no_tabfacdet = drv_tabdet[1].ToString(),
                 no_ususolsun = txtusersun.Text,
-                no_passolsun = txtpasssun.Text
+                no_passolsun = txtpasssun.Text,
+                fl_reginacti = cboEstadoEmisor.SelectedIndex.ToString()
             };
             return AdmCEmpresa.GuardarEmpresa(empresa);
+        }
+        public bool ActualizarEmisor()
+        {
+            DataRowView drv_base = (DataRowView)cboBaseDatos.SelectedItem;
+            DataRowView drv_tabcab = (DataRowView)cboTablaCab.SelectedItem;
+            DataRowView drv_tabdet = (DataRowView)cboTablaDet.SelectedItem;
+            clsEmpresa empresa = new clsEmpresa
+            {
+                nu_eminumruc = txtnumruc.Text,
+                no_emirazsoc = txtrazsoc.Text,
+                co_emicodage = txtCodAge.Text,
+                no_estemiele = txtestemi.Text,
+                no_conemiele = txtconemi.Text,
+                no_emiubigeo = txtubigeo.Text,
+                no_emidepart = txtnomdep.Text,
+                no_emiprovin = txtnomprv.Text,
+                no_emidistri = txtnomdis.Text,
+                no_emidirfis = txtdomfis.Text,
+                no_bastipbas = "SQL",
+                no_basnomsrv = txtserver.Text,
+                no_basnombas = drv_base[0].ToString(),
+                no_basusrbas = txtuser.Text,
+                no_basusrpas = txtpass.Text,
+                no_tabfaccab = drv_tabcab[1].ToString(),
+                no_tabfacdet = drv_tabdet[1].ToString(),
+                no_ususolsun = txtusersun.Text,
+                no_passolsun = txtpasssun.Text,
+                fl_reginacti = cboEstadoEmisor.SelectedIndex.ToString()
+            };
+            return AdmCEmpresa.ActualizarEmpresa(empresa);
+        }
+        private void loadTables()
+        {
+            DataRowView drv_base = (DataRowView)cboBaseDatos.SelectedItem;
+            if (drv_base[0].ToString() != "")
+            {
+                BaseDatos bdemi = new BaseDatos(txtserver.Text, BaseDatos.BBDD.SQL, drv_base[0].ToString(), txtuser.Text, txtpass.Text);
+                bdemi.Conectar();
+                DataTable dt_tablescab = new DataTable();
+                DataTable dt_tablesdet = new DataTable();
+                bdemi.Dame_Datos_DT("SELECT ID,NAME FROM SYSOBJECTS WHERE TYPE='U' ORDER BY NAME", false, ref dt_tablescab, "S");
+                bdemi.Dame_Datos_DT("SELECT ID,NAME FROM SYSOBJECTS WHERE TYPE='U' ORDER BY NAME", false, ref dt_tablesdet, "S");
+
+                bdemi.Desconectar();
+                cboTablaCab.DataSource = dt_tablescab;
+                cboTablaCab.ValueMember = "ID";
+                cboTablaCab.DisplayMember = "NAME";
+
+                cboTablaDet.DataSource = dt_tablesdet;
+                cboTablaDet.ValueMember = "ID";
+                cboTablaDet.DisplayMember = "NAME";
+            }
         }
         /*private static Contribuyente CrearEmisor()
         {
@@ -735,7 +789,7 @@ namespace FinalXML
 
                 }
                 else {
-                    MessageBox.Show("Seleccion un registro..!");  
+                    MessageBox.Show("Seleccione un registro..!");  
                 }
             }
             catch (Exception a ) { MessageBox.Show(a.Message); }
@@ -1431,20 +1485,7 @@ namespace FinalXML
         private void cboBaseDatos_SelectedIndexChanged(object sender, EventArgs e)
         {
 
-            DataRowView drv_base = (DataRowView)cboBaseDatos.SelectedItem;
-            if (drv_base[0].ToString() != "") {
-                BaseDatos bdemi = new BaseDatos(txtserver.Text, BaseDatos.BBDD.SQL, drv_base[0].ToString(), txtuser.Text, txtpass.Text);
-                bdemi.Conectar();
-                DataTable dt_tablesbd = new DataTable();
-                bdemi.Dame_Datos_DT("SELECT ID,NAME FROM SYSOBJECTS WHERE TYPE='U'", false, ref dt_tablesbd, "S");
-                bdemi.Desconectar();
-                cboTablaCab.DataSource = dt_tablesbd;
-                cboTablaCab.ValueMember = "ID";
-                cboTablaCab.DisplayMember = "NAME";
-                cboTablaDet.DataSource = dt_tablesbd;
-                cboTablaDet.ValueMember = "ID";
-                cboTablaDet.DisplayMember = "NAME";
-            }
+            loadTables();
 
         }
 
@@ -1478,11 +1519,87 @@ namespace FinalXML
                 return;
             }
 
-            if (GuardarEmisor()) {
-                MessageBox.Show("Se ha guardado correctamente el emisor electronico");
-            };
+            if (btnCancelEditEmi.Visible)
+            {
+                if (ActualizarEmisor())
+                {
+                    MessageBox.Show("Se ha actualizado correctamente el emisor electronico");
+                }
+            }
+            else
+            {
+                if (GuardarEmisor())
+                {
+                    MessageBox.Show("Se ha guardado correctamente el emisor electronico");
+                };
+            }
 
             CargaEmpresa();
+        }
+
+        private void btnEditarEmisor_Click(object sender, EventArgs e)
+        {
+            if (grvEmisores.CurrentRow != null)
+            {
+                btnCancelEditEmi.Visible = true;
+                DataGridViewRow row = grvEmisores.Rows[grvEmisores.CurrentRow.Index];
+                DataTable dt_empresa = AdmCEmpresa.CargaEmpresa(row.Cells[0].Value.ToString());
+                String basedatos = "", tablacab = "", tabladet = "";
+                foreach(DataRow dtrow in dt_empresa.Rows)
+                {
+                    txtnumruc.Text = dtrow["NU_EMINUMRUC"].ToString();
+                    txtCodAge.Text = dtrow["CO_EMICODAGE"].ToString();
+                    txtusersun.Text = dtrow["NO_USUSOLSUN"].ToString();
+                    txtpasssun.Text = dtrow["NO_PASSOLSUN"].ToString();
+                    txtserver.Text = dtrow["NO_BASNOMSRV"].ToString();
+                    txtuser.Text = dtrow["NO_BASUSRBAS"].ToString();
+                    txtpass.Text = dtrow["NO_BASUSRPAS"].ToString();
+                    basedatos = dtrow["NO_BASNOMBAS"].ToString();
+                    tablacab = dtrow["NO_TABFACCAB"].ToString();
+                    tabladet = dtrow["NO_TABFACDET"].ToString();
+                    cboEstadoEmisor.SelectedIndex = Convert.ToInt32(dtrow["FL_REGINACTI"].ToString());
+                }
+                btnConsultarRuc.PerformClick();
+                btnConectarServer.PerformClick();
+            }
+            else
+            {
+                MessageBox.Show("No se ha seleccionado ningun registro ...!!");
+            }
+        }
+
+        private void btnCancelEditEmi_Click(object sender, EventArgs e)
+        {
+            txtnumruc.Clear();
+            txtrazsoc.Clear();
+            txtestemi.Clear();
+            txtconemi.Clear();
+            txtubigeo.Clear();
+            txtnomdep.Clear();
+            txtnomprv.Clear();
+            txtnomdis.Clear();
+            txtdomfis.Clear();
+            txtCodAge.Clear();
+            txtusersun.Clear();
+            txtpasssun.Clear();
+            txtserver.Clear();
+            txtuser.Clear();
+            txtpass.Clear();
+
+            DataTable nothing = new DataTable();
+            cboBaseDatos.DataSource = nothing;
+            cboBaseDatos.DisplayMember = null;
+            cboBaseDatos.ValueMember = null;
+
+            cboTablaCab.DataSource = nothing;
+            cboTablaCab.DisplayMember = null;
+            cboTablaCab.ValueMember = null;
+
+            cboTablaDet.DataSource = nothing;
+            cboTablaDet.DisplayMember = null;
+            cboTablaDet.ValueMember = null;
+
+            btnCancelEditEmi.Visible = false;
         }
     }
 }
