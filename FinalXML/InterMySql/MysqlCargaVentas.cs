@@ -121,7 +121,7 @@ namespace FinalXML.InterMySql
             {
                 string consulta = @"SELECT F5_CTD,F5_CNUMSER,F5_CNUMDOC,CONCAT(F5_CTD,F5_CNUMSER,F5_CNUMDOC) AS NUMDOC,
                                     F5_CCODCLI,F5_CNOMBRE,F5_CDIRECC,F5_DFECDOC,F5_NIMPORT,F5_COD_ESTADO_SUNAT,
-                                    F5_MENSAJE_SUNAT, (CASE INSULL(F5_ESTADO_ENVIO,0) WHEN 0 THEN " + "'POR ENVIAR'" + " WHEN 1 THEN " + "'RECHAZADO'" + " WHEN 2 THEN " + "'PENDIENTE'" + " WHEN 3 THEN " + "'ACEPTADA'" + " WHEN 4 THEN " + "'ANULADO'" + " END ) AS ESTADO_ENVIO,F5_XML,F5_CDR,F5_PDF " +
+                                    F5_MENSAJE_SUNAT, (CASE ISNULL(F5_ESTADO_ENVIO,0) WHEN 0 THEN " + "'POR ENVIAR'" + " WHEN 1 THEN " + "'RECHAZADO'" + " WHEN 2 THEN " + "'PENDIENTE'" + " WHEN 3 THEN " + "'ACEPTADA'" + " WHEN 4 THEN " + "'ANULADO'" + " END ) AS ESTADO_ENVIO,F5_XML,F5_CDR,F5_PDF " +
                                      "FROM INT_DOCELECAB " +
                                      "WHERE ISNULL(F5_ESTADO_ENVIO,0) = @estado AND F5_CRUCEMI= @rucemi AND (@tipdoc = '' OR F5_CTD = @tipdoc) AND F5_DFECDOC BETWEEN @desde AND @hasta ORDER BY F5_CNUMDOC DESC";
 

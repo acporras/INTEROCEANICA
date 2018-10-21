@@ -8,4 +8,3 @@ C:\Users\dark_\Documents\FE\INTEROCEANICA\FE.InterfaceService\obj\Debug\FE.Inter
 C:\Users\dark_\Documents\FE\INTEROCEANICA\FE.InterfaceService\obj\Debug\FE.InterfaceService.pdb
 C:\Users\dark_\Documents\FE\INTEROCEANICA\FE.InterfaceService\bin\Debug\MySql.Data.DLL
 C:\Users\dark_\Documents\FE\INTEROCEANICA\FE.InterfaceService\obj\Debug\FE.InterfaceService.csproj.CopyComplete
-C:\Users\dark_\Documents\FE\INTEROCEANICA\FE.InterfaceService\obj\Debug\FE.InterfaceService.csprojAssemblyReference.cache

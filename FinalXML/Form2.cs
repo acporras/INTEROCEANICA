@@ -71,6 +71,7 @@ namespace FinalXML
             grvResDetail.Rows.Clear();
             CargaEmpresa();
             cboEstadoEmisor.SelectedIndex = 0;
+            cboTipdoc.SelectedIndex = 0;
         }
         private void CargaEmpresa()
         {
@@ -120,7 +121,26 @@ namespace FinalXML
                 
 
                 Int32 index = 0;
-                dt_Ventas = AdmCVenta.CargaDocumentos(cboEmpresaDoc.SelectedValue.ToString() ,dtpDesde.Value.Date, dtpHasta.Value.Date, "");
+                String TipDoc = "";
+                switch (cboTipdoc.SelectedIndex) {
+                    case 1:
+                        TipDoc = "FT";
+                        break;
+                    case 2:
+                        TipDoc = "BV";
+                        break;
+                    case 3:
+                        TipDoc = "NC";
+                        break;
+                    case 4:
+                        TipDoc = "ND";
+                        break;
+                    default:
+                        TipDoc = "";
+                        break;
+                }
+                //dt_Ventas = AdmCVenta.CargaDocumentos(cboEmpresaDoc.SelectedValue.ToString() ,dtpDesde.Value.Date, dtpHasta.Value.Date, "");
+                dt_Ventas = AdmCVenta.CargaDocumentos(cboEmpresaDoc.SelectedValue.ToString(), dtpDesde.Value.Date, dtpHasta.Value.Date, TipDoc);
                 dgListadoVentas.Rows.Clear();
                 dgListadoVentas.ClearSelection();
                 foreach (DataRow row in dt_Ventas.Rows)
@@ -639,7 +659,6 @@ namespace FinalXML
                 {
                     //Cabecera
                     CVentas1 = AdmCVenta.LeerVenta(CVentas.Sigla, CVentas.Serie, CVentas.Numeracion);
-                    
                     //Detalle
                     if (CVentas1.Serie != null && CVentas1.Sigla != null && CVentas1.Numeracion != null)
                     {
@@ -782,7 +801,8 @@ namespace FinalXML
                     RutaArchivo = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Documentos\\" +
                     $"{_documento.IdDocumento}.xml");
                     File.WriteAllBytes(RutaArchivo, Convert.FromBase64String(TramaXmlSinFirma));
-                    btnEnvioSunat.Enabled = true;
+                    //btnEnvioSunat.Enabled = true;
+                    btnEnvioSunat.Enabled = (CVentas.Sigla == "BV") ? false : true;
                     lblmensaje.Text="Archivo generado correctamente";
                     lblmensaje.Visible = true;
                     Proceso = 1;
@@ -973,6 +993,8 @@ namespace FinalXML
         private void dgListadoVentas_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             try {
+                //Se valida el tipo de documento
+                btnEnvioSunat.Enabled = (dgListadoVentas.CurrentRow.Cells[sigla.Name].Value.ToString() == "BV") ? false : true;
                 if (dgListadoVentas.Columns[e.ColumnIndex].Name.Equals("xml"))
                 {
                     //Aqui va el code que quieres que realize
